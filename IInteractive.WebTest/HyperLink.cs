@@ -18,15 +18,17 @@ namespace IInteractive.WebTest
 
             foreach(Match match in matches)
             {
-                links.Add(
-                    new HyperLink()
-                        {
-                            Root = root,
-                            Text = match.Groups[2].Value,
-                            Href = match.Groups[1].Value,
-                            Html = match.Groups[0].Value,
-                            Path = match.Groups[1].Value
-                        });
+                if(!match.Groups[1].Value.StartsWith("javascript:")) {
+                    links.Add(
+                        new HyperLink()
+                            {
+                                Root = root,
+                                Text = match.Groups[2].Value,
+                                Href = match.Groups[1].Value,
+                                Html = match.Groups[0].Value,
+                                Path = match.Groups[1].Value
+                            });
+                }
             }
 
             return links;

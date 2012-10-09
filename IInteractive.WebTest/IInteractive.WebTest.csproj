@@ -69,6 +69,9 @@
   <ItemGroup>
     <Compile Include="Browser.cs" />
     <Compile Include="Crawler.cs" />
+    <Compile Include="Test.Helpers\DoublyLinkedTreeNode.cs" />
+    <Compile Include="Test.Helpers\Generators.cs" />
+    <Compile Include="Test.Helpers\Graph.cs" />
     <Compile Include="HtmlObject.cs" />
     <Compile Include="HtmlRequestResult.cs" />
     <Compile Include="HttpRequestResult.cs" />

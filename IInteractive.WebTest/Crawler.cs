@@ -42,7 +42,7 @@ namespace IInteractive.WebTest
             for (int i = 0; i < pages.Count; i++)
             {
                 pages[i].Get();
-                if (GetSetOfCrawlableHosts().Contains(pages[i].RequestUrl.Host))
+                if (pages[i].Error == null && GetSetOfCrawlableHosts().Contains(pages[i].RequestUrl.Host))
                 {
                     foreach (HyperLink link in pages[i].Links)
                     {

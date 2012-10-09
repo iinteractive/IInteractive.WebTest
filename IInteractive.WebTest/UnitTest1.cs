@@ -153,6 +153,22 @@ namespace IInteractive.WebTest
             Assert.IsTrue(absoluteUri.IsAbsoluteUri);
 
             Assert.AreEqual(absoluteUri.Host, "microsoft.com");
+            Console.WriteLine("{0}, {1}", "AbsolutePath", absoluteUri.AbsolutePath);
+            Console.WriteLine("{0}, {1}", "AbsoluteUri", absoluteUri.AbsoluteUri);
+            Console.WriteLine("{0}, {1}", "Authority", absoluteUri.Authority);
+            Console.WriteLine("{0}, {1}", "DnsSafeHost", absoluteUri.DnsSafeHost);
+            Console.WriteLine("{0}, {1}", "Fragment", absoluteUri.Fragment);
+            Console.WriteLine("{0}, {1}", "Host", absoluteUri.Host);
+            Console.WriteLine("{0}, {1}", "HostNameType", absoluteUri.HostNameType);
+            Console.WriteLine("{0}, {1}", "LocalPath", absoluteUri.LocalPath);
+            Console.WriteLine("{0}, {1}", "OriginalString", absoluteUri.OriginalString);
+            Console.WriteLine("{0}, {1}", "PathAndQuery", absoluteUri.PathAndQuery);
+            Console.WriteLine("{0}, {1}", "Port", absoluteUri.Port);
+            Console.WriteLine("{0}, {1}", "Query", absoluteUri.Query);
+            Console.WriteLine("{0}, {1}", "Scheme", absoluteUri.Scheme);
+            Console.WriteLine("{0}, {1}", "Segments", absoluteUri.Segments);
+
+            Console.WriteLine("Needed: " + absoluteUri.Scheme + "://" + absoluteUri.Host + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port)));
         }
 
         [TestMethod]
