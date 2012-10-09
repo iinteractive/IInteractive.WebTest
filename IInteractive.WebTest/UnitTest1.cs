@@ -1,10 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Windows.Forms;
+using CSSDemo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting;
 
@@ -13,6 +18,10 @@ namespace IInteractive.WebTest
     [TestClass]
     public class UnitTest1
     {
+        static UnitTest1()
+        {
+        }
+
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -53,6 +62,20 @@ namespace IInteractive.WebTest
 
             //    if (!webPages.Contains(subPage)) webPages.Add(subPage);
             //}
+
+        }
+
+        [AssemblyInitialize]
+        public static void AssemblyInitialize(TestContext context)
+        {
+            MessageBox.Show("Assembly initialized: " + context.TestName);
+            
+        }
+
+        [ClassInitialize()]
+        public static void ClassInitialize(TestContext context)
+        {
+            MessageBox.Show("Class initialized: " + context.TestName);
         }
 
         [TestMethod]
@@ -70,6 +93,8 @@ namespace IInteractive.WebTest
             Assert.IsNotNull(page.Path, "Unknown Path!");
 
             IEnumerable<HttpValidationError> errors;
+
+            
 
             var isFailure = page.Validate(out errors);
 
