@@ -218,9 +218,21 @@ namespace IInteractive.WebTest
         }
 
         [TestMethod]
-        public void PerformanceTestCaseB()
+        public void TestRecursionLimitCaseA()
         {
-            TestCrawlerPerformanceGeneric("http://stagewww.aetnamedicare.com/homepage.jsp", 256000);
+            TestCrawlerMethod(GetPerformanceTestUrl(2, 7, 10000, 12192), 1, 1);
+        }
+
+        [TestMethod]
+        public void TestRecursionLimitCaseB()
+        {
+            TestCrawlerMethod(GetPerformanceTestUrl(2, 7, 10000, 12192), 2, 2);
+        }
+
+        [TestMethod]
+        public void TestRecursionLimitCaseC()
+        {
+            TestCrawlerMethod(GetPerformanceTestUrl(2, 7, 10000, 12192), 3, 3);
         }
 
         private string GetTestUrl(string path)
@@ -232,9 +244,14 @@ namespace IInteractive.WebTest
             return "http://127.0.0.1:" + Port;
         }
 
+        private string GetPerformanceTestUrl(int fanOut, int depth, int data, int seed)
+        {
+            return GetTestUrl("/PerformanceTests/File-1?Depth=" + depth + "&FanOut=" + fanOut + "&Data=" + data + "&Seed=" + seed);
+        }
+
         private void TestCrawlerPerformance(int fanOut, int depth, int data, int seed, long acceptablePerformance)
         {
-            string path = GetTestUrl("/PerformanceTests/File-1?Depth=" + depth + "&FanOut=" + fanOut + "&Data=" + data + "&Seed=" + seed);
+            string path = GetPerformanceTestUrl(fanOut, depth, data, seed);
             TestCrawlerPerformanceGeneric(path, acceptablePerformance);
         }
 
@@ -243,7 +260,7 @@ namespace IInteractive.WebTest
 
             List<string> uriList = new List<String>();
             uriList.Add(path);
-            Crawler crawler = new Crawler(uriList, new Browser());
+            Crawler crawler = new Crawler(uriList, new Browser(), 500);
 
             Stopwatch watch = new Stopwatch();
             watch.Reset();
@@ -274,10 +291,15 @@ namespace IInteractive.WebTest
 
         private void TestCrawlerMethod(string path, int expectedCount)
         {
+            TestCrawlerMethod(path, expectedCount, 500);
+        }
+
+        private void TestCrawlerMethod(string path, int expectedCount, int recursionLimit)
+        {
             List<string> uriList = new List<String>();
             uriList.Add(path);
 
-            Crawler crawler = new Crawler(uriList, new Browser());
+            Crawler crawler = new Crawler(uriList, new Browser(), recursionLimit);
 
             crawler.Crawl();
 
