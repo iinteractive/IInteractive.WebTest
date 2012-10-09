@@ -36,6 +36,9 @@ namespace IInteractive.WebTest
         public HtmlRequestResult GetHtml(Uri url)
         {
             var results = new HtmlRequestResult();
+
+            StreamReader streamReader = null;
+            WebResponse response = null;
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(url);
@@ -46,8 +49,8 @@ namespace IInteractive.WebTest
                 request.Headers.Add("Accept-Charset", AcceptCharset);
                 request.Headers.Add("Accept-Language", AcceptLanguage);
 
-                var response = request.GetResponse();
-                var streamReader = new StreamReader(response.GetResponseStream());
+                response = request.GetResponse();
+                streamReader = new StreamReader(response.GetResponseStream());
 
                 results.Html = streamReader.ReadToEnd();
                 results.ResultUrl = request.Address;
@@ -75,6 +78,17 @@ namespace IInteractive.WebTest
                         Message = exception.Message
                     };
             }
+            finally
+            {
+                if(streamReader != null)
+                {
+                    try { streamReader.Close(); } catch { }
+                }
+                if (response != null)
+                {
+                    try { response.Close(); } catch { }
+                }
+            }
 
             return results;
         }
@@ -82,6 +96,8 @@ namespace IInteractive.WebTest
         public HttpRequestResult Get(Uri url)
         {
             var results = new HtmlRequestResult();
+
+            WebResponse response = null;
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(url);
@@ -92,9 +108,8 @@ namespace IInteractive.WebTest
                 request.Headers.Add("Accept-Charset", AcceptCharset);
                 request.Headers.Add("Accept-Language", AcceptLanguage);
 
-                var response = request.GetResponse();
+                response = request.GetResponse();
 
-                response.Close();
                 results.ResultUrl = request.Address;
             }
             catch (WebException exception)
@@ -119,6 +134,14 @@ namespace IInteractive.WebTest
                     Error = exception,
                     Message = exception.Message
                 };
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    try { response.Close(); }
+                    catch { }
+                }
             }
 
             return results;
