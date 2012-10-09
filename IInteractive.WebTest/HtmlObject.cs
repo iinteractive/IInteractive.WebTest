@@ -19,7 +19,7 @@ namespace IInteractive.WebTest
         {
             errors = new List<HttpValidationError>();
 
-            var results = Browser.ActiveBrowser.Get(AbsoluteUri);
+            var results = new Browser().Get(AbsoluteUri);
 
             ResultUrl = results.ResultUrl;
             

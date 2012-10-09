@@ -79,11 +79,11 @@ namespace IInteractive.WebTest
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestNormalWebPageGet()
         {
             Console.WriteLine("METHOD ");
 
-            var page = new WebPage(new Uri("http://www.reallifecomics.com/"));
+            var page = new WebPage(new Uri("http://www.google.com/"), new Browser());
 
             page.Get();
 
@@ -101,6 +101,32 @@ namespace IInteractive.WebTest
             string errorMessage = "\r\n";
             
             foreach(var item in errors)
+            {
+                errorMessage += string.Format("Url: {0}\r\nCode: {1}, Message: {2}\r\nStack Trace:\r\n{3}\r\n\r\n", item.AbsoluteUri, item.HttpCode, item.Message, item.Error.StackTrace);
+            }
+
+            Assert.IsTrue(isFailure, errorMessage);
+            Assert.IsFalse(errors.Any());
+        }
+
+        [TestMethod]
+        public void TestAbnormalWebPageGet()
+        {
+            // The uri needs to be an image, or something with a content type besides html.
+            var page = new WebPage(new Uri("http://www.google.com/images/srpr/logo3w.png"), new Browser());
+
+            page.Get();
+
+            Assert.IsTrue(page.Links.Count == 0, "Hyperlinks found!");
+            Assert.IsTrue(page.Images.Count == 0, "Images found!");
+            Assert.IsTrue(page.JavaScripts.Count == 0, "Scripts found!");
+            Assert.IsNotNull(page.Path, "Unknown Path!");
+
+            IEnumerable<HttpValidationError> errors;
+            var isFailure = page.Validate(out errors);
+
+            string errorMessage = "\r\n";
+            foreach (var item in errors)
             {
                 errorMessage += string.Format("Url: {0}\r\nCode: {1}, Message: {2}\r\nStack Trace:\r\n{3}\r\n\r\n", item.AbsoluteUri, item.HttpCode, item.Message, item.Error.StackTrace);
             }
@@ -150,6 +176,35 @@ namespace IInteractive.WebTest
 
             absoluteUri = new Uri("http://microsoft.com/sub1/sub2/default.aspx", UriKind.RelativeOrAbsolute);
             Assert.IsTrue(absoluteUri.IsAbsoluteUri);
+
+            Assert.AreEqual(absoluteUri.Host, "microsoft.com");
+            Console.WriteLine("{0}, {1}", "AbsolutePath", absoluteUri.AbsolutePath);
+            Console.WriteLine("{0}, {1}", "AbsoluteUri", absoluteUri.AbsoluteUri);
+            Console.WriteLine("{0}, {1}", "Authority", absoluteUri.Authority);
+            Console.WriteLine("{0}, {1}", "DnsSafeHost", absoluteUri.DnsSafeHost);
+            Console.WriteLine("{0}, {1}", "Fragment", absoluteUri.Fragment);
+            Console.WriteLine("{0}, {1}", "Host", absoluteUri.Host);
+            Console.WriteLine("{0}, {1}", "HostNameType", absoluteUri.HostNameType);
+            Console.WriteLine("{0}, {1}", "LocalPath", absoluteUri.LocalPath);
+            Console.WriteLine("{0}, {1}", "OriginalString", absoluteUri.OriginalString);
+            Console.WriteLine("{0}, {1}", "PathAndQuery", absoluteUri.PathAndQuery);
+            Console.WriteLine("{0}, {1}", "Port", absoluteUri.Port);
+            Console.WriteLine("{0}, {1}", "Query", absoluteUri.Query);
+            Console.WriteLine("{0}, {1}", "Scheme", absoluteUri.Scheme);
+            Console.WriteLine("{0}, {1}", "Segments", absoluteUri.Segments);
+
+            Console.WriteLine("Needed: " + absoluteUri.Scheme + "://" + absoluteUri.Host + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port)));
+        }
+
+        [TestMethod]
+        public void SortedSetUniqueness()
+        {
+            SortedSet<string> set = new SortedSet<string>();
+            set.Add("val");
+            int count = set.Count;
+            set.Add("val");
+            int count2 = set.Count;
+            Assert.AreEqual(count, count2);
         }
 
     }

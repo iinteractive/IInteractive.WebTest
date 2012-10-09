@@ -8,5 +8,6 @@ namespace IInteractive.WebTest
     public class HtmlRequestResult : HttpRequestResult
     {
         public string Html { get; set; }
+        public string ContentType { get; set; }
     }
 }

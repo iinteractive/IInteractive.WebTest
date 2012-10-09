@@ -9,13 +9,6 @@ namespace IInteractive.WebTest
 {
     public class Browser
     {
-        static Browser()
-        {
-            ActiveBrowser = new Browser();
-        }
-
-        public static Browser ActiveBrowser { get; private set; }
-
         public int MaximumAutomaticRedirections { get; set; }
         public bool AllowAutoRedirect { get; set; }
         public string UserAgent { get; set; }
@@ -53,6 +46,7 @@ namespace IInteractive.WebTest
                 streamReader = new StreamReader(response.GetResponseStream());
 
                 results.Html = streamReader.ReadToEnd();
+                results.ContentType = response.ContentType;
                 results.ResultUrl = request.Address;
             }
             catch (WebException exception)

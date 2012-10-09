@@ -7,16 +7,18 @@ using System.Text;
 
 namespace IInteractive.WebTest
 {
-    public class WebPage : HtmlObject, ITestableHttpItem
+    public class WebPage : HtmlObject, ITestableHttpItem, IEquatable<HtmlObject>, IComparable<WebPage>
     {
-        public WebPage(Uri url)
+        public WebPage(Uri url, Browser browser)
         {
             Path = url;
             RequestUrl = url;
+            Browser = browser;
         }
 
         public Uri RequestUrl { get; private set; }
         public Uri Path { get; set; }
+        public Browser Browser { get; set; }
         public List<HyperLink> Links { get; set; }
         public List<Image> Images { get; set; }
         public List<JavaScript> JavaScripts { get; set; }
@@ -26,7 +28,7 @@ namespace IInteractive.WebTest
 
         public void Get()
         {
-            var results = Browser.ActiveBrowser.GetHtml(Path);
+            var results = Browser.GetHtml(Path);
 
             Path = results.ResultUrl;
 
@@ -71,5 +73,15 @@ namespace IInteractive.WebTest
         }
 
         public int NumberOfItems { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return (obj as WebPage).RequestUrl.Equals(this.RequestUrl);
+        }
+
+        public int CompareTo(WebPage obj)
+        {
+            return obj.RequestUrl.ToString().CompareTo(this.RequestUrl.ToString());
+        }
     }
 }

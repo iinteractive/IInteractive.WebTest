@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E5BFCBF9-3ACD-4639-ABE6-16A501CB61F3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CrawlerTestApp</RootNamespace>
+    <AssemblyName>CrawlerTestApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AbsoluteUrlTests\CaseA\Linked.htm" />
+    <Content Include="AbsoluteUrlTests\CaseA\Seed.aspx" />
+    <Content Include="AbsoluteUrlTests\CaseB\Folder\Linked.htm" />
+    <Content Include="AbsoluteUrlTests\CaseB\Seed.aspx" />
+    <Content Include="AbsoluteUrlTests\CaseC\Folder\Seed.aspx" />
+    <Content Include="AbsoluteUrlTests\CaseC\Linked.htm" />
+    <Content Include="BaseUrlTests\CaseA\Linked.htm" />
+    <Content Include="BaseUrlTests\CaseA\Seed.htm" />
+    <Content Include="BaseUrlTests\CaseB\Folder\Linked.htm" />
+    <Content Include="BaseUrlTests\CaseB\Seed.htm" />
+    <Content Include="BaseUrlTests\CaseC\Folder\Seed.htm" />
+    <Content Include="BaseUrlTests\CaseC\Linked.htm" />
+    <Content Include="CrawlBackTests\CaseA\Seed.htm" />
+    <Content Include="CrawlBackTests\CaseB\Seed.htm" />
+    <Content Include="CrawlBackTests\CaseB\SeedLink1.htm" />
+    <Content Include="CrawlBackTests\CaseC\Seed.htm" />
+    <Content Include="CrawlBackTests\CaseC\SeedLink1.htm" />
+    <Content Include="CrawlBackTests\CaseC\SeedLink2.htm" />
+    <Content Include="CrawlBackTests\CaseD\Seed.htm" />
+    <Content Include="CrawlBackTests\CaseD\SeedLink1.htm" />
+    <Content Include="CrawlBackTests\CaseD\SeedLink2.htm" />
+    <Content Include="CrawlBackTests\CaseD\SeedLink3.htm" />
+    <Content Include="CrawlFanOutTests\CaseA\Seed.htm" />
+    <Content Include="CrawlFanOutTests\CaseB\Seed.htm" />
+    <Content Include="CrawlFanOutTests\CaseB\SeedLink1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseB\SeedLink1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\Seed.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-2-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-2-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseC\SeedLink1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\Seed.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-2-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-2-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-1-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-1-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-2-1.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-2-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2-2.htm" />
+    <Content Include="CrawlFanOutTests\CaseD\SeedLink1-2.htm" />
+    <Content Include="CrawlTests\CaseA\Seed.htm" />
+    <Content Include="CrawlTests\CaseB\Seed.htm" />
+    <Content Include="CrawlTests\CaseB\SeedLink1.htm" />
+    <Content Include="CrawlTests\CaseC\Seed.htm" />
+    <Content Include="CrawlTests\CaseC\SeedLink1.htm" />
+    <Content Include="CrawlTests\CaseC\SeedLink2.htm" />
+    <Content Include="CrawlTests\CaseD\Seed.htm" />
+    <Content Include="CrawlTests\CaseD\SeedLink1.htm" />
+    <Content Include="CrawlTests\CaseD\SeedLink2.htm" />
+    <Content Include="CrawlTests\CaseD\SeedLink3.htm" />
+    <Content Include="ErroredLinkedTests\CaseA\Linked.aspx" />
+    <Content Include="ErroredLinkedTests\CaseA\Seed.htm" />
+    <Content Include="ErroredLinkedTests\CaseB\Linked.aspx" />
+    <Content Include="ErroredLinkedTests\CaseB\Seed.htm" />
+    <Content Include="ErroredLinkedTests\CaseC\Linked.aspx" />
+    <Content Include="ErroredLinkedTests\CaseC\Seed.htm" />
+    <Content Include="ErroredLinkedTests\CaseD\Linked.aspx" />
+    <Content Include="ErroredLinkedTests\CaseD\Seed.htm" />
+    <Content Include="ErroredLinkedTests\CaseE\Linked.aspx" />
+    <Content Include="ErroredLinkedTests\CaseE\Seed.htm" />
+    <Content Include="ErroredSeedTests\CaseA\Seed.aspx" />
+    <Content Include="ErroredSeedTests\CaseB\Seed.aspx" />
+    <Content Include="ErroredSeedTests\CaseC\Seed.aspx" />
+    <Content Include="ErroredSeedTests\CaseD\Seed.aspx" />
+    <Content Include="ErroredSeedTests\CaseE\Seed.aspx" />
+    <Content Include="MultipleSeedTests\CaseA\Seed1.htm" />
+    <Content Include="MultipleSeedTests\CaseA\Seed2.htm" />
+    <Content Include="MultipleSeedTests\CaseB\Link1.htm" />
+    <Content Include="MultipleSeedTests\CaseB\Link2.htm" />
+    <Content Include="MultipleSeedTests\CaseB\Seed1.htm" />
+    <Content Include="MultipleSeedTests\CaseB\Seed2.htm" />
+    <Content Include="MultipleSeedTests\CaseC\Link1.htm" />
+    <Content Include="MultipleSeedTests\CaseC\Seed1.htm" />
+    <Content Include="MultipleSeedTests\CaseC\Seed2.htm" />
+    <Content Include="RelativeUrlTests\CaseA\Linked.htm" />
+    <Content Include="RelativeUrlTests\CaseA\Seed.htm" />
+    <Content Include="RelativeUrlTests\CaseB\Folder\Linked.htm" />
+    <Content Include="RelativeUrlTests\CaseB\Seed.htm" />
+    <Content Include="RelativeUrlTests\CaseC\Folder\Seed.htm" />
+    <Content Include="RelativeUrlTests\CaseC\Linked.htm" />
+    <Content Include="RemoteSiteCrawlTests\CaseA\Seed.htm" />
+    <Content Include="RemoteSiteCrawlTests\CaseB\Seed.htm" />
+    <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseA\Linked.htm" />
+    <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseB\Linked.htm" />
+    <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseB\Linked2.htm" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbsoluteUrlTests\CaseA\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AbsoluteUrlTests\CaseA\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AbsoluteUrlTests\CaseB\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AbsoluteUrlTests\CaseB\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AbsoluteUrlTests\CaseC\Folder\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AbsoluteUrlTests\CaseC\Folder\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler.ashx.cs">
+      <DependentUpon>Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PerformanceTests\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50713</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
