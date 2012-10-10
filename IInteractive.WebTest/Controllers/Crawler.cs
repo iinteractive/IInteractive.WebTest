@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace IInteractive.WebTest
 {
@@ -12,8 +13,9 @@ namespace IInteractive.WebTest
         public SortedSet<WebPage> Seeds { get; private set; }
         public Browser BrowserToTest { get; private set; }
         public SortedSet<WebPage> Pages { get; private set; }
+        public int RecursionLimit { get; set; }
 
-        public Crawler(List<String> Seeds, Browser BrowserToTest)
+        public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit)
         {
             this.Seeds = new SortedSet<WebPage>();
             foreach (String seed in Seeds.Distinct().ToList())
@@ -25,29 +27,30 @@ namespace IInteractive.WebTest
                 throw new ArgumentException(UNIQUE_SEEDS_ERROR_MESSAGE, "Seeds");
 
             this.BrowserToTest = BrowserToTest;
+            this.RecursionLimit = RecursionLimit;
         }
 
-        /// <summary>
-        /// What are the possible problems that could result?
-        /// 1. The link parsed from the a element is not an Html type.
-        /// </summary>
         public bool Crawl()
         {
             List<WebPage> pages = new List<WebPage>();
             foreach (WebPage seed in Seeds)
             {
-                pages.Add(seed);
+                if(pages.Count < RecursionLimit)
+                    pages.Add(seed);
             }
 
-            for (int i = 0; i < pages.Count; i++)
+            List<Thread> threads = new List<Thread>(); 
+            
+            for (int i = 0; i < pages.Count && i < RecursionLimit; i++)
             {
                 pages[i].Get();
+
                 if (pages[i].Error == null && GetSetOfCrawlableHosts().Contains(pages[i].RequestUrl.Host))
                 {
                     foreach (HyperLink link in pages[i].Links)
                     {
                         WebPage potentialAdd = new WebPage(link.AbsoluteUri, pages[i].Browser);
-                        if (!pages.Contains(potentialAdd))
+                        if (pages.Count < RecursionLimit && !pages.Contains(potentialAdd))
                         {
                             pages.Add(potentialAdd);
                         }
