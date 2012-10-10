@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace IInteractive.WebTest
 {
+    /// <summary>
+    /// Intended to be used for parsing script elements out of an HTML page.
+    /// </summary>
     public class JavaScript : HtmlObject
     {
         public static readonly Regex RegularExpression = new Regex("<script.+?src=[\"|'](.+?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase);

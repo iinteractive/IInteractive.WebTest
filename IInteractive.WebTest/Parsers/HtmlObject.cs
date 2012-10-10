@@ -7,6 +7,9 @@ using System.Text;
 
 namespace IInteractive.WebTest
 {
+    /// <summary>
+    /// Intended to be base class for Html based parsers.
+    /// </summary>
     public abstract class HtmlObject : ITestableHttpItem, IEquatable<HtmlObject>
     {
         public string Path { get; set; }

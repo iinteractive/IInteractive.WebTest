@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace IInteractive.WebTest
 {
+    /// <summary>
+    /// Intended to be used for parsing a elements out of an HTML page.
+    /// </summary>
     public class HyperLink : HtmlObject
     {
         public static readonly Regex RegularExpression = new Regex("<a.+?href=[\"|'](.+?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase);

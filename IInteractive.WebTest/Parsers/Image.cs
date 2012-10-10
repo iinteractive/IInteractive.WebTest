@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace IInteractive.WebTest
 {
+    /// <summary>
+    /// Intended to be used for parsing img elements out of an HTML page.
+    /// </summary>
     public class Image : HtmlObject
     {
         public static readonly Regex RegularExpression = new Regex("<img.+?src=[\"|'](.+?)[\"|'].*?>(.*?)/>", RegexOptions.IgnoreCase);
