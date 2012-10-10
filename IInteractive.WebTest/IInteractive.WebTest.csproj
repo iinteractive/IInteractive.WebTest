@@ -69,10 +69,10 @@
   <ItemGroup>
     <Compile Include="Controllers\Browser.cs" />
     <Compile Include="Controllers\Crawler.cs" />
-    <Compile Include="Models\HtmlObject.cs" />
+    <Compile Include="Parsers\HtmlObject.cs" />
     <Compile Include="Models\HtmlRequestResult.cs" />
     <Compile Include="Models\HttpRequestResult.cs" />
-    <Compile Include="Controllers\HttpValidationError.cs" />
+    <Compile Include="Models\HttpValidationError.cs" />
     <Compile Include="Parsers\HyperLink.cs" />
     <Compile Include="Parsers\Image.cs" />
     <Compile Include="Models\ITestableHttpItem.cs" />
