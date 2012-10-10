@@ -13,12 +13,12 @@ namespace IInteractive.WebTest
         {
             var defaultaspx1 = new HyperLink(new Uri("http://about.me/"), "/default.aspx");
 
-            var defaultaspx2 = new HyperLink(new Uri("http://about.me"), "default.aspx");
+            var defaultaspx2 = new HyperLink(new Uri("http://about.me/"), "default.aspx");
 
             var defaultaspx3 = new HyperLink(new Uri("http://about.me/sub1/"), "../default.aspx");
 
-            Assert.AreEqual(defaultaspx1, defaultaspx2);
-            Assert.AreEqual(defaultaspx1, defaultaspx3);
+            Assert.IsTrue(defaultaspx1.Equals(defaultaspx2));
+            Assert.IsTrue(defaultaspx1.Equals(defaultaspx3));
 
             var links = new List<HyperLink>() {defaultaspx1, defaultaspx2, defaultaspx3};
 

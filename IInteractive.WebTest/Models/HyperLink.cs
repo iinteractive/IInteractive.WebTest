@@ -9,7 +9,7 @@ namespace IInteractive.WebTest
     /// <summary>
     /// Intended to be used for parsing a elements out of an HTML page.
     /// </summary>
-    public class HyperLink : Link
+    public class HyperLink : Link, IEquatable<HyperLink>
     {
         public HyperLink(Uri Root, string Path)
             : base(Root, Path)
@@ -17,5 +17,10 @@ namespace IInteractive.WebTest
         }
 
         public string Text { get; set; }
+
+        public bool Equals(HyperLink link)
+        {
+            return ((Link)this).Equals((Link)link);
+        }
     }
 }
