@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
+using System.Threading;
 
 namespace IInteractive.WebTest
 {
@@ -11,7 +11,6 @@ namespace IInteractive.WebTest
     public class TestCrawler
     {
         public static int Port = 50713;
-
 
         [TestMethod]
         public void AbsoluteUrlTestsCaseA()
@@ -214,7 +213,7 @@ namespace IInteractive.WebTest
         [TestMethod]
         public void PerformanceTestCaseA()
         {
-            TestCrawlerPerformance(2, 7, 35000, 21310, 256000);
+            TestCrawlerPerformance(2, 7, 35000, 21310, 35000);
         }
 
         [TestMethod]
@@ -249,28 +248,34 @@ namespace IInteractive.WebTest
             return GetTestUrl("/PerformanceTests/File-1?Depth=" + depth + "&FanOut=" + fanOut + "&Data=" + data + "&Seed=" + seed);
         }
 
-        private void TestCrawlerPerformance(int fanOut, int depth, int data, int seed, long acceptablePerformance)
+        private void TestCrawlerPerformance(int fanOut, int depth, int data, int seed, int acceptablePerformance)
         {
             string path = GetPerformanceTestUrl(fanOut, depth, data, seed);
             TestCrawlerPerformanceGeneric(path, acceptablePerformance);
         }
 
-        private void TestCrawlerPerformanceGeneric(string path, long acceptablePerformance)
+        private void TestCrawlerPerformanceGeneric(string path, int acceptablePerformance)
         {
 
             List<string> uriList = new List<String>();
             uriList.Add(path);
             Crawler crawler = new Crawler(uriList, new Browser(), 500);
+            Thread thread = new Thread(crawler.Crawl);
+
+            TimeSpan acceptableTimeSpan = new TimeSpan(0, 0, 0, 0, acceptablePerformance);
 
             Stopwatch watch = new Stopwatch();
             watch.Reset();
             watch.Start();
-            crawler.Crawl();
+            thread.Start();
+            thread.Join(acceptableTimeSpan);
             watch.Stop();
 
+            Assert.IsFalse(thread.IsAlive);
+
             Console.WriteLine("Elapsed Milliseconds: " + watch.ElapsedMilliseconds);
-            Console.WriteLine("crawler.Pages.Count(): " + crawler.Pages.Count());
-            foreach (WebPage page in crawler.Pages)
+            Console.WriteLine("crawler.Pages.Count(): " + crawler.HttpRequestResults.Count());
+            foreach (var page in crawler.HttpRequestResults)
             {
                 if (page != null)
                 {
@@ -303,7 +308,7 @@ namespace IInteractive.WebTest
 
             crawler.Crawl();
 
-            Assert.AreEqual(crawler.Pages.Count, expectedCount);
+            Assert.AreEqual(expectedCount, crawler.HttpRequestResults.Count);
         }
     }
 }

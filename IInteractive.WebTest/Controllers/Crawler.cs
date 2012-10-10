@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 namespace IInteractive.WebTest
 {
@@ -10,17 +9,17 @@ namespace IInteractive.WebTest
     {
         public static String UNIQUE_SEEDS_ERROR_MESSAGE = "The list of seeds may not contain any duplicate values.";
 
-        public SortedSet<WebPage> Seeds { get; private set; }
+        public List<HttpRequestResult> HttpRequestResults;
+        public SortedSet<Uri> Seeds { get; set; }
         public Browser BrowserToTest { get; private set; }
-        public SortedSet<WebPage> Pages { get; private set; }
         public int RecursionLimit { get; set; }
 
         public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit)
         {
-            this.Seeds = new SortedSet<WebPage>();
+            this.Seeds = new SortedSet<Uri>();
             foreach (String seed in Seeds.Distinct().ToList())
             {
-                this.Seeds.Add(new WebPage(new Uri(seed), BrowserToTest));
+                this.Seeds.Add(new Uri(seed));
             }
 
             if (Seeds.Count != this.Seeds.Count)
@@ -30,44 +29,55 @@ namespace IInteractive.WebTest
             this.RecursionLimit = RecursionLimit;
         }
 
-        public bool Crawl()
+        public void Crawl()
         {
-            List<WebPage> pages = new List<WebPage>();
-            foreach (WebPage seed in Seeds)
+            this.HttpRequestResults = new List<HttpRequestResult>();
+            foreach (Uri seed in Seeds)
             {
-                if(pages.Count < RecursionLimit)
-                    pages.Add(seed);
+                HttpRequestResults.Add(BrowserToTest.Get(seed));
             }
-
-            List<Thread> threads = new List<Thread>(); 
-            
-            for (int i = 0; i < pages.Count && i < RecursionLimit; i++)
+            for (int i = 0; i < HttpRequestResults.Count && HttpRequestResults.Count < RecursionLimit; i++)
             {
-                pages[i].Get();
-
-                if (pages[i].Error == null && GetSetOfCrawlableHosts().Contains(pages[i].RequestUrl.Host))
+                if (HttpRequestResults[i].Links != null && GetSetOfCrawlableHosts().Contains(HttpRequestResults[i].RequestUrl.Host))
                 {
-                    foreach (HyperLink link in pages[i].Links)
+                    foreach (Link link in HttpRequestResults[i].Links)
                     {
-                        WebPage potentialAdd = new WebPage(link.AbsoluteUri, pages[i].Browser);
-                        if (pages.Count < RecursionLimit && !pages.Contains(potentialAdd))
+                        if (link.Error == null)
                         {
-                            pages.Add(potentialAdd);
+                            bool alreadyRequested = (from result in HttpRequestResults
+                                                     where result.Equals(link)
+                                                     select result).Count() != 0;
+                            if (!alreadyRequested && HttpRequestResults.Count < RecursionLimit)
+                            {
+                                HttpRequestResults.Add(BrowserToTest.Get(link.AbsoluteUri));
+                            }
                         }
                     }
                 }
             }
 
-            Pages = new SortedSet<WebPage>(pages);
-
-            return pages.Count == Pages.Count;
+            foreach (var result in HttpRequestResults)
+            {
+                if (result.Links != null)
+                {
+                    foreach (var link in result.Links)
+                    {
+                        if (result.Equals(link))
+                        {
+                            link.WasRetrieved = true;
+                        }
+                    }
+                }
+            }
         }
+
+
 
         private SortedSet<string> GetSetOfCrawlableHosts()
         {
             return new SortedSet<string>(
-                    from seed in Seeds 
-                    select seed.RequestUrl.Host
+                    from seed in Seeds
+                    select seed.Host
                     );
         }
     }

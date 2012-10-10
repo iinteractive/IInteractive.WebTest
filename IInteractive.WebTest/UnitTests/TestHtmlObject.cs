@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,23 +11,11 @@ namespace IInteractive.WebTest
         [TestMethod]
         public void TestEquals()
         {
-            var defaultaspx1 = new HyperLink()
-                                   {
-                                       Path = "/default.aspx",
-                                       Root = new Uri("http://about.me/")
-                                   };
+            var defaultaspx1 = new HyperLink(new Uri("http://about.me/"), "/default.aspx");
 
-            var defaultaspx2 = new HyperLink()
-                                   {
-                                       Path = "default.aspx",
-                                       Root = new Uri("http://about.me")
-                                   };
+            var defaultaspx2 = new HyperLink(new Uri("http://about.me"), "default.aspx");
 
-            var defaultaspx3 = new HyperLink()
-                                   {
-                                       Path = "../default.aspx",
-                                       Root = new Uri("http://about.me/sub1/")
-                                   };
+            var defaultaspx3 = new HyperLink(new Uri("http://about.me/sub1/"), "../default.aspx");
 
             Assert.AreEqual(defaultaspx1, defaultaspx2);
             Assert.AreEqual(defaultaspx1, defaultaspx3);

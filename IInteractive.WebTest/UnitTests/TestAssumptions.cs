@@ -1,16 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.WebTesting;
 
 namespace IInteractive.WebTest
 {
@@ -67,14 +59,12 @@ namespace IInteractive.WebTest
         [AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
-            MessageBox.Show("Assembly initialized: " + context.TestName);
             
         }
 
         [ClassInitialize()]
         public static void ClassInitialize(TestContext context)
         {
-            MessageBox.Show("Class initialized: " + context.TestName);
         }
 
         [TestMethod]

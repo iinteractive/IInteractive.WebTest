@@ -1,81 +1,15 @@
 ﻿using System;
 using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using IInteractive.WebTest.Parsers;
 
 namespace IInteractive.WebTest
 {
     [TestClass]
     public class TestHyperLink
     {
-        public static string[] HOSTS = new string[] {
-            "remotesite.iinteractive.com"
-        };
-        public static string[] PORTS = new string[] {
-            "",
-            ":1212"
-        };
-        public static string[] PROTOCOLS = new string[] {
-            "http://",
-            "https://"
-        };
-        public static string[] PATHS = new string[] {
-            "",
-            "/",
-            "/index.jsp",
-            "/folder/",
-            "/folder/index.jsp"
-        };
-        
-        public static string[] QUERY_STRINGS = new string[] {
-            "",
-            "?param1=true"
-        };
-
-        public static string[] HASH_TAGS = new string[] {
-            "",
-            "#hashtag"
-        };
-
-        private static string[] _URLS {
-            get {
-                if(_URLS == null) {
-                    _URLS = new string[HOSTS.Length * PORTS.Length * PROTOCOLS.Length * PATHS.Length * QUERY_STRINGS.Length * HASH_TAGS.Length];
-                    int ctr = 0;
-                    foreach(string host in HOSTS) {
-                        foreach(string port in PORTS) {
-                            foreach(string protocol in PROTOCOLS) {
-                                foreach(string path in PATHS) {
-                                    foreach(string queryString in QUERY_STRINGS) {
-                                        foreach(string hashTag in HASH_TAGS) {
-                                            _URLS[ctr] = protocol + host + port + path + queryString + hashTag;
-                                            ctr++;
-                                        }
-                                    }
-                                
-                                }
-                            }
-                        }
-                    }
-                }
-
-                return _URLS;
-            }
-            set
-            {
-                _URLS = value;
-            }
-        }
-
-        public static string[] URLS {
-            get
-            {
-                return _URLS;
-            }
-        }
-
         public static string HYPERLINK_TEMPLATE = "<a{0}href=\"{1}\"{2}>{3}</a>";
         
         [TestMethod]
@@ -193,15 +127,23 @@ namespace IInteractive.WebTest
             Assert.IsTrue(links == null || expectedCount == links.Count);
 
             Uri baseUri = GetBaseUri();
-            List<HyperLink> hyperlinks = HyperLink.Generate(baseUri, html);
+            HttpRequestResult result = new HttpRequestResult()
+            {
+                Content = html,
+                RequestUrl = baseUri,
+                ResultUrl = baseUri
+            };
 
-            Assert.IsTrue(hyperlinks.Count == expectedCount);
+
+            List<HyperLink> hyperlinks = new HtmlParser(result).GenerateHyperLinks();
+
+            Assert.AreEqual(hyperlinks.Count, expectedCount);
 
             if (links != null)
             {
                 for (int i = 0; i < links.Count; i++)
                 {
-                    Assert.AreEqual(links[i], hyperlinks[i].AbsoluteUri);
+                    Assert.AreEqual(links[i], hyperlinks[i].AbsoluteUri.ToString());
                 }
             }
         }
