@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using CSSDemo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting;
 
@@ -114,14 +113,14 @@ namespace IInteractive.WebTest
         {
             // The uri needs to be an image, or something with a content type besides html.
             var page = new WebPage(new Uri("http://www.google.com/images/srpr/logo3w.png"), new Browser());
-
+            
             page.Get();
 
             Assert.IsTrue(page.Links.Count == 0, "Hyperlinks found!");
             Assert.IsTrue(page.Images.Count == 0, "Images found!");
             Assert.IsTrue(page.JavaScripts.Count == 0, "Scripts found!");
             Assert.IsNotNull(page.Path, "Unknown Path!");
-
+            
             IEnumerable<HttpValidationError> errors;
             var isFailure = page.Validate(out errors);
 
