@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrawlerTestApp", "CrawlerTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IInteractive.MarkupValidator", "IInteractive.MarkupValidator\IInteractive.MarkupValidator.csproj", "{A83C763A-C91C-471A-9B01-794F4BD7DCC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IInteractive.TestAppConfig", "IInteractive.TestAppConfig\IInteractive.TestAppConfig.csproj", "{D5955B04-B598-4178-BA7A-E572185F8D5C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = IInteractive.WebTest.vsmdi
@@ -57,6 +59,16 @@ Global
 		{A83C763A-C91C-471A-9B01-794F4BD7DCC2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A83C763A-C91C-471A-9B01-794F4BD7DCC2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A83C763A-C91C-471A-9B01-794F4BD7DCC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Debug|x86.ActiveCfg = Debug|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Debug|x86.Build.0 = Debug|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|Any CPU.ActiveCfg = Release|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|x86.ActiveCfg = Release|x86
+		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

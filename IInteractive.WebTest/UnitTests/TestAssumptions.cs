@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Xml.Serialization;
 
 namespace IInteractive.WebTest
 {
@@ -65,6 +66,14 @@ namespace IInteractive.WebTest
         [ClassInitialize()]
         public static void ClassInitialize(TestContext context)
         {
+        }
+
+        [TestMethod]
+        public void TestBrowserSerialization()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Browser));
+            serializer.Serialize(Console.Out, new Browser());
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
