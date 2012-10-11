@@ -69,14 +69,6 @@ namespace IInteractive.WebTest
         }
 
         [TestMethod]
-        public void TestBrowserSerialization()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(Browser));
-            serializer.Serialize(Console.Out, new Browser());
-            Assert.IsTrue(false);
-        }
-
-        [TestMethod]
         public void UriProofOfConcept()
         {
             var baseUri = new Uri("http://about.me");

@@ -51,7 +51,9 @@ namespace IInteractive.WebTest
                                                      select result).Count() != 0;
                             if (!alreadyRequested && HttpRequestResults.Count < RecursionLimit)
                             {
-                                HttpRequestResults.Add(BrowserToTest.Get(link.AbsoluteUri));
+                                var result = BrowserToTest.Get(link.AbsoluteUri);
+                                result.Parse();
+                                HttpRequestResults.Add(result);
                             }
                         }
                     }
