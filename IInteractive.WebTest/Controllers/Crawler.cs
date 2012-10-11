@@ -34,11 +34,13 @@ namespace IInteractive.WebTest
             this.HttpRequestResults = new List<HttpRequestResult>();
             foreach (Uri seed in Seeds)
             {
-                HttpRequestResults.Add(BrowserToTest.Get(seed));
+                HttpRequestResult result = BrowserToTest.Get(seed);
+                result.Parse();
+                HttpRequestResults.Add(result);
             }
             for (int i = 0; i < HttpRequestResults.Count && HttpRequestResults.Count < RecursionLimit; i++)
             {
-                if (HttpRequestResults[i].Links != null && GetSetOfCrawlableHosts().Contains(HttpRequestResults[i].RequestUrl.Host))
+                if (HttpRequestResults[i].Links != null && GetSetOfCrawlableHosts().Contains(HttpRequestResults[i].ResultUrl.Host))
                 {
                     foreach (Link link in HttpRequestResults[i].Links)
                     {
@@ -73,7 +75,7 @@ namespace IInteractive.WebTest
 
 
 
-        private SortedSet<string> GetSetOfCrawlableHosts()
+        public SortedSet<string> GetSetOfCrawlableHosts()
         {
             return new SortedSet<string>(
                     from seed in Seeds

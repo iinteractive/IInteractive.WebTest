@@ -6,8 +6,31 @@ using System.Configuration;
 
 namespace IInteractive.WebTest
 {
-    public sealed class BrowserConfigSection : ConfigurationSection
+    public sealed class BrowserConfigElement : ConfigurationElement
     {
+        public BrowserConfigElement(String Name
+            , Int16 MaximumAutomaticRedirections, Boolean AllowAutoRedirect
+            , String UserAgent, String Accept, String AcceptCharset
+            , String AcceptLanguage)
+        {
+            this.Name = Name;
+            this.MaximumAutomaticRedirections = MaximumAutomaticRedirections;
+            this.AllowAutoRedirect = AllowAutoRedirect;
+            this.UserAgent = UserAgent;
+            this.Accept = Accept;
+            this.AcceptCharset = AcceptCharset;
+            this.AcceptLanguage = AcceptLanguage;
+        }
+
+        public BrowserConfigElement(String Name)
+        {
+            this.Name = Name;
+        }
+
+        public BrowserConfigElement()
+        {
+        }
+
         [ConfigurationProperty("name", IsRequired = true, IsKey=true)]
         public String Name
         {
@@ -96,6 +119,209 @@ namespace IInteractive.WebTest
             set
             {
                 this["acceptLanguage"] = value;
+            }
+        }
+    }
+
+    public class BrowserCollection : ConfigurationElementCollection
+    {
+        public BrowserCollection()
+        {
+            // Add one url to the collection.  This is 
+            // not necessary; could leave the collection  
+            // empty until items are added to it outside 
+            // the constructor.
+            BrowserConfigElement url =
+                (BrowserConfigElement)CreateNewElement();
+            Add(url);
+        }
+
+        public override
+            ConfigurationElementCollectionType CollectionType
+        {
+            get
+            {
+                return
+
+                    ConfigurationElementCollectionType.AddRemoveClearMap;
+            }
+        }
+
+        protected override
+            ConfigurationElement CreateNewElement()
+        {
+            return new BrowserConfigElement();
+        }
+
+
+        protected override
+            ConfigurationElement CreateNewElement(
+            string elementName)
+        {
+            return new BrowserConfigElement(elementName);
+        }
+
+
+        protected override Object
+            GetElementKey(ConfigurationElement element)
+        {
+            return ((BrowserConfigElement)element).Name;
+        }
+
+
+        public new string AddElementName
+        {
+            get
+            { return base.AddElementName; }
+
+            set
+            { base.AddElementName = value; }
+
+        }
+
+        public new string ClearElementName
+        {
+            get
+            { return base.ClearElementName; }
+
+            set
+            { base.ClearElementName = value; }
+
+        }
+
+        public new string RemoveElementName
+        {
+            get
+            { return base.RemoveElementName; }
+        }
+
+        public new int Count
+        {
+            get { return base.Count; }
+        }
+
+
+        public BrowserConfigElement this[int index]
+        {
+            get
+            {
+                return (BrowserConfigElement)BaseGet(index);
+            }
+            set
+            {
+                if (BaseGet(index) != null)
+                {
+                    BaseRemoveAt(index);
+                }
+                BaseAdd(index, value);
+            }
+        }
+
+        new public BrowserConfigElement this[string Name]
+        {
+            get
+            {
+                return (BrowserConfigElement)BaseGet(Name);
+            }
+        }
+
+        public int IndexOf(BrowserConfigElement url)
+        {
+            return BaseIndexOf(url);
+        }
+
+        public void Add(BrowserConfigElement url)
+        {
+            BaseAdd(url);
+            // Add custom code here.
+        }
+
+        protected override void
+            BaseAdd(ConfigurationElement element)
+        {
+            BaseAdd(element, false);
+            // Add custom code here.
+        }
+
+        public void Remove(BrowserConfigElement url)
+        {
+            if (BaseIndexOf(url) >= 0)
+                BaseRemove(url.Name);
+        }
+
+        public void RemoveAt(int index)
+        {
+            BaseRemoveAt(index);
+        }
+
+        public void Remove(string name)
+        {
+            BaseRemove(name);
+        }
+
+        public void Clear()
+        {
+            BaseClear();
+            // Add custom code here.
+        }
+    }
+
+    public class LinkCheckerConfigSection : ConfigurationSection
+    {
+        [ConfigurationProperty("recursionLimit",
+            IsDefaultCollection = false, DefaultValue=Int32.MaxValue)]
+        [IntegerValidator(MinValue=0, MaxValue=Int32.MaxValue)]
+        public Int32 RecursionLimit
+        {
+            get
+            {
+                return (Int32)this["recursionLimit"];
+            }
+            set
+            {
+                this["recursionLimit"] = value;
+            }
+        }
+
+        [ConfigurationProperty("requestTimeout",
+            IsDefaultCollection = false, DefaultValue = 60)]
+        [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
+        public Int32 RequestTimeout
+        {
+            get
+            {
+                return (Int32)this["requestTimeout"];
+            }
+            set
+            {
+                this["requestTimeout"] = value;
+            }
+        }
+
+        [ConfigurationProperty("maxCrawlTime",
+            IsDefaultCollection = false, DefaultValue = Int32.MaxValue)]
+        [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
+        public Int32 MaxCrawlTime
+        {
+            get
+            {
+                return (Int32)this["maxCrawlTime"];
+            }
+            set
+            {
+                this["maxCrawlTime"] = value;
+            }
+        }
+
+        [ConfigurationProperty("browsers",
+            IsDefaultCollection = false)]
+        public BrowserCollection Browsers
+        {
+            get
+            {
+                BrowserCollection urlsCollection =
+                (BrowserCollection)base["browsers"];
+                return urlsCollection;
             }
         }
     }

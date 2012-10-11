@@ -211,6 +211,31 @@ namespace IInteractive.WebTest
         }
 
         [TestMethod]
+        public void UriFormatExceptionTestsCaseA()
+        {
+            string path = "http://{}[]!@#$%^&*()_+~`";
+            Uri root = new Uri(GetTestUrl("/UriFormatExceptionTests/CaseA/Seed.htm"));
+            try
+            {
+                Uri uri = new Uri(root, path);
+                Console.WriteLine("uri.AbsoluteUri = " + uri.AbsoluteUri);
+                Assert.IsTrue(false);
+            }
+            catch (UriFormatException ex)
+            {
+
+            }
+            Crawler crawler = TestCrawlerMethod(GetTestUrl("/UriFormatExceptionTests/CaseA/Seed.htm"), 1);
+            foreach (var httpRequestResult in crawler.HttpRequestResults)
+            {
+                Assert.IsNotNull(httpRequestResult.Links);
+                Assert.AreEqual(1, httpRequestResult.Links.Count);
+                Assert.IsNull(httpRequestResult.Links[0].AbsoluteUri);
+                Assert.IsNotNull(httpRequestResult.Links[0].Error);
+            }
+        }
+
+        [TestMethod]
         public void PerformanceTestCaseA()
         {
             TestCrawlerPerformance(2, 7, 35000, 21310, 35000);
@@ -294,12 +319,12 @@ namespace IInteractive.WebTest
             Assert.IsTrue(watch.ElapsedMilliseconds <= acceptablePerformance);
         }
 
-        private void TestCrawlerMethod(string path, int expectedCount)
+        private Crawler TestCrawlerMethod(string path, int expectedCount)
         {
-            TestCrawlerMethod(path, expectedCount, 500);
+            return TestCrawlerMethod(path, expectedCount, 500);
         }
 
-        private void TestCrawlerMethod(string path, int expectedCount, int recursionLimit)
+        private Crawler TestCrawlerMethod(string path, int expectedCount, int recursionLimit)
         {
             List<string> uriList = new List<String>();
             uriList.Add(path);
@@ -309,6 +334,58 @@ namespace IInteractive.WebTest
             crawler.Crawl();
 
             Assert.AreEqual(expectedCount, crawler.HttpRequestResults.Count);
+
+            AssertLinksFromRemoteSiteNotRetrieved(crawler);
+            AssertLinksNullStateForCssAndHtmlTypes(crawler);
+            AssertBadLinksHaveNullAbsoluteUriAndPopulatedEx(crawler);
+
+            return crawler;
         }
+
+        private void AssertLinksFromRemoteSiteNotRetrieved(Crawler crawler)
+        {
+            foreach (var httpRequestResult in crawler.HttpRequestResults)
+            {
+                if (httpRequestResult.Links != null && !crawler.GetSetOfCrawlableHosts().Contains(httpRequestResult.RequestUrl.Host))
+                {
+                    foreach (var link in httpRequestResult.Links)
+                    {
+                        Assert.IsTrue(link.WasRetrieved == false);
+                    }
+                }
+            }
+        }
+
+        private void AssertLinksNullStateForCssAndHtmlTypes(Crawler crawler)
+        {
+            foreach (var httpRequestResult in crawler.HttpRequestResults)
+            {
+                if (httpRequestResult.IsCss || httpRequestResult.IsHtml)
+                {
+                    Assert.IsNotNull(httpRequestResult.Links);
+                }
+                else
+                {
+                    Assert.IsNull(httpRequestResult.Links);
+                }
+            }
+        }
+
+        private void AssertBadLinksHaveNullAbsoluteUriAndPopulatedEx(Crawler crawler)
+        {
+            foreach (var httpRequestResult in crawler.HttpRequestResults)
+            {
+                if (httpRequestResult.Links != null)
+                {
+                    foreach (var link in httpRequestResult.Links)
+                    {
+                        Assert.IsTrue(link.AbsoluteUri == null && link.Error != null || link.AbsoluteUri != null && link.Error == null);
+                        
+                    }
+                }
+            }
+        }
+
+
     }
 }

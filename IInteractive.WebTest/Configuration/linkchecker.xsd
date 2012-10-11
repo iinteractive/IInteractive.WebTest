@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="linkCheckerConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="browsers" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="clear" />
+              <xs:element name="remove">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="add">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="maximumAutomaticRedirections" type="xs:unsignedByte" use="optional" />
+                  <xs:attribute name="allowAutoRedirect" type="xs:boolean" use="optional" />
+                  <xs:attribute name="userAgent" type="xs:string" use="optional" />
+                  <xs:attribute name="accept" type="xs:string" use="optional" />
+                  <xs:attribute name="acceptCharset" type="xs:string" use="optional" />
+                  <xs:attribute name="acceptLanguage" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="recursionLimit" type="xs:int" use="optional" />
+      <xs:attribute name="requestTimeout" type="xs:int" use="optional" />
+      <xs:attribute name="maxCrawlTime" type="xs:int" use="optional" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

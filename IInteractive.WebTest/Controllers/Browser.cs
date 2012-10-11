@@ -32,14 +32,9 @@ namespace IInteractive.WebTest
 
         public HttpRequestResult Get(Uri url)
         {
-            var resultsQuery = (from httpRequestResult in HttpRequestResults
+            HttpRequestResult results = (from httpRequestResult in HttpRequestResults
                             where httpRequestResult.RequestUrl.Equals(url)
-                            select httpRequestResult);
-            HttpRequestResult results = null;
-            if (resultsQuery.Count() != 0)
-            {
-                results = resultsQuery.First();
-            }
+                            select httpRequestResult).FirstOrDefault();
 
             if (results == null)
             {
@@ -69,8 +64,6 @@ namespace IInteractive.WebTest
                         results.Content = content;
                     }
                     results.ResultUrl = request.Address;
-
-                    results.Parse();
 
                     HttpRequestResults.Add(results);
                 }

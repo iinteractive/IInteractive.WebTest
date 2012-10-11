@@ -11,28 +11,51 @@ namespace IInteractive.WebTest.UnitTests
     public class TestConfigurationSections
     {
         [TestMethod]
-        public void TestBrowserConfigSection()
+        public void TestLinkCheckerConfigSection()
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConfigurationSectionGroupCollection sectionGroups = config.SectionGroups;
-            Assert.IsNotNull(sectionGroups);
-            ConfigurationSectionGroup group = sectionGroups.Get("browserConfigGroup");
-            Assert.IsNotNull(group);
-            ConfigurationSection section = group.Sections.Get("browserConfig");
-            foreach (var key in group.Sections.Keys)
-            {
-                Console.WriteLine("key = " + key.ToString());
-            }
+            ConfigurationSectionCollection sections = config.Sections;
+            Assert.IsNotNull(sections);
+            ConfigurationSection section = sections.Get("linkCheckerConfig");
             Assert.IsNotNull(section);
-            BrowserConfigSection browserConfigSection = (BrowserConfigSection)section;
-            Assert.IsNotNull(browserConfigSection);
+            LinkCheckerConfigSection linkSection = (LinkCheckerConfigSection)section;
+            Assert.IsNotNull(linkSection);
+            Assert.IsNotNull(linkSection.RecursionLimit);
+            Assert.IsNotNull(linkSection.MaxCrawlTime);
+            Assert.IsNotNull(linkSection.RequestTimeout);
+            BrowserCollection browsers = linkSection.Browsers;
+            Assert.IsNotNull(browsers["default"]);
+            Assert.IsNotNull(browsers["default2"]);
+            Assert.IsNotNull(browsers);
 
-            Assert.IsNotNull(browserConfigSection.Accept);
-            Assert.IsNotNull(browserConfigSection.AcceptCharset);
-            Assert.IsNotNull(browserConfigSection.AcceptLanguage);
-            Assert.IsNotNull(browserConfigSection.AllowAutoRedirect);
-            Assert.IsNotNull(browserConfigSection.CurrentConfiguration);
-            Assert.IsNotNull(browserConfigSection.ElementInformation);
+            BrowserConfigElement last = null;
+            int ctr = 0;
+            foreach (BrowserConfigElement browser in browsers)
+            {
+                Assert.IsNotNull(browser.Accept);
+                Assert.IsNotNull(browser.AcceptCharset);
+                Assert.IsNotNull(browser.AcceptLanguage);
+                Assert.IsNotNull(browser.AllowAutoRedirect);
+                Assert.IsNotNull(browser.UserAgent);
+                Assert.IsNotNull(browser.MaximumAutomaticRedirections);
+
+                if (ctr != 0)
+                {
+                    Assert.AreNotEqual(last.Name, browser.Name);
+                    Assert.AreEqual(last.Accept, browser.Accept);
+                    Assert.AreEqual(last.AcceptCharset, browser.AcceptCharset);
+                    Assert.AreEqual(last.AcceptLanguage, browser.AcceptLanguage);
+                    Assert.AreEqual(last.AllowAutoRedirect, browser.AllowAutoRedirect);
+                    Assert.AreEqual(last.MaximumAutomaticRedirections, browser.MaximumAutomaticRedirections);
+                    Assert.AreEqual(last.UserAgent, browser.UserAgent);
+                }
+                ctr++;
+                last = browser;
+            }
+
+            Assert.AreEqual(7, ctr);
         }
     }
+
+
 }

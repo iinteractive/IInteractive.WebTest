@@ -144,6 +144,7 @@
     <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseA\Linked.htm" />
     <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseB\Linked.htm" />
     <Content Include="RemoteSiteCrawlTests\RemoteSite\CaseB\Linked2.htm" />
+    <Content Include="UriFormatExceptionTests\CaseA\Seed.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
