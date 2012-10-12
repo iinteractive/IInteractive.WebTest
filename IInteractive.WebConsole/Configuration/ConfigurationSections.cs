@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace IInteractive.WebConsole
 {
-    public sealed class SeedConfigElement : ConfigurationElement
+    public class SeedConfigElement : ConfigurationElement
     {
         public SeedConfigElement(String Uri)
         {
@@ -31,7 +31,7 @@ namespace IInteractive.WebConsole
         }
     }
 
-    public sealed class BrowserConfigElement : ConfigurationElement
+    public class BrowserConfigElement : ConfigurationElement
     {
         public BrowserConfigElement(String Name
             , Int16 MaximumAutomaticRedirections, Boolean AllowAutoRedirect
