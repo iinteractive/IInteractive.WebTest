@@ -68,14 +68,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\TestConfigurationSections.cs" />
     <Compile Include="UnitTests\TestCrawler.cs" />
     <Compile Include="UnitTests\TestHtmlObject.cs" />
     <Compile Include="UnitTests\TestHyperLink.cs" />
     <Compile Include="UnitTests\TestAssumptions.cs" />
+    <Compile Include="UnitTests\TestProgram.cs" />
     <Compile Include="UnitTests\TestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="TestConfigFileTemplates\linkCheckerConfig.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestConfigFileTemplates\configSections.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestConfigFileTemplates\config.tmpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IInteractive.WebConsole\IInteractive.WebConsole.csproj">
