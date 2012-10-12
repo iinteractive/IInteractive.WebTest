@@ -59,6 +59,15 @@
     <Compile Include="Parsers\HtmlParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\TestResults.cs" />
+    <Compile Include="Results\TestResultsFactory.cs" />
+    <Compile Include="Results\VisualStudioTests.cs" />
+    <Compile Include="Results\WebTestXmlWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
