@@ -5,9 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using IInteractive.WebTest.Results;
-using Microsoft.VisualStudio.TestTools.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestRun = IInteractive.WebTest.Results.TestRun;
 
 namespace IInteractive.WebTest.UnitTests
 {
@@ -31,7 +29,7 @@ namespace IInteractive.WebTest.UnitTests
         }
         private TestContext testContextInstance;
 
-        private TestRun _testRun = null;
+        private TestRunType _testRun = null;
 
         private const string ResultsXml =
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<TestRun id=\"570a67dd-14b3-4443-881a-850c376edee9\" name=\"Web Test Allegra.com\" runUser=\"IINTERACTIVE\\builder\" xmlns=\"http://microsoft.com/schemas/VisualStudio/TeamTest/2010\" />";
@@ -39,11 +37,11 @@ namespace IInteractive.WebTest.UnitTests
         [TestInitialize]
         public void Initialize()
         {
-            _testRun = new TestRun
+            _testRun = new TestRunType
                            {
-                               Id = new Guid("570a67dd-14b3-4443-881a-850c376edee9"),
-                               Name = "Web Test Allegra.com",
-                               RunUser = "IINTERACTIVE\\builder"
+                               id = "570a67dd-14b3-4443-881a-850c376edee9",
+                               name = "Web Test Allegra.com",
+                               runUser = "IINTERACTIVE\\builder"
                            };
         }
 
@@ -77,7 +75,6 @@ namespace IInteractive.WebTest.UnitTests
 
             var actual = Encoding.UTF8.GetString(memoryStream.ToArray());
 
-            Assert.AreEqual(ResultsXml.Length, actual.Length);
             Assert.AreEqual(ResultsXml, actual, true);
         }
 

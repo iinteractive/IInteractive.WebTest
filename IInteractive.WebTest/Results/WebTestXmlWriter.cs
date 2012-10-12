@@ -10,43 +10,46 @@ namespace IInteractive.WebTest.Results
 {
     public class WebTestXmlWriter
     {
-        private static readonly Encoding _utf8EncodingWithNoByteOrderMark;
+        private static readonly Encoding Utf8EncodingWithNoByteOrderMark;
 
         static WebTestXmlWriter()
         {
-            _utf8EncodingWithNoByteOrderMark = new UTF8Encoding(false);
+            Utf8EncodingWithNoByteOrderMark = new UTF8Encoding(false);
         }
 
         private readonly XmlSerializer _serializer;
         
         public WebTestXmlWriter()
         {
-            _serializer = new XmlSerializer(typeof(TestRun), new XmlRootAttribute("TestRun") { Namespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010" });
+            _serializer = new XmlSerializer(typeof(TestRunType));//, new XmlRootAttribute("TestRun") { Namespace = "http://microsoft.com/schemas/VisualStudio/TeamTest/2010" });
             //_serializerNamespaces = new XmlSerializerNamespaces();
         }
 
-        public void Write(Stream stream, TestRun testRun)
+        public void Write(Stream stream, TestRunType testRun)
         {
-            var xmlWriterSettings = new XmlWriterSettings { Encoding = _utf8EncodingWithNoByteOrderMark, Indent = true };
+            var xmlWriterSettings = new XmlWriterSettings { Encoding = Utf8EncodingWithNoByteOrderMark, Indent = true };
 
             var xmlWriter = XmlWriter.Create(stream, xmlWriterSettings);
             Write(xmlWriter, testRun);
         }
 
-        public void Write(TextWriter writer, TestRun testRun)
+        public void Write(TextWriter writer, TestRunType testRun)
         {
-            var xmlWriterSettings = new XmlWriterSettings { Encoding = _utf8EncodingWithNoByteOrderMark, Indent = true };
+            var xmlWriterSettings = new XmlWriterSettings { Encoding = Utf8EncodingWithNoByteOrderMark, Indent = true };
 
             var xmlWriter = XmlWriter.Create(writer, xmlWriterSettings);
 
             Write(xmlWriter, testRun);
         }
 
-        public void Write(XmlWriter writer, TestRun testRun)
+        public void Write(XmlWriter writer, TestRunType testRun)
         {
             try
             {
-                _serializer.Serialize(writer, testRun, testRun.Namespaces);
+                _serializer.Serialize(writer, testRun, new XmlSerializerNamespaces(new XmlQualifiedName[]
+                                                                                       {
+                                                                                           new XmlQualifiedName(string.Empty, "http://microsoft.com/schemas/VisualStudio/TeamTest/2010")
+                                                                                       }));
             }
             catch (Exception)
             {

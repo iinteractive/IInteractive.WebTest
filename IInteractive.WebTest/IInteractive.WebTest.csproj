@@ -79,10 +79,11 @@
     <Compile Include="Parsers\JavaScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Parsers\StyleSheet.cs" />
-
-
-
-
+    <Compile Include="Results\TestResults.cs" />
+    <Compile Include="Results\TestResultsFactory.cs" />
+    <Compile Include="Results\WebTestXmlWriter.cs" />
+    <Compile Include="Results\VisualStudioTests.cs" />
+    <Compile Include="UnitTests\TestDataSources.cs" />
     <Compile Include="UnitTests\TestCrawler.cs" />
     <Compile Include="UnitTests\TestHtmlObject.cs" />
     <Compile Include="UnitTests\TestHyperLink.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="UnitTests\TestWebPage.cs" />
     <Compile Include="Controllers\WebPage.cs" />
     <Compile Include="Controllers\WebSiteTestSuiteGenerator.cs" />
+    <Compile Include="UnitTests\TestXmlWriter.cs" />
 
   </ItemGroup>
   <ItemGroup>
