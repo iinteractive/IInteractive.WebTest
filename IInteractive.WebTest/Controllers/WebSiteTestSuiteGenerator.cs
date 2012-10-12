@@ -14,5 +14,12 @@ namespace IInteractive.WebTest
     /// </summary>
     public class WebSiteTestSuiteGenerator
     {
+        public WebSiteTestSuiteGenerator(LinkCheckerConfigSection Config)
+        {
+            this.Config = Config;
+        }
+
+        public LinkCheckerConfigSection Config { get; set; }
+        private List<Crawler> Crawlers { get; set; }
     }
 }

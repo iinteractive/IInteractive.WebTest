@@ -19,6 +19,9 @@ namespace IInteractive.WebTest
             this.Seeds = new SortedSet<Uri>();
             foreach (String seed in Seeds.Distinct().ToList())
             {
+                // If the Uri is bad, we are not going to attempt to catch the 
+                // UriFormatException, this should be reported to the user and
+                // not in a test case.
                 this.Seeds.Add(new Uri(seed));
             }
 
@@ -66,9 +69,13 @@ namespace IInteractive.WebTest
                 {
                     foreach (var link in result.Links)
                     {
-                        if (result.Equals(link))
+                        foreach (var result2 in HttpRequestResults)
                         {
-                            link.WasRetrieved = true;
+                            if (result2.Equals(link))
+                            {
+                                link.WasRetrieved = true;
+                                break;
+                            }
                         }
                     }
                 }
