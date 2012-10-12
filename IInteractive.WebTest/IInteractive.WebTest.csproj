@@ -83,7 +83,6 @@
     <Compile Include="Results\TestResultsFactory.cs" />
     <Compile Include="Results\WebTestXmlWriter.cs" />
     <Compile Include="Results\VisualStudioTests.cs" />
-    <Compile Include="UnitTests\TestDataSources.cs" />
     <Compile Include="UnitTests\TestCrawler.cs" />
     <Compile Include="UnitTests\TestHtmlObject.cs" />
     <Compile Include="UnitTests\TestHyperLink.cs" />
@@ -100,9 +99,6 @@
   <ItemGroup>
     <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="TestCsvFile.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
