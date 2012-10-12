@@ -12,6 +12,9 @@ namespace IInteractive.WebConsole
         private Regex HtmlRegex = new Regex("html", RegexOptions.IgnoreCase);
         private Regex CssRegex = new Regex("css", RegexOptions.IgnoreCase);
 
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+
         public HttpValidationError Error { get; set; }
         public string ContentType { get; set; }
         public Uri RequestUrl { get; set; }

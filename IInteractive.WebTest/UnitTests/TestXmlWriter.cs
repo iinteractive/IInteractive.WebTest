@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using IInteractive.WebTest.Results;
+using IInteractive.WebConsole;
+using IInteractive.WebConsole.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IInteractive.WebTest.UnitTests
@@ -79,9 +80,43 @@ namespace IInteractive.WebTest.UnitTests
         }
 
         [TestMethod]
-        public void TestReadRunConfiguration()
+        public void TestResultsFactory()
         {
-            
+            var file = new FileInfo("factory-results-file.xml");
+
+            if (file.Exists) file.Delete();
+
+            var writer = new WebTestXmlWriter();
+
+            var testRun = (new TestResultsFactory()).GenerateTestRun("Test Unit .com", "Unit testing", DateTime.Now,
+                                                                     DateTime.Now.Add(new TimeSpan(0, 0, 23)),
+                                                                     DateTime.Now, DateTime.Now,
+                                                                     new List<HttpRequestResult>()
+                                                                         {
+                                                                             new HttpRequestResult()
+                                                                                 {
+                                                                                     RequestUrl = new Uri("http://allegra.co"),
+                                                                                     ResultUrl = new Uri("http://allegra.com"),
+                                                                                     Start = DateTime.Now,
+                                                                                     End = DateTime.Now,
+                                                                                     Error = null
+                                                                                 },
+                                                                             new HttpRequestResult()
+                                                                                 {
+                                                                                     RequestUrl = new Uri("http://allegra.co"),
+                                                                                     ResultUrl = new Uri("http://allegra.com"),
+                                                                                     Start = DateTime.Now,
+                                                                                     End = DateTime.Now,
+                                                                                     Error = new HttpValidationError()
+                                                                                                 {
+                                                                                                     AbsoluteUri = new Uri("http://allegra.co"),
+                                                                                                     HttpCode = 404,
+                                                                                                     Message = "File not found!"
+                                                                                                 }
+                                                                                 }
+                                                                         });
+
+            writer.Write(file.CreateText(), testRun);
         }
     }
 }

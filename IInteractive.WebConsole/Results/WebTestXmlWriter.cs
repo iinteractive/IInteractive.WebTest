@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace IInteractive.WebTest.Results
+namespace IInteractive.WebConsole.Results
 {
     public class WebTestXmlWriter
     {
