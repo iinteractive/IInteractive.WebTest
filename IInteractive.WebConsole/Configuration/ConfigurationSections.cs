@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace IInteractive.WebTest
+namespace IInteractive.WebConsole
 {
     public sealed class SeedConfigElement : ConfigurationElement
     {

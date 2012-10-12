@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IInteractive.WebTest.Parsers
+namespace IInteractive.WebConsole
 {
     public class CssParser
     {

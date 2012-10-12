@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace IInteractive.WebTest
+namespace IInteractive.WebConsole
 {
     /// <summary>
-    /// Intended to be used for parsing script elements out of an HTML page.
+    /// Intended to be used for parsing img elements out of an HTML page.
     /// </summary>
-    public class JavaScript : Link
+    public class Image : Link
     {
-        public JavaScript(Uri Root, string Path)
+        public Image(Uri Root, string Path)
             : base(Root, Path)
         {
         }

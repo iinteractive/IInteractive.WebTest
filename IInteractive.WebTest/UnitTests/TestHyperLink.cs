@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IInteractive.WebTest.Parsers;
+using IInteractive.WebConsole;
 
 namespace IInteractive.WebTest
 {

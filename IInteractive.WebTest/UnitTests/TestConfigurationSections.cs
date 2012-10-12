@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
+using IInteractive.WebConsole;
 
 namespace IInteractive.WebTest.UnitTests
 {

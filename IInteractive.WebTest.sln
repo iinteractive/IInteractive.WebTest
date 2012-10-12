@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IInteractive.MarkupValidato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IInteractive.TestAppConfig", "IInteractive.TestAppConfig\IInteractive.TestAppConfig.csproj", "{D5955B04-B598-4178-BA7A-E572185F8D5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IInteractive.WebConsole", "IInteractive.WebConsole\IInteractive.WebConsole.csproj", "{9D7FAE78-33AA-4404-8A80-6EE203BD2884}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = IInteractive.WebTest.vsmdi
@@ -69,6 +71,16 @@ Global
 		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|x86.ActiveCfg = Release|x86
 		{D5955B04-B598-4178-BA7A-E572185F8D5C}.Release|x86.Build.0 = Release|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Debug|x86.ActiveCfg = Debug|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Debug|x86.Build.0 = Debug|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Release|Any CPU.ActiveCfg = Release|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Release|x86.ActiveCfg = Release|x86
+		{9D7FAE78-33AA-4404-8A80-6EE203BD2884}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

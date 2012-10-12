@@ -67,32 +67,24 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigurationSections.cs" />
-    <Compile Include="Controllers\Browser.cs" />
-    <Compile Include="Controllers\Crawler.cs" />
-    <Compile Include="Parsers\CssParser.cs" />
-    <Compile Include="Parsers\HtmlParser.cs" />
-    <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\HttpRequestResult.cs" />
-    <Compile Include="Models\HttpValidationError.cs" />
-    <Compile Include="Models\HyperLink.cs" />
-    <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\JavaScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\StyleSheet.cs" />
     <Compile Include="UnitTests\TestConfigurationSections.cs" />
     <Compile Include="UnitTests\TestCrawler.cs" />
     <Compile Include="UnitTests\TestHtmlObject.cs" />
     <Compile Include="UnitTests\TestHyperLink.cs" />
     <Compile Include="UnitTests\TestAssumptions.cs" />
-    <Compile Include="Controllers\WebSiteTestSuiteGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IInteractive.WebConsole\IInteractive.WebConsole.csproj">
+      <Project>{9D7FAE78-33AA-4404-8A80-6EE203BD2884}</Project>
+      <Name>IInteractive.WebConsole</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

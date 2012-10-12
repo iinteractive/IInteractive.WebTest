@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace IInteractive.WebTest
+namespace IInteractive.WebConsole
 {
     /// <summary>
     /// Intended to be used for parsing link elements out of an HTML page.

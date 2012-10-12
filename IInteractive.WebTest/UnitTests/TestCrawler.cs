@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.Threading;
+using IInteractive.WebConsole;
 
 namespace IInteractive.WebTest
 {

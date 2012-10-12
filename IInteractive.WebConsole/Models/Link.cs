@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace IInteractive.WebTest
+namespace IInteractive.WebConsole
 {
     /// <summary>
     /// Intended to be base class for Html based parsers.

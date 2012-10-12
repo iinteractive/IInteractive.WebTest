@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using IInteractive.WebTest.Parsers;
+using IInteractive.WebConsole;
 
-namespace IInteractive.WebTest
+namespace IInteractive.WebConsole
 {
     public class HttpRequestResult : IEquatable<HttpRequestResult>, IEquatable<Link>
     {
