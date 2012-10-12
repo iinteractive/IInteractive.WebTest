@@ -481,8 +481,7 @@ namespace IInteractive.WebConsole
             }
         }
 
-        [ConfigurationProperty("seeds",
-            IsDefaultCollection = false)]
+        [ConfigurationProperty("seeds", IsRequired = true)]
         public SeedCollection Seeds
         {
             get
@@ -494,7 +493,7 @@ namespace IInteractive.WebConsole
         }
 
         [ConfigurationProperty("browsers",
-            IsDefaultCollection = false)]
+            IsDefaultCollection = false, IsRequired = true)]
         public BrowserCollection Browsers
         {
             get

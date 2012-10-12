@@ -222,7 +222,7 @@ namespace IInteractive.WebTest
                 Console.WriteLine("uri.AbsoluteUri = " + uri.AbsoluteUri);
                 Assert.IsTrue(false);
             }
-            catch (UriFormatException ex)
+            catch (UriFormatException)
             {
 
             }

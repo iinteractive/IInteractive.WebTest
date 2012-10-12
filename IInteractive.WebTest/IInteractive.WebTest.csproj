@@ -78,15 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="TestConfigFileTemplates\linkCheckerConfig.tmpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestConfigFileTemplates\configSections.tmpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestConfigFileTemplates\config.tmpl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IInteractive.WebConsole\IInteractive.WebConsole.csproj">
