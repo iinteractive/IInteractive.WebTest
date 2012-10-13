@@ -40,6 +40,8 @@ namespace IInteractive.WebConsole
             {
                 results = new HttpRequestResult();
                 results.RequestUrl = url;
+                results.Start = DateTime.Now;
+                results.End = DateTime.Now;
 
                 StreamReader streamReader = null;
                 WebResponse response = null;

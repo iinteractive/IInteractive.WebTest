@@ -219,7 +219,7 @@ namespace IInteractive.WebConsole.Results
             return GenerateUnitTestResult(executionId, testId, result.RequestUrl.AbsoluteUri,
                                    ComputerName,
                                    result.End.Subtract(result.Start), result.Start, result.End, unitTestTypeId,
-                                   PassFail(result.Error == null), testListId, executionId,
+                                   PassFail(result), testListId, executionId,
                                    GenerateOutput(null, null, GenerateErrorInfo(result)));
 
         }
@@ -285,12 +285,52 @@ namespace IInteractive.WebConsole.Results
                         string.Format("HTTP Code: {0}\r\nMessage: {1}", result.Error.HttpCode, result.Error.Message),
                         null);
             }
+
+            string brokenLinksMessage = "";
+            if (result.Links != null)
+            {
+                foreach (var link in result.Links)
+                {
+                    if (link.IsBroken)
+                    {
+                        string brokenLinkMessage = string.Format("Broken Link Found.  The content is as follows.\n\t{0}\n", link.Content);
+                        brokenLinksMessage += brokenLinkMessage;
+                    }
+                }
+
+                return
+                    GenerateErrorInfo(
+                        brokenLinksMessage,
+                        null);
+            }
+
             return null;
         }
 
-        private string PassFail(bool isPass)
+        private string PassFail(HttpRequestResult result)
         {
-            return isPass ? "Passed" : "Failed";
+            return IsSuccess(result) ? "Passed" : "Failed";
+        }
+
+        private bool IsSuccess(HttpRequestResult result)
+        {
+            if (result.Error == null)
+            {
+                return false;
+            }
+
+            if (result.Links != null)
+            {
+                foreach (var link in result.Links)
+                {
+                    if (link.IsBroken)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private static string ComputerName

@@ -23,7 +23,7 @@ namespace IInteractive.WebConsole
             }
             catch(UriFormatException ex)
             {
-                this.Error = ex;
+                this.Ex = ex;
             }
         }
 
@@ -51,12 +51,31 @@ namespace IInteractive.WebConsole
                 }
                 catch (UriFormatException ex)
                 {
-                    this.Error = ex;
+                    this.Ex = ex;
                     return null;
                 }
             }
         }
-        public UriFormatException Error { get; private set; }
+        public UriFormatException Ex { get; private set; }
+        // Returns true if the link is broken.  A link can be broken in two 
+        // ways.  The first being that an AbsoluteUri could not be formed, or 
+        // the second being that the Http request to the link returned an 
+        // error.  In order for a link to be broken it has to have been 
+        // retrieved.  This is so that remote site links aren't listed as 
+        // broken.
+        private bool _isBroken {
+            get;
+            set;
+        }
+        public bool IsBroken 
+        { 
+            get {
+                return this.WasRetrieved && (this._isBroken || Ex != null);
+            }
+            set {
+                this._isBroken = value;
+            }
+        }
         public bool WasRetrieved = false;
 
         public bool Equals(Link obj)

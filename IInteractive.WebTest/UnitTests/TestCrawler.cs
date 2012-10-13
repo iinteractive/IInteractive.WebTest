@@ -232,7 +232,7 @@ namespace IInteractive.WebTest
                 Assert.IsNotNull(httpRequestResult.Links);
                 Assert.AreEqual(1, httpRequestResult.Links.Count);
                 Assert.IsNull(httpRequestResult.Links[0].AbsoluteUri);
-                Assert.IsNotNull(httpRequestResult.Links[0].Error);
+                Assert.IsNotNull(httpRequestResult.Links[0].Ex);
             }
         }
 
@@ -347,7 +347,7 @@ namespace IInteractive.WebTest
         {
             foreach (var httpRequestResult in crawler.HttpRequestResults)
             {
-                if (httpRequestResult.Links != null && !crawler.GetSetOfCrawlableHosts().Contains(httpRequestResult.RequestUrl.Host))
+                if (httpRequestResult.Links != null && !crawler.GetSetOfCrawlableHosts().Contains(httpRequestResult.ResultUrl.Host))
                 {
                     foreach (var link in httpRequestResult.Links)
                     {
@@ -380,7 +380,7 @@ namespace IInteractive.WebTest
                 {
                     foreach (var link in httpRequestResult.Links)
                     {
-                        Assert.IsTrue(link.AbsoluteUri == null && link.Error != null || link.AbsoluteUri != null && link.Error == null);
+                        Assert.IsTrue(link.AbsoluteUri == null && link.Ex != null || link.AbsoluteUri != null && link.Ex == null);
                         
                     }
                 }

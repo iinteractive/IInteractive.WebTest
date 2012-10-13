@@ -47,7 +47,7 @@ namespace IInteractive.WebConsole
                 {
                     foreach (Link link in HttpRequestResults[i].Links)
                     {
-                        if (link.Error == null)
+                        if (link.Ex == null)
                         {
                             bool alreadyRequested = (from result in HttpRequestResults
                                                      where result.Equals(link)
@@ -71,9 +71,10 @@ namespace IInteractive.WebConsole
                     {
                         foreach (var result2 in HttpRequestResults)
                         {
-                            if (result2.Equals(link))
+                            if (result2.Equals(link) && result2.ResultUrl != null && GetSetOfCrawlableHosts().Contains(result2.ResultUrl.Host.ToString()))
                             {
                                 link.WasRetrieved = true;
+                                link.IsBroken = result2.Error != null;
                                 break;
                             }
                         }
