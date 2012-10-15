@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seed.aspx.cs" Inherits="CrawlerTestApp.AbsoluteUrlTests.CaseC.Folder.Seed" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Seed.aspx.cs" Inherits="CrawlerTestApp.AbsoluteUrlTests.CaseC.Folder.Seed" ContentType="text\html" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +8,7 @@
 </head>
 <body>
 <% Uri absoluteUri = Context.Request.Url;
-   string val = absoluteUri.Scheme + "://" + "crawlertestapp" + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port));
+   string val = absoluteUri.Scheme + "://" + "webcrawlertest" + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port));
    string path = "/AbsoluteUrlTests/CaseC/Linked.htm";
    string fin = val + path; %>
     <a href="<%=fin %>"><%= fin %></a>
