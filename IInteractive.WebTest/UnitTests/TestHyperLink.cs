@@ -15,7 +15,7 @@ namespace IInteractive.WebTest
         [TestMethod]
         public void TestCommentParsing()
         {
-            NormalGenerateTestTemplate("<!--<a href=\"index.jsp\"></a>--><a href=\"index2.jsp\"></a>", 1, new List<string>() { "http://remotesite.iinteractive.com/index2.jsp" });
+            NormalGenerateTestTemplate("<!--<a href=\"index.jsp\"></a>--><a href=\"index2.jsp\"></a>", 1, new List<string>() { "http://webcrawlertest2/index2.jsp" });
         }
 
         [TestMethod]
@@ -104,7 +104,7 @@ namespace IInteractive.WebTest
 
         public Uri GetBaseUri()
         {
-            return new Uri("http://remotesite.iinteractive.com/");
+            return new Uri("http://webcrawlertest2/");
         }
 
         public void NormalGenerateTestTemplate(string zero, string one, string two, string three, int expectedCount)
