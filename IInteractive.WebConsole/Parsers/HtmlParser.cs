@@ -8,10 +8,10 @@ namespace IInteractive.WebConsole
 {
     public class HtmlParser
     {
-        public static readonly Regex ImageRegex = new Regex("<img.+?src=[\"|'](.+?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex JavaScriptRegex = new Regex("<script.+?src=[\"|'](.+?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex HyperLinkRegex = new Regex("<a.+?href=[\"|'](.+?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex StyleSheetRegex = new Regex("<link.+?href=[\"|'](.+?)[\"|'].*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex ImageRegex = new Regex("<img[^>]+?src=[\"|'](.*?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex JavaScriptRegex = new Regex("<script[^>]+?src=[\"|'](.*?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex HyperLinkRegex = new Regex("<a[^>]+?href=[\"|'](.*?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex StyleSheetRegex = new Regex("<link[^>]+?href=[\"|'](.*?)[\"|'].*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public HtmlParser(HttpRequestResult HttpRequestResult)
         {
@@ -76,7 +76,7 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                if (!match.Groups[1].Value.StartsWith("javascript:"))
+                if (!match.Groups[1].Value.StartsWith("javascript:") && !match.Groups[1].Value.StartsWith("mailto:") && !match.Groups[1].Value.StartsWith("tel:"))
                 {
                     HyperLink hyperLink = new HyperLink(HttpRequestResult.ResultUrl, match.Groups[1].Value);
                     hyperLink.Text = match.Groups[2].Value;

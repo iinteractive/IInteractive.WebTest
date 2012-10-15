@@ -108,7 +108,7 @@ namespace IInteractive.WebConsole
         {
         }
 
-        [ConfigurationProperty("name", IsRequired = true, IsKey=true)]
+        [ConfigurationProperty("name", IsRequired=true, DefaultValue="default", IsKey=true)]
         public String Name
         {
             get

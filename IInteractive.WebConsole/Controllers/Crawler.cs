@@ -76,7 +76,9 @@ namespace IInteractive.WebConsole
                     {
                         foreach (var result2 in HttpRequestResults)
                         {
-                            if (result2.Equals(link) && result2.ResultUrl != null && GetSetOfCrawlableHosts().Contains(result2.ResultUrl.Host.ToString()))
+                            if (result2.Equals(link) 
+                                && (result2.ResultUrl == null && GetSetOfCrawlableHosts().Contains(result2.RequestUrl.Host.ToString()) 
+                                    || result2.ResultUrl != null && GetSetOfCrawlableHosts().Contains(result2.ResultUrl.Host.ToString())))
                             {
                                 link.WasRetrieved = true;
                                 link.IsBroken = result2.Error != null;
