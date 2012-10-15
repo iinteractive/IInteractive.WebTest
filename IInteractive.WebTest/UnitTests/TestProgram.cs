@@ -11,14 +11,14 @@ namespace IInteractive.WebTest.UnitTests
     [TestClass]
     public class TestProgram
     {
-        [TestMethod]
+        /*[TestMethod]
         public void ManualTest()
         {
             List<string> goodConfigFiles = new List<string>();
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNormalConfig()));
 
-            TestFilesVsReturnCode(goodConfigFiles, 0);
-        }
+            TestArgsVsReturnCode(new List<string[]>() {new string[] { "-c:C:\\Users\\Alex\\Documents\\Job\\notes\\Test Results\\app.config"}}, 0);
+        }*/
 
         [TestMethod]
         public void TestBadArgs()
