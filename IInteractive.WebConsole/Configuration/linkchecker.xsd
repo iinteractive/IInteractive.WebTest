@@ -3,6 +3,13 @@
   <xs:element name="linkCheckerConfig">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="networkCredentials" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="uriPrefix" type="xs:string" use="required" />
+            <xs:attribute name="user" type="xs:string" use="required" />
+            <xs:attribute name="password" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
         <xs:element name="seeds" minOccurs="1" maxOccurs="1">
           <xs:complexType>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -44,6 +51,9 @@
           </xs:complexType>
         </xs:element>
       </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="optional" />
+      <xs:attribute name="description" type="xs:string" use="optional" />
+      <xs:attribute name="testResultsFile" type="xs:string" use="optional" />
       <xs:attribute name="recursionLimit" type="xs:int" use="optional" />
       <xs:attribute name="requestTimeout" type="xs:int" use="optional" />
       <xs:attribute name="maxCrawlTime" type="xs:int" use="optional" />

@@ -25,9 +25,6 @@ namespace IInteractive.WebConsole
         {
             int returnCode = new Program(args).Execute();
 
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
-
             return returnCode;
         }
 
