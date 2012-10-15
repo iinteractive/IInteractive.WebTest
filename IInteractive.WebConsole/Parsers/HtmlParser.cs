@@ -8,6 +8,7 @@ namespace IInteractive.WebConsole
 {
     public class HtmlParser
     {
+        public static readonly Regex CommentRegex = new Regex("<!--.*?-->", RegexOptions.IgnoreCase | RegexOptions.Singleline);
         public static readonly Regex ImageRegex = new Regex("<img[^>]+?src=[\"|'](.*?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
         public static readonly Regex JavaScriptRegex = new Regex("<script[^>]+?src=[\"|'](.*?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
         public static readonly Regex HyperLinkRegex = new Regex("<a[^>]+?href=[\"|'](.*?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -19,6 +20,13 @@ namespace IInteractive.WebConsole
         }
 
         public HttpRequestResult HttpRequestResult;
+        public string ContentWithCommentsRemoved
+        {
+            get
+            {
+                return CommentRegex.Replace(HttpRequestResult.Content, "");
+            }
+        }
 
         public List<Link> Parse()
         {
@@ -34,7 +42,7 @@ namespace IInteractive.WebConsole
 
         public List<Image> GenerateImages()
         {
-            var matches = ImageRegex.Matches(HttpRequestResult.Content);
+            var matches = ImageRegex.Matches(this.ContentWithCommentsRemoved);
 
             var images = new List<Image>();
 
@@ -51,7 +59,7 @@ namespace IInteractive.WebConsole
 
         public List<JavaScript> GenerateJavaScripts()
         {
-            var matches = JavaScriptRegex.Matches(HttpRequestResult.Content);
+            var matches = JavaScriptRegex.Matches(this.ContentWithCommentsRemoved);
 
             var scripts = new List<JavaScript>();
 
@@ -70,7 +78,7 @@ namespace IInteractive.WebConsole
 
         public List<HyperLink> GenerateHyperLinks()
         {
-            var matches = HyperLinkRegex.Matches(HttpRequestResult.Content);
+            var matches = HyperLinkRegex.Matches(this.ContentWithCommentsRemoved);
 
             var links = new List<HyperLink>();
 
@@ -90,7 +98,7 @@ namespace IInteractive.WebConsole
 
         public List<StyleSheet> GenerateStyleSheets()
         {
-            var matches = StyleSheetRegex.Matches(HttpRequestResult.Content);
+            var matches = StyleSheetRegex.Matches(this.ContentWithCommentsRemoved);
 
             var sheets = new List<StyleSheet>();
 

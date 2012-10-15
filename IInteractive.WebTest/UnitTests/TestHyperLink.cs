@@ -11,7 +11,13 @@ namespace IInteractive.WebTest
     public class TestHyperLink
     {
         public static string HYPERLINK_TEMPLATE = "<a{0}href=\"{1}\"{2}>{3}</a>";
-        
+
+        [TestMethod]
+        public void TestCommentParsing()
+        {
+            NormalGenerateTestTemplate("<!--<a href=\"index.jsp\"></a>--><a href=\"index2.jsp\"></a>", 1, new List<string>() { "http://remotesite.iinteractive.com/index2.jsp" });
+        }
+
         [TestMethod]
         public void TestGenerateCaseA()
         {
