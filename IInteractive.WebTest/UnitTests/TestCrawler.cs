@@ -11,7 +11,7 @@ namespace IInteractive.WebTest
     [TestClass]
     public class TestCrawler
     {
-        public static int Port = 50713;
+        public static int Port = 80;
 
         [TestMethod]
         public void AbsoluteUrlTestsCaseA()
@@ -266,7 +266,7 @@ namespace IInteractive.WebTest
         }
 
         private string GetTestServer() {
-            return "http://127.0.0.1:" + Port;
+            return "http://webcrawlertest:" + Port;
         }
 
         private string GetPerformanceTestUrl(int fanOut, int depth, int data, int seed)
