@@ -334,6 +334,29 @@ namespace IInteractive.WebTest
 
             crawler.Crawl();
 
+            foreach (HttpRequestResult result in crawler.HttpRequestResults)
+            {
+                try
+                {
+                    if (result.ContentType != null && result.IsHtml && result.Content != null)
+                        Console.WriteLine("Content for requestUrl, {0}, is as follows:\n{1}", result.RequestUrl, result.Content);
+                    else if (result.ContentType == null)
+                        Console.WriteLine("ContentType for requestUrl, {0}, is null.", result.RequestUrl);
+                    else if (!result.IsHtml)
+                        Console.WriteLine("ContentType for requestUrl, {0}, is not html.", result.RequestUrl);
+                    else if (result.Content == null)
+                        Console.WriteLine("Content for requestUrl, {0}, is null.", result.RequestUrl);
+                    else
+                        Console.WriteLine("Problem writing result information to console.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("The following exception occurred while attempting to write information about the reuslt.");
+                    Console.WriteLine(ex);
+                }
+            
+            }
+
             Assert.AreEqual(expectedCount, crawler.HttpRequestResults.Count);
 
             AssertLinksFromRemoteSiteNotRetrieved(crawler);
