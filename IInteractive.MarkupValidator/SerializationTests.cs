@@ -10,7 +10,7 @@ namespace IInteractive.MarkupValidator
     [TestClass]
     public class SerializationTests
     {
-        [TestMethod]
+        /*[TestMethod]
         public void TestErrorSerialization()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Error));
@@ -33,6 +33,6 @@ namespace IInteractive.MarkupValidator
         public void TestErrorsSerialization()
         {
 
-        }
+        }*/
     }
 }

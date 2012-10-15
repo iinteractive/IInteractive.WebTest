@@ -52,7 +52,11 @@ namespace IInteractive.WebConsole
                                                                      DateTime.Now, DateTime.Now,
                                                                      results);
 
-            writer.Write(file.CreateText(), testRun);
+            var streamWriter = file.CreateText();
+            writer.Write(streamWriter, testRun);
+            streamWriter.Flush();
+            streamWriter.Close();
+            
         }
     }
 }
