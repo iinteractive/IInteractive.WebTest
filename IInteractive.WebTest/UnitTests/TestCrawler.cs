@@ -338,7 +338,9 @@ namespace IInteractive.WebTest
             {
                 try
                 {
-                    if (result.ContentType != null && result.IsHtml && result.Content != null)
+                    if (result.Error != null)
+                        Console.WriteLine("The error property indicated a {1}, at {0} with the message, \"{2}\"", result.Error.AbsoluteUri.ToString() ?? "null", result.Error.HttpCode.ToString() ?? "null", result.Error.Message.ToString() ?? "null");
+                    else if (result.ContentType != null && result.IsHtml && result.Content != null)
                         Console.WriteLine("Content for requestUrl, {0}, is as follows:\n{1}", result.RequestUrl, result.Content);
                     else if (result.ContentType == null)
                         Console.WriteLine("ContentType for requestUrl, {0}, is null.", result.RequestUrl);
