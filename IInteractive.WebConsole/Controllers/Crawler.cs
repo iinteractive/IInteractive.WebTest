@@ -32,6 +32,11 @@ namespace IInteractive.WebConsole
             this.RecursionLimit = RecursionLimit;
         }
 
+        public Crawler(SeedCollection Seeds, Browser BrowsertToTest, int RecursionLimit)
+            : this((List<String>) Seeds, BrowsertToTest, RecursionLimit)
+        {
+        }
+
         public void Crawl()
         {
             this.HttpRequestResults = new List<HttpRequestResult>();

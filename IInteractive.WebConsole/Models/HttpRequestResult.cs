@@ -7,7 +7,7 @@ using IInteractive.WebConsole;
 
 namespace IInteractive.WebConsole
 {
-    public class HttpRequestResult : IEquatable<HttpRequestResult>, IEquatable<Link>
+    public class HttpRequestResult : IEquatable<HttpRequestResult>, IEquatable<Link>, IComparable<HttpRequestResult>
     {
         private Regex HtmlRegex = new Regex("html", RegexOptions.IgnoreCase);
         private Regex CssRegex = new Regex("css", RegexOptions.IgnoreCase);
@@ -15,6 +15,7 @@ namespace IInteractive.WebConsole
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
+        public Browser BrowserUsed { get; set; }
         public HttpValidationError Error { get; set; }
         public string ContentType { get; set; }
         public Uri RequestUrl { get; set; }
@@ -67,6 +68,11 @@ namespace IInteractive.WebConsole
         public bool Equals(Link obj)
         {
             return this.RequestUrl.Equals(obj.AbsoluteUri);
+        }
+
+        public int CompareTo(HttpRequestResult result)
+        {
+            return this.ResultUrl.AbsoluteUri.CompareTo(result.ResultUrl.AbsoluteUri);
         }
     }
 }

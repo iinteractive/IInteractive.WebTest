@@ -6,6 +6,58 @@ using System.Configuration;
 
 namespace IInteractive.WebConsole
 {
+    public class NetworkCredentialsElement : ConfigurationElement
+    {
+        public NetworkCredentialsElement()
+        {
+        }
+
+        public NetworkCredentialsElement(String User, String Password)
+        {
+            this.User = User;
+            this.Password = Password;
+        }
+
+        [ConfigurationProperty("uriPrefix", IsRequired = true, IsKey = true)]
+        public String UriPrefix
+        {
+            get
+            {
+                return (String)this["uriPrefix"];
+            }
+            set
+            {
+                this["uriPrefix"] = value;
+            }
+        }
+
+        [ConfigurationProperty("user", IsRequired = true, IsKey = false)]
+        public String User
+        {
+            get
+            {
+                return (String)this["user"];
+            }
+            set
+            {
+                this["user"] = value;
+            }
+        }
+
+        [ConfigurationProperty("password", IsRequired = true, IsKey = false)]
+        public String Password
+        {
+            get
+            {
+                return (String)this["password"];
+            }
+            set
+            {
+                this["password"] = value;
+            }
+        }
+    }
+
     public class SeedConfigElement : ConfigurationElement
     {
         public SeedConfigElement(String Uri)
@@ -161,6 +213,15 @@ namespace IInteractive.WebConsole
             Add(url);
         }
 
+        public static explicit operator List<String>(SeedCollection collection) {
+            var list = new List<String>();
+            foreach (SeedConfigElement seed in collection)
+            {
+                list.Add(seed.Uri);
+            }
+            return list;
+        }
+
         public override
             ConfigurationElementCollectionType CollectionType
         {
@@ -300,7 +361,7 @@ namespace IInteractive.WebConsole
             // empty until items are added to it outside 
             // the constructor.
             BrowserConfigElement url =
-                (BrowserConfigElement)CreateNewElement();
+                new BrowserConfigElement();
             Add(url);
         }
 
@@ -436,6 +497,51 @@ namespace IInteractive.WebConsole
 
     public class LinkCheckerConfigSection : ConfigurationSection
     {
+        [ConfigurationProperty("name",
+            IsDefaultCollection = false, IsRequired = false, 
+            DefaultValue = "Web Site Link Checker Tests")]
+        public string Name
+        {
+            get
+            {
+                return (string)this["name"];
+            }
+            set
+            {
+                this["name"] = value;
+            }
+        }
+
+        [ConfigurationProperty("description",
+            IsDefaultCollection = false, IsRequired = false, 
+            DefaultValue="Tests links across a web site.")]
+        public string Description
+        {
+            get
+            {
+                return (string)this["description"];
+            }
+            set
+            {
+                this["description"] = value;
+            }
+        }
+
+        [ConfigurationProperty("testResultsFile",
+            IsRequired = false,
+            DefaultValue = "test-results.trx")]
+        public string TestResultsFile
+        {
+            get
+            {
+                return (string)this["testResultsFile"];
+            }
+            set
+            {
+                this["testResultsFile"] = value;
+            }
+        }
+
         [ConfigurationProperty("recursionLimit",
             IsDefaultCollection = false, DefaultValue=Int32.MaxValue)]
         [IntegerValidator(MinValue=0, MaxValue=Int32.MaxValue)]
@@ -493,13 +599,28 @@ namespace IInteractive.WebConsole
         }
 
         [ConfigurationProperty("browsers",
-            IsDefaultCollection = false, IsRequired = true)]
+            IsDefaultCollection = false, IsRequired = false)]
         public BrowserCollection Browsers
         {
             get
             {
                 BrowserCollection urlsCollection =
                 (BrowserCollection)base["browsers"];
+                if (urlsCollection == null)
+                    return new BrowserCollection();
+                else
+                    return urlsCollection;
+            }
+        }
+
+        [ConfigurationProperty("networkCredentials",
+            IsDefaultCollection = false, IsRequired = false)]
+        public NetworkCredentialsElement NetworkCredentials
+        {
+            get
+            {
+                NetworkCredentialsElement urlsCollection =
+                (NetworkCredentialsElement)base["networkCredentials"];
                 return urlsCollection;
             }
         }

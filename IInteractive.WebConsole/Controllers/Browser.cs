@@ -9,25 +9,94 @@ namespace IInteractive.WebConsole
 {
     public class Browser
     {
-        public int MaximumAutomaticRedirections { get; set; }
-        public bool AllowAutoRedirect { get; set; }
-        public string UserAgent { get; set; }
-        public string Accept { get; set; }
-        public string AcceptCharset { get; set; }
-        public string AcceptLanguage { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _BrowserConfig.Name;
+            }
+        }
+        public int MaximumAutomaticRedirections
+        {
+            get
+            {
+                return _BrowserConfig.MaximumAutomaticRedirections;
+            }
+        }
+        public bool AllowAutoRedirect 
+        {
+            get
+            {
+                return _BrowserConfig.AllowAutoRedirect;
+            }
+        }
+        public string UserAgent
+        {
+            get
+            {
+                return _BrowserConfig.UserAgent;
+            }
+        }
+        public string Accept
+        {
+            get
+            {
+                return _BrowserConfig.Accept;
+            }
+        }
+        public string AcceptCharset
+        {
+            get
+            {
+                return _BrowserConfig.AcceptCharset;
+            }
+        }
+        public string AcceptLanguage
+        {
+            get
+            {
+                return _BrowserConfig.AcceptLanguage;
+            }
+        }
+
+        public CredentialCache Credentials
+        {
+            get
+            {
+                CredentialCache cache = new CredentialCache();
+                if (_CredentialsConfig != null 
+                    && !string.IsNullOrEmpty(_CredentialsConfig.UriPrefix) 
+                    && !string.IsNullOrEmpty(_CredentialsConfig.User) 
+                    && !string.IsNullOrEmpty(_CredentialsConfig.Password))
+                {
+                    NetworkCredential credential = new NetworkCredential(_CredentialsConfig.User, _CredentialsConfig.Password);
+                    cache.Add(new Uri(_CredentialsConfig.UriPrefix), "Basic", credential);
+                    cache.Add(new Uri(_CredentialsConfig.UriPrefix), "Digest", credential);
+                }
+                return cache;
+            }
+        }
+
+        private BrowserConfigElement _BrowserConfig { get; set; }
+        private NetworkCredentialsElement _CredentialsConfig { get; set; }
 
         private SortedSet<HttpRequestResult> HttpRequestResults { get; set; }
 
-        public Browser()
+        public Browser(BrowserConfigElement BrowserConfig, NetworkCredentialsElement CredentialsConfig)
         {
-            MaximumAutomaticRedirections = 2;
-            AllowAutoRedirect = true;
-            UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4";
-            Accept = "*/*";
-            AcceptCharset = "ISO-8859-1,utf-8;q=0.7,*;q=0.3";
-            AcceptLanguage = "en-US,en;q=0.8";
+            this._BrowserConfig = BrowserConfig;
+            this._CredentialsConfig = CredentialsConfig;
 
             HttpRequestResults = new SortedSet<HttpRequestResult>();
+        }
+
+        public Browser(BrowserConfigElement BrowserConfig) : this(BrowserConfig, null)
+        {
+        }
+
+        public Browser()
+            : this(new BrowserConfigElement("default"))
+        {
         }
 
         public HttpRequestResult Get(Uri url)
@@ -42,6 +111,7 @@ namespace IInteractive.WebConsole
                 results.RequestUrl = url;
                 results.Start = DateTime.Now;
                 results.End = DateTime.Now;
+                results.BrowserUsed = this;
 
                 StreamReader streamReader = null;
                 WebResponse response = null;
@@ -54,6 +124,7 @@ namespace IInteractive.WebConsole
                     request.Accept = Accept;
                     request.Headers.Add("Accept-Charset", AcceptCharset);
                     request.Headers.Add("Accept-Language", AcceptLanguage);
+                    request.Credentials = this.Credentials;
 
                     response = request.GetResponse();
                     streamReader = new StreamReader(response.GetResponseStream());

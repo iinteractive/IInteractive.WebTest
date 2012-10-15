@@ -92,6 +92,9 @@ namespace IInteractive.WebTest
             var subdirectoryUriRoot = new Uri(new Uri(baseUri, "/sub3/default.aspx"), "/sub1/sub2/default.aspx");
             Assert.AreEqual(subdirectoryUri, subdirectoryUriRoot);
 
+            var hashUri = new Uri(baseUri, "#test");
+            Assert.AreEqual(hashUri.AbsoluteUri.ToString(), "http://about.me/#test");
+
             var relativeUri = new Uri("/default.aspx", UriKind.RelativeOrAbsolute);
             Assert.IsFalse(relativeUri.IsAbsoluteUri);
 

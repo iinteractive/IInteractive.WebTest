@@ -99,7 +99,8 @@ namespace IInteractive.WebTest.UnitTests
                                                                                      ResultUrl = new Uri("http://allegra.com"),
                                                                                      Start = DateTime.Now,
                                                                                      End = DateTime.Now,
-                                                                                     Error = null
+                                                                                     Error = null,
+                                                                                     BrowserUsed = new Browser()
                                                                                  },
                                                                              new HttpRequestResult()
                                                                                  {
@@ -112,7 +113,8 @@ namespace IInteractive.WebTest.UnitTests
                                                                                                      AbsoluteUri = new Uri("http://allegra.co"),
                                                                                                      HttpCode = 404,
                                                                                                      Message = "File not found!"
-                                                                                                 }
+                                                                                                 },
+                                                                                    BrowserUsed = new Browser()
                                                                                  }
                                                                          });
 

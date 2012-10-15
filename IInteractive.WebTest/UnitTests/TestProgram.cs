@@ -12,6 +12,15 @@ namespace IInteractive.WebTest.UnitTests
     public class TestProgram
     {
         [TestMethod]
+        public void ManualTest()
+        {
+            List<string> goodConfigFiles = new List<string>();
+            goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNormalConfig()));
+
+            TestFilesVsReturnCode(goodConfigFiles, 0);
+        }
+
+        [TestMethod]
         public void TestBadArgs()
         {
             var argsList = new List<string[]>();
@@ -26,7 +35,6 @@ namespace IInteractive.WebTest.UnitTests
         public void TestBadReturnCodes()
         {
             List<string> badConfigFiles = new List<string>();
-            badConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoBrowsersConfig()));
             badConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoConfigSections()));
             badConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoSeedsConfig()));
             badConfigFiles.Add("DOESNOTEXIST");
@@ -39,6 +47,7 @@ namespace IInteractive.WebTest.UnitTests
         public void TestGoodReturnCodes()
         {
             List<string> goodConfigFiles = new List<string>();
+            goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoBrowsersConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNormalConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoLinkCheckerAttrConfig()));
 

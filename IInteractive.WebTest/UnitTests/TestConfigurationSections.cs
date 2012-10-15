@@ -13,6 +13,17 @@ namespace IInteractive.WebTest.UnitTests
     [TestClass]
     public class TestConfigurationSections
     {
+
+        [TestMethod]
+        public void TestBrowserDefaultConfig()
+        {
+            Browser browser = new Browser();
+            Assert.AreNotEqual(default(string), browser.Accept);
+            Console.WriteLine(browser.Accept);
+            Assert.AreNotEqual(default(string), browser.AcceptCharset);
+            Assert.AreNotEqual(default(string), browser.AcceptLanguage);
+        }
+
         public BrowserCollection AssertNotNull(Configuration config)
         {
             ConfigurationSectionCollection sections = config.Sections;
@@ -163,19 +174,8 @@ namespace IInteractive.WebTest.UnitTests
         public void TestNoBrowsersConfig()
         {
             string value
-                = WriteLine(ConfigTmpl,
-                    WriteLine(ConfigSectionsTmpl,
-                        ConfigSectionsDefault
-                    )
-                        +
-                    WriteLine(LinkCheckerConfigTmpl,
-                        LinkCheckConfigDefaultAttr,
-                        WriteLine(SeedsTmpl,
-                            SeedDefault
-                        )
-                    )
-                );
-            TemplateMethod(value, true);
+                = GetNoBrowsersConfig();
+            TemplateMethod(value, false);
         }
 
         public static string GetNoConfigSections()
@@ -264,7 +264,7 @@ namespace IInteractive.WebTest.UnitTests
         private static string SeedsTmpl = "<seeds>\n<clear/>\n{0}\n</seeds>";
 
         private static string ConfigSectionsDefault = "<section name=\"linkCheckerConfig\" type=\"IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole\" allowDefinition=\"Everywhere\" allowLocation=\"true\" />";
-        private static string LinkCheckConfigDefaultAttr = "recursionLimit=\"5000\" requestTimeout=\"60\" maxCrawlTime=\"21600\"";
+        private static string LinkCheckConfigDefaultAttr = "name=\"This is the name!\" description=\"This is the description!\" recursionLimit=\"5000\" requestTimeout=\"60\" maxCrawlTime=\"21600\" testResultsFile=\"C:\\Users\\Alex\\Documents\\Job\\notes\\Test Results\\output.trx\"";
         private static string BrowserDefault = "<add"
             + "\n\tname=\"default\""
             + "\n\tmaximumAutomaticRedirections=\"2\""
@@ -273,7 +273,7 @@ namespace IInteractive.WebTest.UnitTests
             + "\n\taccept=\"*/*\""
             + "\n\tacceptCharset=\"ISO-8859-1,utf-8;q=0.7,*;q=0.3\""
             + "\n\tacceptLanguage=\"en-US,en;q=0.8\" />";
-        private static string SeedDefault = "<add uri=\"http://127.0.0.1/\"/>";
+        private static string SeedDefault = "<add uri=\"http://localhost:50713/\"/>";
 
         private static string Write(string val, params Object[] args)
         {

@@ -40,7 +40,7 @@ namespace IInteractive.WebConsole.Results
                 var unitTestId = Guid.NewGuid();
                 var executionId = Guid.NewGuid();
 
-                unitTests.Add(GenerateUnitTest(result.RequestUrl.AbsoluteUri,
+                unitTests.Add(GenerateUnitTest(string.Format("Browser = {0}, RequestUrl = {1}", result.BrowserUsed.Name, result.RequestUrl.AbsoluteUri),
                     storage, unitTestId, executionId,
                     result.GetType()));
 
@@ -216,7 +216,7 @@ namespace IInteractive.WebConsole.Results
 
         public UnitTestResultType GenerateUnitTestResult(Guid executionId, Guid testId, Guid unitTestTypeId, Guid testListId, HttpRequestResult result)
         {
-            return GenerateUnitTestResult(executionId, testId, result.RequestUrl.AbsoluteUri,
+            return GenerateUnitTestResult(executionId, testId, string.Format("Browser = {0}, RequestUrl = {1}", result.BrowserUsed.Name, result.RequestUrl.AbsoluteUri),
                                    ComputerName,
                                    result.End.Subtract(result.Start), result.Start, result.End, unitTestTypeId,
                                    PassFail(result), testListId, executionId,
@@ -276,35 +276,40 @@ namespace IInteractive.WebConsole.Results
         
         public OutputTypeErrorInfo GenerateErrorInfo(HttpRequestResult result)
         {
-            if(result != null && result.Error != null)
+            if (!IsSuccess(result))
             {
-                if (result.Error.Error != null) return GenerateErrorInfo(result.Error.Error);
-
-                return
-                    GenerateErrorInfo(
-                        string.Format("HTTP Code: {0}\r\nMessage: {1}", result.Error.HttpCode, result.Error.Message),
-                        null);
-            }
-
-            string brokenLinksMessage = "";
-            if (result.Links != null)
-            {
-                foreach (var link in result.Links)
+                if (result != null && result.Error != null)
                 {
-                    if (link.IsBroken)
-                    {
-                        string brokenLinkMessage = string.Format("Broken Link Found.  The content is as follows.\n\t{0}\n", link.Content);
-                        brokenLinksMessage += brokenLinkMessage;
-                    }
+                    if (result.Error.Error != null) return GenerateErrorInfo(result.Error.Error);
+
+                    return
+                        GenerateErrorInfo(
+                            string.Format("HTTP Code: {0}\r\nMessage: {1}\r\nBrowser Name: {2}", result.Error.HttpCode, result.Error.Message, result.BrowserUsed.Name),
+                            null);
                 }
 
-                return
-                    GenerateErrorInfo(
-                        brokenLinksMessage,
-                        null);
-            }
+                string brokenLinksMessage = string.Format("Browser Used: {0}\r\n", result.BrowserUsed.Name);
+                if (result.Links != null)
+                {
+                    foreach (var link in result.Links)
+                    {
+                        if (link.IsBroken)
+                        {
+                            string brokenLinkMessage = string.Format("Broken Link Found.  The content is as follows.\n\t{0}\n", link.Content);
+                            brokenLinksMessage += brokenLinkMessage;
+                        }
+                    }
 
-            return null;
+                    return
+                        GenerateErrorInfo(
+                            brokenLinksMessage,
+                            null);
+                }
+
+                return null;
+            }
+            else
+                return null;
         }
 
         private string PassFail(HttpRequestResult result)
@@ -314,7 +319,7 @@ namespace IInteractive.WebConsole.Results
 
         private bool IsSuccess(HttpRequestResult result)
         {
-            if (result.Error == null)
+            if (result.Error != null)
             {
                 return false;
             }

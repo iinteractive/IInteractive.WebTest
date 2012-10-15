@@ -124,6 +124,7 @@ namespace IInteractive.WebConsole
                     }
 
                     WebSiteTestSuiteGenerator generator = new WebSiteTestSuiteGenerator(section);
+                    generator.GenerateTests();
                 }
             }
 
