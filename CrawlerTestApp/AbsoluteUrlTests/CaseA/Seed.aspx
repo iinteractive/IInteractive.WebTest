@@ -8,7 +8,7 @@
 </head>
 <body>
 <% Uri absoluteUri = Context.Request.Url;
-   string val = absoluteUri.Scheme + "://" + "crawlertestapp" + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port));
+   string val = absoluteUri.Scheme + "://" + "webcrawlertest" + (absoluteUri.IsDefaultPort ? "" : (":" + absoluteUri.Port));
    string path = "/AbsoluteUrlTests/CaseA/Linked.htm";
    string fin = val + path; %>
     <a href="<%=fin %>"><%= fin %></a>
