@@ -55,6 +55,7 @@
     <Compile Include="Models\JavaScript.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\StyleSheet.cs" />
+    <Compile Include="Models\UriComparable.cs" />
     <Compile Include="Parsers\CssParser.cs" />
     <Compile Include="Parsers\HtmlParser.cs" />
     <Compile Include="Main\Program.cs" />
@@ -64,6 +65,9 @@
     <Compile Include="Results\WebTestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="allegra.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
       <SubType>Designer</SubType>
     </None>

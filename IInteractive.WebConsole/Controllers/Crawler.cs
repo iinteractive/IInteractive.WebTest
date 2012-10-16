@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IInteractive.WebConsole.Models;
 
 namespace IInteractive.WebConsole
 {
@@ -22,7 +23,7 @@ namespace IInteractive.WebConsole
                 // If the Uri is bad, we are not going to attempt to catch the 
                 // UriFormatException, this should be reported to the user and
                 // not in a test case.
-                this.Seeds.Add(new Uri(seed));
+                this.Seeds.Add(new UriComparable(seed));
             }
 
             if (Seeds.Count != this.Seeds.Count)
