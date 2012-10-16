@@ -110,7 +110,6 @@ namespace IInteractive.WebConsole
                 results = new HttpRequestResult();
                 results.RequestUrl = url;
                 results.Start = DateTime.Now;
-                results.End = DateTime.Now;
                 results.BrowserUsed = this;
 
                 StreamReader streamReader = null;
@@ -165,6 +164,7 @@ namespace IInteractive.WebConsole
                 }
                 finally
                 {
+                    results.End = DateTime.Now;
                     if (streamReader != null)
                     {
                         try { streamReader.Close(); }

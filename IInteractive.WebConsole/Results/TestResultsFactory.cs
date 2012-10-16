@@ -8,6 +8,9 @@ namespace IInteractive.WebConsole.Results
 {
     public class TestResultsFactory
     {
+        public const string DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.ffffzzz";
+        public const string TimeSpanFormat = "c";
+
         public TestRunType GenerateTestRun(string name, string description, DateTime start, DateTime finish, DateTime creation, DateTime queuing, List<HttpRequestResult> results)
         {
             if (results == null) return null;
@@ -130,10 +133,10 @@ namespace IInteractive.WebConsole.Results
         {
             return new TestRunTypeTimes()
                        {
-                           start = start.ToString(),
-                           finish = finish.ToString(),
-                           creation = creation.ToString(),
-                           queuing = queuing.ToString()
+                           start = start.ToString(DateTimeFormat),
+                           finish = finish.ToString(DateTimeFormat),
+                           creation = creation.ToString(DateTimeFormat),
+                           queuing = queuing.ToString(DateTimeFormat)
                        };
         }
 
@@ -234,9 +237,9 @@ namespace IInteractive.WebConsole.Results
                            testId = testId.ToString(),
                            testName = testName,
                            computerName = computerName,
-                           duration = duration.ToString(),
-                           startTime = startTime.ToString(),
-                           endTime = endTime.ToString(),
+                           duration = duration.ToString(TimeSpanFormat),
+                           startTime = startTime.ToString(DateTimeFormat),
+                           endTime = endTime.ToString(DateTimeFormat),
                            testType = testType.ToString(),
                            outcome = outcome,
                            testListId = testListId.ToString(),

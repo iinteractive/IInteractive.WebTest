@@ -25,6 +25,7 @@ namespace IInteractive.WebConsole
 
         public void GenerateTests()
         {
+            var creationTimestamp = DateTime.Now;
             // Sets up crawlers.
             List<Crawler> crawlers = new List<Crawler>();
             foreach (BrowserConfigElement browserConfig in Config.Browsers)
@@ -43,13 +44,21 @@ namespace IInteractive.WebConsole
                 results.AddRange(crawler.HttpRequestResults);
             }
 
+            var startTime = DateTime.Now;
+
             // Creates the test results and writes them to a file.
             var file = new FileInfo(Config.TestResultsFile);
             if (file.Exists) file.Delete();
             var writer = new WebTestXmlWriter();
-            var testRun = (new TestResultsFactory()).GenerateTestRun(Config.Name, Config.Description, DateTime.Now,
-                                                                     DateTime.Now.Add(new TimeSpan(0, 0, 23)),
-                                                                     DateTime.Now, DateTime.Now,
+
+            var finishTimestamp = DateTime.Now;
+
+            var testRun = (new TestResultsFactory()).GenerateTestRun(Config.Name,
+                                                                     Config.Description,
+                                                                     startTime,
+                                                                     finishTimestamp,
+                                                                     creationTimestamp,
+                                                                     startTime,
                                                                      results);
 
             var streamWriter = file.CreateText();
