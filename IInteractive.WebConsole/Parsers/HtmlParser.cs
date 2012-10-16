@@ -84,7 +84,7 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                if (!match.Groups[1].Value.StartsWith("javascript:") && !match.Groups[1].Value.StartsWith("mailto:") && !match.Groups[1].Value.StartsWith("tel:"))
+                if (!match.Groups[1].Value.StartsWith("javascript:", StringComparison.CurrentCultureIgnoreCase) && !match.Groups[1].Value.StartsWith("mailto:", StringComparison.CurrentCultureIgnoreCase) && !match.Groups[1].Value.StartsWith("tel:", StringComparison.CurrentCultureIgnoreCase))
                 {
                     HyperLink hyperLink = new HyperLink(HttpRequestResult.ResultUrl, match.Groups[1].Value);
                     hyperLink.Text = match.Groups[2].Value;
