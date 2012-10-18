@@ -24,7 +24,7 @@ namespace IInteractive.WebConsole
         static int Main(string[] args)
         {
             int returnCode = new Program(args).Execute();
-
+            Console.ReadKey();
             return returnCode;
         }
 
