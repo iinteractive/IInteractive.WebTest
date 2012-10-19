@@ -72,7 +72,7 @@ namespace IInteractive.WebTest.UnitTests
                 last = browser;
             }
 
-            Assert.AreEqual(7, ctr);
+            Assert.AreEqual(2, ctr);
         }
 
         public static string GetNormalConfig()

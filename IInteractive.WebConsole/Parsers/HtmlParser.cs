@@ -9,10 +9,10 @@ namespace IInteractive.WebConsole
     public class HtmlParser
     {
         public static readonly Regex CommentRegex = new Regex("<!--.*?-->", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex ImageRegex = new Regex("<img[^>]+?src=[\"|'](.*?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex JavaScriptRegex = new Regex("<script[^>]+?src=[\"|'](.*?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex HyperLinkRegex = new Regex("<a[^>]+?href=[\"|'](.*?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex StyleSheetRegex = new Regex("<link[^>]+?href=[\"|'](.*?)[\"|'].*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex ImageRegex = new Regex("<img\\s[^>]*?src=[\"|'](.*?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex JavaScriptRegex = new Regex("<script\\s[^>]*?src=[\"|'](.*?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex HyperLinkRegex = new Regex("<a\\s[^>]*?href=[\"|'](.*?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex StyleSheetRegex = new Regex("<link\\s[^>]*?href=[\"|'](.*?)[\"|'].*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public HtmlParser(HttpRequestResult HttpRequestResult)
         {
@@ -74,7 +74,23 @@ namespace IInteractive.WebConsole
             return scripts.Distinct().ToList();
         }
 
-        
+
+
+        public bool IsCorrectScheme(string match)
+        {
+            bool correctScheme = false;
+            try
+            {
+                Uri testUri = new Uri(HttpRequestResult.ResultUrl, match);
+                correctScheme = testUri.Scheme.Equals("http", StringComparison.CurrentCultureIgnoreCase)
+                    || testUri.Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase);
+            } 
+            catch(UriFormatException) 
+            {
+                correctScheme = true;
+            }
+            return correctScheme;
+        }
 
         public List<HyperLink> GenerateHyperLinks()
         {
@@ -84,7 +100,7 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                if (!match.Groups[1].Value.StartsWith("javascript:", StringComparison.CurrentCultureIgnoreCase) && !match.Groups[1].Value.StartsWith("mailto:", StringComparison.CurrentCultureIgnoreCase) && !match.Groups[1].Value.StartsWith("tel:", StringComparison.CurrentCultureIgnoreCase))
+                if (IsCorrectScheme(match.Groups[1].Value))
                 {
                     HyperLink hyperLink = new HyperLink(HttpRequestResult.ResultUrl, match.Groups[1].Value);
                     hyperLink.Text = match.Groups[2].Value;
@@ -104,7 +120,8 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                if (match.Groups[0].Value.IndexOf("rel=\"stylesheet\"", StringComparison.CurrentCultureIgnoreCase) != -1)
+                if (match.Groups[0].Value.IndexOf("rel=\"stylesheet\"", StringComparison.CurrentCultureIgnoreCase) != -1
+                    || match.Groups[0].Value.IndexOf("rel=\'stylesheet\'", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
                     StyleSheet styleSheet = new StyleSheet(HttpRequestResult.ResultUrl, match.Groups[1].Value);
                     styleSheet.Content = match.Groups[0].Value;
