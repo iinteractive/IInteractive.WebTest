@@ -9,56 +9,9 @@ namespace IInteractive.WebTest
 {
     public class HyperLinkParserTestCase
     {
-        public static Uri ROOT = new Uri("http://www.iinteractive.com/");
-
-        public static string[] WHITE_SPACES = new string[] {
-            " ",
-            "\n\t",
-            "\r\n "
-        };
-
-        public static string[] TEXT = new string[] {
-            "",
-            "text",
-            "\"text\'"
-        };
-
-        public static string[] OTHER_ATTRIBUTES = new string[] {
-            "target=\"_blank\"",
-            "target='_blank'"
-        };
-
-        public static string[] URIS = new string[] {
-            "htTp://webcrawlertest",
-            "httPs://webcrawlertest", 
-            "/AbsoluteUrlTests/CaseA/Seed.aspx", 
-            "Linked.htm",
-            "",
-            "maiLTo:fake@iinteractive.com",
-            "javaScript:document.location.href='http://www.iinteractive.com/';",
-            "javaScript:document.location.href=\"http://www.iinteractive.com/\";",
-            "tEl:+1-201-555-0111"
-        };
-
-        public static string[] FORMAT_EXCEPTION_URIS = new string[] {
-            "http://{}[]!@#$%^&*()_+~`"
-        };
-
-        public static string[] HREF_TEMPLATES = new string[] {
-            "href=\"{0}\"",
-            "hrEf=\"{0}\"",
-            "hrEf='{0}'"
-        };
-
-        public static string[] A_TEMPLATES = new string[] {
-            "<a{0}>{1}</a>",
-            "<ab{0}>{1}</ab>",
-            "<!--<a{0}>{1}</a>-->"
-        };
-
         public static HyperLink Create(string Path, string Text, string Content)
         {
-            var link = new HyperLink(ROOT, Path);
+            var link = new HyperLink(ParserTestParts.ROOT, Path);
             link.Text = Text;
             link.Content = Content;
             return link;
@@ -96,15 +49,16 @@ namespace IInteractive.WebTest
             Console.WriteLine("seed = {0}", seed);
 
             var testCases = new List<HyperLinkParserTestCase>();
-            foreach(var item in HREF_TEMPLATES) {
-                string hrefContent = string.Format(item, URIS[rand.Next(4)]);
-                string wsContent = WHITE_SPACES[rand.Next(WHITE_SPACES.Length)];
-                string textContent = TEXT[rand.Next(TEXT.Length)];
+            foreach (var item in ParserTestParts.HREF_TEMPLATES)
+            {
+                string hrefContent = string.Format(item, ParserTestParts.URIS[rand.Next(4)]);
+                string wsContent = ParserTestParts.WHITE_SPACES[rand.Next(ParserTestParts.WHITE_SPACES.Length)];
+                string textContent = ParserTestParts.TEXT[rand.Next(ParserTestParts.TEXT.Length)];
 
 
-                for (int i = 1; i < A_TEMPLATES.Length; i++)
+                for (int i = 1; i < ParserTestParts.A_TEMPLATES.Length; i++)
                 {
-                    string badContent = string.Format(A_TEMPLATES[i], wsContent + hrefContent, textContent);
+                    string badContent = string.Format(ParserTestParts.A_TEMPLATES[i], wsContent + hrefContent, textContent);
                     testCases.Add(new HyperLinkParserTestCase(badContent));
                 }
             }
@@ -119,7 +73,7 @@ namespace IInteractive.WebTest
                 GenerateAttributes();
             string[] leftOfAttr = GoodLeftOfHrefText();
             string[] rightOfAttr = GoodRightOfHrefText();
-            string[] text = TEXT;
+            string[] text = ParserTestParts.TEXT;
 
             int numTestCases = attributeInformation.Length * leftOfAttr.Length * rightOfAttr.Length * text.Length;
             Console.WriteLine("Number of test cases = {0}", numTestCases);
@@ -128,7 +82,7 @@ namespace IInteractive.WebTest
                 foreach(var left in leftOfAttr) {
                     foreach(var right in rightOfAttr) {
                         foreach(var inner in text) {
-                            string content = string.Format(A_TEMPLATES[0], left + part.Attr + right, inner);
+                            string content = string.Format(ParserTestParts.A_TEMPLATES[0], left + part.Attr + right, inner);
                             HyperLinkParserTestCase testCase = null;
                             if (part.IsCorrectScheme)
                             {
@@ -151,25 +105,25 @@ namespace IInteractive.WebTest
         public static string[] GoodLeftOfHrefText()
         {
             // Initialization
-            int numStrings = WHITE_SPACES.Length
-                + WHITE_SPACES.Length * OTHER_ATTRIBUTES.Length * WHITE_SPACES.Length;
+            int numStrings = ParserTestParts.WHITE_SPACES.Length
+                + ParserTestParts.WHITE_SPACES.Length * ParserTestParts.OTHER_ATTRIBUTES.Length * ParserTestParts.WHITE_SPACES.Length;
             string[] strings = new string[numStrings];
 
             // Generation
             int counter = 0;
-            for (int i = 0; i < WHITE_SPACES.Length; i++)
+            for (int i = 0; i < ParserTestParts.WHITE_SPACES.Length; i++)
             {
-                strings[counter] = WHITE_SPACES[i];
+                strings[counter] = ParserTestParts.WHITE_SPACES[i];
                 counter++;
             }
 
-            for (int i = 0; i < WHITE_SPACES.Length; i++)
+            for (int i = 0; i < ParserTestParts.WHITE_SPACES.Length; i++)
             {
-                for (int j = 0; j < OTHER_ATTRIBUTES.Length; j++)
+                for (int j = 0; j < ParserTestParts.OTHER_ATTRIBUTES.Length; j++)
                 {
-                    for (int k = 0; k < WHITE_SPACES.Length; k++)
+                    for (int k = 0; k < ParserTestParts.WHITE_SPACES.Length; k++)
                     {
-                        strings[counter] = WHITE_SPACES[i] + OTHER_ATTRIBUTES[j] + WHITE_SPACES[k];
+                        strings[counter] = ParserTestParts.WHITE_SPACES[i] + ParserTestParts.OTHER_ATTRIBUTES[j] + ParserTestParts.WHITE_SPACES[k];
                         counter++;
                     }
                 }
@@ -202,33 +156,52 @@ namespace IInteractive.WebTest
 
         public static TestCasePart[] GenerateAttributes()
         {
+            int doublesUris = 0;
+            int singlesUris = 0;
+            int doublesSrcs = 0;
+            int singlesSrcs = 0;
+            foreach (var item in ParserTestParts.URIS)
+            {
+                doublesUris += item.Contains("\"") ? 1 : 0;
+                singlesUris += item.Contains("'") ? 1 : 0;
+            }
+            foreach (var item in ParserTestParts.SRC_TEMPLATES)
+            {
+                doublesSrcs += item.Contains("\"") ? 1 : 0;
+                singlesSrcs += item.Contains("'") ? 1 : 0;
+            }
+
             // Initializations
-            int numAttributes = HREF_TEMPLATES.Length * URIS.Length 
-                + HREF_TEMPLATES.Length * FORMAT_EXCEPTION_URIS.Length;
+            int numAttributes = ParserTestParts.HREF_TEMPLATES.Length * ParserTestParts.URIS.Length - doublesUris * doublesSrcs
+                - singlesUris * singlesSrcs + ParserTestParts.HREF_TEMPLATES.Length * ParserTestParts.FORMAT_EXCEPTION_URIS.Length;
             TestCasePart[] parts = new TestCasePart[numAttributes];
 
             // Generation
             int counter = 0;
-            for (int i = 0; i < HREF_TEMPLATES.Length; i++)
+            for (int i = 0; i < ParserTestParts.HREF_TEMPLATES.Length; i++)
             {
                 // Good Uris
-                for (int j = 0; j < URIS.Length; j++)
+                for (int j = 0; j < ParserTestParts.URIS.Length; j++)
                 {
-                    parts[counter] = new TestCasePart(
-                        string.Format(HREF_TEMPLATES[i], URIS[j])
-                        , URIS[j]
-                        , IsCorrectScheme(URIS[j])
-                    );
-                    counter++;
+                    if (!(ParserTestParts.URIS[j].Contains("\"") && ParserTestParts.SRC_TEMPLATES[i].Contains("\"")
+                        || ParserTestParts.URIS[j].Contains("'") && ParserTestParts.SRC_TEMPLATES[i].Contains("'")))
+                    {
+                        parts[counter] = new TestCasePart(
+                            string.Format(ParserTestParts.HREF_TEMPLATES[i], ParserTestParts.URIS[j])
+                            , ParserTestParts.URIS[j]
+                            , IsCorrectScheme(ParserTestParts.URIS[j])
+                        );
+                        counter++;
+                    }
                 }
 
                 // Bad Uris
-                for (int j = 0; j < FORMAT_EXCEPTION_URIS.Length; j++)
+                for (int j = 0; j < ParserTestParts.FORMAT_EXCEPTION_URIS.Length; j++)
                 {
                     parts[counter] = new TestCasePart(
-                        string.Format(HREF_TEMPLATES[i], FORMAT_EXCEPTION_URIS[j])
-                        , FORMAT_EXCEPTION_URIS[j]
-                        , IsCorrectScheme(FORMAT_EXCEPTION_URIS[j])
+                        string.Format(ParserTestParts.HREF_TEMPLATES[i], ParserTestParts.FORMAT_EXCEPTION_URIS[j])
+                        , ParserTestParts.FORMAT_EXCEPTION_URIS[j]
+                        , IsCorrectScheme(ParserTestParts.FORMAT_EXCEPTION_URIS[j])
                     );
                     counter++;
                 }
@@ -277,7 +250,7 @@ namespace IInteractive.WebTest
 
         public void PerformTest()
         {
-            var parser = new HtmlParser(new HttpRequestResult() { ResultUrl = ROOT, Content = this.ContentToParse });
+            var parser = new HtmlParser(new HttpRequestResult() { ResultUrl = ParserTestParts.ROOT, Content = this.ContentToParse });
             List<Link> links = parser.Parse();
 
             AssertEqual(this.ExpectedLinks, links);

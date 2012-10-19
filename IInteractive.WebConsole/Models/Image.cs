@@ -15,7 +15,5 @@ namespace IInteractive.WebConsole
             : base(Root, Path)
         {
         }
-
-        public string Source { get; set; }
     }
 }

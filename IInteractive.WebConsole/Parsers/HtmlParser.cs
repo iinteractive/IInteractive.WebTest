@@ -9,10 +9,10 @@ namespace IInteractive.WebConsole
     public class HtmlParser
     {
         public static readonly Regex CommentRegex = new Regex("<!--.*?-->", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex ImageRegex = new Regex("<img\\s[^>]*?src=[\"|'](.*?)[\"|'](.*?)>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex JavaScriptRegex = new Regex("<script\\s[^>]*?src=[\"|'](.*?)[\"|'].*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex HyperLinkRegex = new Regex("<a\\s[^>]*?href=[\"|'](.*?)[\"|'].*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        public static readonly Regex StyleSheetRegex = new Regex("<link\\s[^>]*?href=[\"|'](.*?)[\"|'].*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex ImageRegex = new Regex("<img\\s[^>]*?src=([\"|'])(.*?)\\1.*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex JavaScriptRegex = new Regex("<script\\s[^>]*?src=([\"|'])(.*?)\\1.*?>(.*?)</script>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex HyperLinkRegex = new Regex("<a\\s[^>]*?href=([\"|'])(.*?)\\1.*?>(.*?)</a>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        public static readonly Regex StyleSheetRegex = new Regex("<link\\s[^>]*?href=([\"|'])(.*?)\\1.*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public HtmlParser(HttpRequestResult HttpRequestResult)
         {
@@ -48,8 +48,7 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                Image image = new Image(HttpRequestResult.ResultUrl, match.Groups[1].Value);
-                image.Source = match.Groups[1].Value;
+                Image image = new Image(HttpRequestResult.ResultUrl, match.Groups[2].Value);
                 image.Content = match.Groups[0].Value;
                 images.Add(image);
             }
@@ -65,8 +64,8 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                JavaScript javaScript = new JavaScript(HttpRequestResult.ResultUrl, match.Groups[1].Value);
-                javaScript.Source = match.Groups[1].Value;
+                JavaScript javaScript = new JavaScript(HttpRequestResult.ResultUrl, match.Groups[2].Value);
+                javaScript.Source = match.Groups[3].Value;
                 javaScript.Content = match.Groups[0].Value;
                 scripts.Add(javaScript);
             }
@@ -100,10 +99,10 @@ namespace IInteractive.WebConsole
 
             foreach (Match match in matches)
             {
-                if (IsCorrectScheme(match.Groups[1].Value))
+                if (IsCorrectScheme(match.Groups[2].Value))
                 {
-                    HyperLink hyperLink = new HyperLink(HttpRequestResult.ResultUrl, match.Groups[1].Value);
-                    hyperLink.Text = match.Groups[2].Value;
+                    HyperLink hyperLink = new HyperLink(HttpRequestResult.ResultUrl, match.Groups[2].Value);
+                    hyperLink.Text = match.Groups[3].Value;
                     hyperLink.Content = match.Groups[0].Value;
                     links.Add(hyperLink);
                 }
@@ -123,7 +122,7 @@ namespace IInteractive.WebConsole
                 if (match.Groups[0].Value.IndexOf("rel=\"stylesheet\"", StringComparison.CurrentCultureIgnoreCase) != -1
                     || match.Groups[0].Value.IndexOf("rel=\'stylesheet\'", StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    StyleSheet styleSheet = new StyleSheet(HttpRequestResult.ResultUrl, match.Groups[1].Value);
+                    StyleSheet styleSheet = new StyleSheet(HttpRequestResult.ResultUrl, match.Groups[2].Value);
                     styleSheet.Content = match.Groups[0].Value;
                     sheets.Add(styleSheet);
                 }
