@@ -65,9 +65,6 @@
     <Compile Include="Results\WebTestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="allegra.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
       <SubType>Designer</SubType>
     </None>
