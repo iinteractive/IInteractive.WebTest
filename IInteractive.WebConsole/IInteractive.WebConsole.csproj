@@ -44,7 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigurationSections.cs" />
+    <Compile Include="Configuration\BrowserCollection.cs" />
+    <Compile Include="Configuration\BrowserConfigElement.cs" />
+    <Compile Include="Configuration\LinkCheckerConfigSection.cs" />
+    <Compile Include="Configuration\NetworkCredentialsElement.cs" />
+    <Compile Include="Configuration\SeedCollection.cs" />
+    <Compile Include="Configuration\SeedConfigElement.cs" />
     <Compile Include="Controllers\Browser.cs" />
     <Compile Include="Controllers\Crawler.cs" />
     <Compile Include="Controllers\WebSiteTestSuiteGenerator.cs" />
