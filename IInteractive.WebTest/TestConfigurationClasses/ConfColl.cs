@@ -4,51 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace IInteractive.WebConsole
+namespace IInteractive.WebTest
 {
-    public class BrowserCollection : ConfigurationElementCollection
+    public class ConfColl : ConfigurationElementCollection
     {
-        public BrowserCollection()
+        public ConfSec Parent;
+
+        public ConfColl() : base()
         {
-            // Add one url to the collection.  This is 
-            // not necessary; could leave the collection  
-            // empty until items are added to it outside 
-            // the constructor.
-            BrowserConfigElement url =
-                new BrowserConfigElement();
-            Add(url);
+            ConfElem first = new ConfElem();
+            first.Parent = this;
+            Add(first);
         }
 
-        public override
-            ConfigurationElementCollectionType CollectionType
+        public override ConfigurationElementCollectionType CollectionType
         {
             get
             {
-                return
-
-                    ConfigurationElementCollectionType.AddRemoveClearMap;
+                return ConfigurationElementCollectionType.AddRemoveClearMap;
             }
         }
 
         protected override
             ConfigurationElement CreateNewElement()
         {
-            return new BrowserConfigElement();
+            ConfElem elem = new ConfElem();
+            elem.Parent = this;
+            return elem;
         }
 
 
-        protected override
-            ConfigurationElement CreateNewElement(
-            string elementName)
+        protected override ConfigurationElement CreateNewElement(string elementName)
         {
-            return new BrowserConfigElement(elementName);
+            ConfElem elem = new ConfElem(elementName);
+            elem.Parent = this;
+            return elem;
         }
 
 
-        protected override Object
-            GetElementKey(ConfigurationElement element)
+        protected override Object GetElementKey(ConfigurationElement element)
         {
-            return ((BrowserConfigElement)element).Name;
+            return ((ConfElem)element).Name;
         }
 
 
@@ -84,11 +80,14 @@ namespace IInteractive.WebConsole
         }
 
 
-        public BrowserConfigElement this[int index]
+        public ConfElem this[int index]
         {
             get
             {
-                return (BrowserConfigElement)BaseGet(index);
+                ConfElem elem = (ConfElem)BaseGet(index);
+                if(elem != null)
+                    elem.Parent = this;
+                return elem;
             }
             set
             {
@@ -100,36 +99,38 @@ namespace IInteractive.WebConsole
             }
         }
 
-        new public BrowserConfigElement this[string Name]
+        new public ConfElem this[string Name]
         {
             get
             {
-                return (BrowserConfigElement)BaseGet(Name);
+                ConfElem elem = (ConfElem)BaseGet(Name);
+                if(elem != null)
+                    elem.Parent = this;
+                return elem;
             }
         }
 
-        public int IndexOf(BrowserConfigElement url)
+        public int IndexOf(ConfElem elem)
         {
-            return BaseIndexOf(url);
+            return BaseIndexOf(elem);
         }
 
-        public void Add(BrowserConfigElement url)
+        public void Add(ConfElem elem)
         {
-            BaseAdd(url);
+            BaseAdd(elem);
             // Add custom code here.
         }
 
-        protected override void
-            BaseAdd(ConfigurationElement element)
+        protected override void BaseAdd(ConfigurationElement element)
         {
             BaseAdd(element, false);
             // Add custom code here.
         }
 
-        public void Remove(BrowserConfigElement url)
+        public void Remove(ConfElem elem)
         {
-            if (BaseIndexOf(url) >= 0)
-                BaseRemove(url.Name);
+            if (BaseIndexOf(elem) >= 0)
+                BaseRemove(elem.Name);
         }
 
         public void RemoveAt(int index)

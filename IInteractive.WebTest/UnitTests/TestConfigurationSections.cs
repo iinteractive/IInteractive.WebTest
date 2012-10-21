@@ -7,12 +7,14 @@ using System.Configuration;
 using IInteractive.WebConsole;
 using System.Xml.Serialization;
 using System.IO;
+using IInteractive.WebTest.Properties;
 
 namespace IInteractive.WebTest.UnitTests
 {
     [TestClass]
     public class TestConfigurationSections
     {
+        
 
         [TestMethod]
         public void TestBrowserDefaultConfig()
@@ -232,7 +234,7 @@ namespace IInteractive.WebTest.UnitTests
 
         }
 
-        private Configuration RetrieveConfig(string contents)
+        public static Configuration RetrieveConfig(string contents)
         {
             string fileName = Path.GetTempFileName();
             Console.WriteLine("fileName = {0}", fileName);

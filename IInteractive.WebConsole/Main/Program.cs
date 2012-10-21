@@ -121,7 +121,15 @@ namespace IInteractive.WebConsole
                     }
 
                     WebSiteTestSuiteGenerator generator = new WebSiteTestSuiteGenerator(section);
-                    generator.GenerateTests();
+                    try
+                    {
+                        generator.GenerateTests();
+                    }
+                    catch (UriFormatException)
+                    {
+                        Console.WriteLine(CONFIG_FILE_ERROR_MESSAGE);
+                        return 1;
+                    }
                 }
             }
 

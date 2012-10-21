@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <section name="confSec" type="IInteractive.WebTest.ConfSec, IInteractive.WebTest" allowDefinition="Everywhere" allowLocation="true" />
+    </configSections>
+    <confSec prop="{0}">
+        <confColl>
+            <clear />
+            <add name="{1}" prop="{2}"/>
+        </confColl>
+    </confSec>
+</configuration>

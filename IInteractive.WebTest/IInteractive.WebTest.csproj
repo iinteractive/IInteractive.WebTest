@@ -67,8 +67,19 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestConfigurationClasses\ConfColl.cs" />
+    <Compile Include="TestConfigurationClasses\ConfElem.cs" />
+    <Compile Include="TestConfigurationClasses\ConfSec.cs" />
     <Compile Include="UnitTests\ParserTestParts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\TestBrowser.cs" />
+    <Compile Include="UnitTests\TestConfigurationParenting.cs" />
+    <Compile Include="UnitTests\TestExperimentalConfigs.cs" />
     <Compile Include="UnitTests\TestImage.cs" />
     <Compile Include="UnitTests\TestJavaScript.cs" />
     <Compile Include="UnitTests\TestConfigurationSections.cs" />
@@ -89,8 +100,19 @@
       <Name>IInteractive.WebConsole</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestA.txt" />
+    <None Include="Resources\CaseD.txt" />
+    <Content Include="Resources\CaseA.txt" />
+    <Content Include="Resources\CaseB.txt" />
+    <Content Include="Resources\CaseC.txt" />
+    <None Include="Resources\CaseE.txt" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage1.htm" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage2.htm" />
   </ItemGroup>

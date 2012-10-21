@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace IInteractive.WebConsole.Configuration
+namespace IInteractive.WebConsole
 {
     public class BrowserConfigElement : ConfigurationElement
     {
