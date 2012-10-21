@@ -90,7 +90,10 @@ namespace IInteractive.WebConsole
         {
             get
             {
-                return (BrowserConfigElement)BaseGet(index);
+                var elem = (BrowserConfigElement)BaseGet(index);
+                if (elem != null)
+                    elem.Parent = this;
+                return elem;
             }
             set
             {
@@ -106,7 +109,10 @@ namespace IInteractive.WebConsole
         {
             get
             {
-                return (BrowserConfigElement)BaseGet(Name);
+                var elem = (BrowserConfigElement)BaseGet(Name);
+                if (elem != null)
+                    elem.Parent = this;
+                return elem;
             }
         }
 

@@ -139,11 +139,11 @@ namespace IInteractive.WebTest.Properties {
         ///    &lt;configSections&gt;
         ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
         ///    &lt;/configSections&gt;
-        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;3&quot; Timeout=&quot;50&quot; maxRemoteAutomaticRedirects=&quot;10&quot;&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;3&quot; timeout=&quot;5&quot; maxRemoteAutomaticRedirects=&quot;10&quot;&gt;
         ///        &lt;seeds&gt;
         ///            &lt;clear /&gt;
         ///            &lt;add uri=&quot;{0}&quot;/&gt;
-        ///    [rest of string was truncated]&quot;;.
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CaseE {
             get {

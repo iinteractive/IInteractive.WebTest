@@ -54,7 +54,7 @@ namespace IInteractive.WebTest.UnitTests
             Configuration config = TestConfigurationSections.RetrieveConfig(Resources.CaseC);
             LinkCheckerConfigSection section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
 
-            Assert.AreEqual(2, section.MaxRemoteAutomaticRedirects);
+            Assert.AreEqual(-1, section.MaxRemoteAutomaticRedirects);
             Assert.AreEqual(2, section.Browsers[0].MaxRemoteAutomaticRedirects);
             Assert.AreEqual(2, section.Browsers[0].MaximumAutomaticRedirections);
         }
@@ -76,9 +76,9 @@ namespace IInteractive.WebTest.UnitTests
             Configuration config = TestConfigurationSections.RetrieveConfig(Resources.CaseE);
             LinkCheckerConfigSection section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
 
-            Assert.AreEqual(50, section.Timeout);
-            Assert.AreEqual(50, section.Browsers[0].Timeout);
-            Assert.AreEqual(50, section.Browsers[0].Timeout);
+            Assert.AreEqual(5, section.Timeout);
+            Assert.AreEqual(5, section.Browsers[0].Timeout);
+            Assert.AreEqual(5, section.Browsers[0].Timeout);
         }
 
         

@@ -260,13 +260,23 @@ namespace IInteractive.WebTest
             TestCrawlerMethod(GetPerformanceTestUrl(2, 7, 10000, 12192), 3, 3);
         }
 
-        private string GetTestUrl(string path)
+        public static string GetTestUrl(string path)
         {
             return GetTestServer() + path;
         }
 
-        private string GetTestServer() {
+        public static string GetRemoteTestUrl(string path)
+        {
+            return GetRemoteTestServer() + path;
+        }
+
+        public static string GetTestServer() {
             return "http://webcrawlertest:" + Port;
+        }
+
+        public static string GetRemoteTestServer()
+        {
+            return "http://webcrawlertest2:" + Port;
         }
 
         private string GetPerformanceTestUrl(int fanOut, int depth, int data, int seed)

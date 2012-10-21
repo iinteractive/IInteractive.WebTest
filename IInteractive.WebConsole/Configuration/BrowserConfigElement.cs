@@ -32,8 +32,23 @@ namespace IInteractive.WebConsole
         }
 
         public BrowserCollection Parent { get; internal set; }
-        public Int32 Timeout { get { throw new NotImplementedException(); } }
-        public Int32 MaxRemoteAutomaticRedirects { get { throw new NotImplementedException(); } }
+        public Int32 Timeout 
+        { 
+            get 
+            {
+                return Parent.Parent.Timeout;
+            } 
+        }
+        public Int32 MaxRemoteAutomaticRedirects
+        { 
+            get 
+            {
+                if (Parent.Parent.MaxRemoteAutomaticRedirects != -1)
+                    return Parent.Parent.MaxRemoteAutomaticRedirects;
+                else
+                    return this.MaximumAutomaticRedirections;
+            }
+        }
 
         [ConfigurationProperty("name", IsRequired = true, DefaultValue = "default", IsKey = true)]
         public String Name

@@ -58,6 +58,20 @@ namespace IInteractive.WebConsole
                 return _BrowserConfig.AcceptLanguage;
             }
         }
+        public Int32 Timeout
+        {
+            get
+            {
+                return _BrowserConfig.Timeout;
+            }
+        }
+        public Int32 MaxRemoteAutomaticRedirects
+        {
+            get
+            {
+                return _BrowserConfig.MaxRemoteAutomaticRedirects;
+            }
+        }
 
         public CredentialCache Credentials
         {
@@ -95,11 +109,12 @@ namespace IInteractive.WebConsole
         }
 
         public Browser()
-            : this(new BrowserConfigElement("default"))
+            : this(new LinkCheckerConfigSection().Browsers[0])
         {
+
         }
 
-        public HttpRequestResult Get(Uri url, bool IsRemote)
+        public HttpRequestResult Get(Uri url, bool isRemote)
         {
             HttpRequestResult results = (from httpRequestResult in HttpRequestResults
                             where httpRequestResult.RequestUrl.Equals(url)
@@ -117,7 +132,11 @@ namespace IInteractive.WebConsole
                 try
                 {
                     var request = (HttpWebRequest)WebRequest.Create(url);
-                    request.MaximumAutomaticRedirections = MaximumAutomaticRedirections;
+                    if (isRemote)
+                        request.MaximumAutomaticRedirections = this.MaxRemoteAutomaticRedirects;
+                    else
+                        request.MaximumAutomaticRedirections = this.MaximumAutomaticRedirections;
+                    request.Timeout = this.Timeout * 1000;
                     request.AllowAutoRedirect = AllowAutoRedirect;
                     request.UserAgent = UserAgent;
                     request.Accept = Accept;

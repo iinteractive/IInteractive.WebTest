@@ -24,8 +24,8 @@ namespace IInteractive.WebTest.UnitTests
             var result = browser.Get(new Uri(seedUrl), false);
             var remoteResult = browser.Get(new Uri(remoteUrl), true);
 
-            Assert.IsNull(result.Error);
-            Assert.IsNotNull(remoteResult.Error);
+            Assert.IsNotNull(result.Error, "ErrorCode = " + result.Error.Error);
+            Assert.IsNull(remoteResult.Error);
         }
 
         [TestMethod]
@@ -44,5 +44,30 @@ namespace IInteractive.WebTest.UnitTests
             Assert.IsNotNull(remoteResult.Error);
         }
 
+        [TestMethod]
+        public void TestTimeoutCaseD()
+        {
+            var seedUrl = TestCrawler.GetTestUrl("/ErroredSeedTests/CaseF/seed.aspx");
+            var config = TestConfigurationSections.RetrieveConfig(Resources.CaseD);
+            var section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+
+            var browser = new Browser(section.Browsers[0]);
+            var result = browser.Get(new Uri(seedUrl), false);
+
+            Assert.IsNull(result.Error);
+        }
+
+        [TestMethod]
+        public void TestTimeoutCaseE()
+        {
+            var seedUrl = TestCrawler.GetTestUrl("/ErroredSeedTests/CaseF/seed.aspx");
+            var config = TestConfigurationSections.RetrieveConfig(Resources.CaseE);
+            var section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+
+            var browser = new Browser(section.Browsers[0]);
+            var result = browser.Get(new Uri(seedUrl), false);
+
+            Assert.IsNotNull(result.Error);
+        }
     }
 }

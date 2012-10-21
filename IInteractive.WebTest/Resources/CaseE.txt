@@ -3,7 +3,7 @@
     <configSections>
         <section name="linkCheckerConfig" type="IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole" allowDefinition="Everywhere" allowLocation="true" />
     </configSections>
-    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." recursionLimit="3" Timeout="50" maxRemoteAutomaticRedirects="10">
+    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." recursionLimit="3" timeout="5" maxRemoteAutomaticRedirects="10">
         <seeds>
             <clear />
             <add uri="{0}"/>

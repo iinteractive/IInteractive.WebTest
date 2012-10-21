@@ -109,6 +109,7 @@
     <Content Include="CrawlTests\CaseD\SeedLink1.htm" />
     <Content Include="CrawlTests\CaseD\SeedLink2.htm" />
     <Content Include="CrawlTests\CaseD\SeedLink3.htm" />
+    <Content Include="ErroredSeedTests\CaseF\Seed.aspx" />
     <Content Include="ErroredSeedTests\ErroredLinkedTests\CaseA\Linked.aspx" />
     <Content Include="ErroredSeedTests\ErroredLinkedTests\CaseA\Seed.htm" />
     <Content Include="ErroredSeedTests\ErroredLinkedTests\CaseB\Linked.aspx" />

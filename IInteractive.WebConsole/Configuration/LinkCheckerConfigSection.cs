@@ -133,9 +133,12 @@ namespace IInteractive.WebConsole
                 BrowserCollection urlsCollection =
                 (BrowserCollection)base["browsers"];
                 if (urlsCollection == null)
-                    return new BrowserCollection();
-                else
-                    return urlsCollection;
+                    urlsCollection = new BrowserCollection();
+                
+                if(urlsCollection != null)
+                    urlsCollection.Parent = this;
+
+                return urlsCollection;
             }
         }
 
