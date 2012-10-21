@@ -38,6 +38,11 @@ namespace IInteractive.WebConsole
         {
         }
 
+        private bool IsRemote(Uri absoluteUri)
+        {
+            return !GetSetOfCrawlableHosts().Contains(absoluteUri.Host.ToString());
+        }
+
         public void Crawl()
         {
             this.HttpRequestResults = new List<HttpRequestResult>();
@@ -60,8 +65,7 @@ namespace IInteractive.WebConsole
                                                      select result).Count() != 0;
                             if (!alreadyRequested && HttpRequestResults.Count < RecursionLimit)
                             {
-                                throw new NotImplementedException("The following Get call should be corrected so the second argument is accurate.");
-                                var result = BrowserToTest.Get(link.AbsoluteUri, false);
+                                var result = BrowserToTest.Get(link.AbsoluteUri, IsRemote(link.AbsoluteUri));
                                 result.Parse();
                                 HttpRequestResults.Add(result);
                             }

@@ -70,7 +70,7 @@ namespace IInteractive.WebConsole
 
         [ConfigurationProperty("maxRemoteAutomaticRedirects",
             DefaultValue = -1)]
-        [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
+        [IntegerValidator(MinValue = -1, MaxValue = Int32.MaxValue)]
         public Int32 MaxRemoteAutomaticRedirects
         {
             get
