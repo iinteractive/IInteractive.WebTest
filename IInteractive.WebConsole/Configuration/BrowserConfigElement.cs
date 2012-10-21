@@ -31,6 +31,10 @@ namespace IInteractive.WebConsole
         {
         }
 
+        public BrowserCollection Parent { get; internal set; }
+        public Int32 Timeout { get { throw new NotImplementedException(); } }
+        public Int32 MaxRemoteAutomaticRedirects { get { throw new NotImplementedException(); } }
+
         [ConfigurationProperty("name", IsRequired = true, DefaultValue = "default", IsKey = true)]
         public String Name
         {

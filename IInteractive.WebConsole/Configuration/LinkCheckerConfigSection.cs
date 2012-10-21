@@ -68,18 +68,33 @@ namespace IInteractive.WebConsole
             }
         }
 
-        [ConfigurationProperty("requestTimeout",
-            IsDefaultCollection = false, DefaultValue = 60)]
+        [ConfigurationProperty("maxRemoteAutomaticRedirects",
+            DefaultValue = -1)]
         [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
-        public Int32 RequestTimeout
+        public Int32 MaxRemoteAutomaticRedirects
         {
             get
             {
-                return (Int32)this["requestTimeout"];
+                return (Int32)this["maxRemoteAutomaticRedirects"];
             }
             set
             {
-                this["requestTimeout"] = value;
+                this["maxRemoteAutomaticRedirects"] = value;
+            }
+        }
+
+        [ConfigurationProperty("timeout",
+            IsDefaultCollection = false, DefaultValue = 60)]
+        [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
+        public Int32 Timeout
+        {
+            get
+            {
+                return (Int32)this["timeout"];
+            }
+            set
+            {
+                this["timeout"] = value;
             }
         }
 

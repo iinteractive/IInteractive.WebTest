@@ -43,7 +43,7 @@ namespace IInteractive.WebConsole
             this.HttpRequestResults = new List<HttpRequestResult>();
             foreach (Uri seed in Seeds)
             {
-                HttpRequestResult result = BrowserToTest.Get(seed);
+                HttpRequestResult result = BrowserToTest.Get(seed, false);
                 result.Parse();
                 HttpRequestResults.Add(result);
             }
@@ -60,7 +60,8 @@ namespace IInteractive.WebConsole
                                                      select result).Count() != 0;
                             if (!alreadyRequested && HttpRequestResults.Count < RecursionLimit)
                             {
-                                var result = BrowserToTest.Get(link.AbsoluteUri);
+                                throw new NotImplementedException("The following Get call should be corrected so the second argument is accurate.");
+                                var result = BrowserToTest.Get(link.AbsoluteUri, false);
                                 result.Parse();
                                 HttpRequestResults.Add(result);
                             }

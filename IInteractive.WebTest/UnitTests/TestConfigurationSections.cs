@@ -36,7 +36,7 @@ namespace IInteractive.WebTest.UnitTests
             Assert.IsNotNull(linkSection);
             Assert.IsNotNull(linkSection.RecursionLimit);
             Assert.IsNotNull(linkSection.MaxCrawlTime);
-            Assert.IsNotNull(linkSection.RequestTimeout);
+            Assert.IsNotNull(linkSection.Timeout);
             BrowserCollection browsers = linkSection.Browsers;
             Assert.IsNotNull(browsers);
 
@@ -266,7 +266,7 @@ namespace IInteractive.WebTest.UnitTests
         private static string SeedsTmpl = "<seeds>\n<clear/>\n{0}\n</seeds>";
 
         private static string ConfigSectionsDefault = "<section name=\"linkCheckerConfig\" type=\"IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole\" allowDefinition=\"Everywhere\" allowLocation=\"true\" />";
-        private static string LinkCheckConfigDefaultAttr = "name=\"This is the name!\" description=\"This is the description!\" recursionLimit=\"5000\" requestTimeout=\"60\" maxCrawlTime=\"21600\" testResultsFile=\"output.trx\"";
+        private static string LinkCheckConfigDefaultAttr = "name=\"This is the name!\" description=\"This is the description!\" recursionLimit=\"5000\" timeout=\"60\" maxCrawlTime=\"21600\" testResultsFile=\"output.trx\"";
         private static string BrowserDefault = "<add"
             + "\n\tname=\"default\""
             + "\n\tmaximumAutomaticRedirections=\"2\""

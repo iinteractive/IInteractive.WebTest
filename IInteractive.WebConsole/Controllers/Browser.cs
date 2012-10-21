@@ -99,7 +99,7 @@ namespace IInteractive.WebConsole
         {
         }
 
-        public HttpRequestResult Get(Uri url)
+        public HttpRequestResult Get(Uri url, bool IsRemote)
         {
             HttpRequestResult results = (from httpRequestResult in HttpRequestResults
                             where httpRequestResult.RequestUrl.Equals(url)

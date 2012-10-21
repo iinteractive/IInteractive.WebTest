@@ -19,6 +19,8 @@ namespace IInteractive.WebConsole
             Add(url);
         }
 
+        public LinkCheckerConfigSection Parent { get; internal set; }
+
         public override
             ConfigurationElementCollectionType CollectionType
         {
