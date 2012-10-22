@@ -11,7 +11,7 @@ namespace IInteractive.WebTest
     [TestClass]
     public class TestCrawler
     {
-        public static int Port = 33432;
+        public static int Port = 80;
 
         [TestMethod]
         public void AbsoluteUrlTestsCaseA()
