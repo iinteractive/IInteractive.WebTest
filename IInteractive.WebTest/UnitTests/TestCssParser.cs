@@ -41,7 +41,7 @@ namespace IInteractive.WebTest.UnitTests
 
         public void PerformTest()
         {
-            var parser = new HtmlParser(new HttpRequestResult() { ResultUrl = ParserTestParts.ROOT, Content = this.Text });
+            var parser = new CssParser(new HttpRequestResult() { ResultUrl = ParserTestParts.ROOT, Content = this.Text });
             List<Link> links = parser.Parse();
 
             AssertEqual(this.Expected, links);
@@ -106,7 +106,7 @@ namespace IInteractive.WebTest.UnitTests
                 testCases.Add(new CssParserTestCase(content3, expected));
                 testCases.Add(new CssParserTestCase(content4, expected));
             }
-            testCases.Add(testCases[3].Merge(testCases[6]));
+            testCases.Add(testCases[3].Merge(testCases[testCases.Count - 4]));
             testCases.AddRange(GenerateBorderTestCases());
 
             return testCases;
