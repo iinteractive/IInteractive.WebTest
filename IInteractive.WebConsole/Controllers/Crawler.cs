@@ -83,8 +83,8 @@ namespace IInteractive.WebConsole
                         foreach (var result2 in HttpRequestResults)
                         {
                             if (result2.Equals(link) 
-                                && (result.ResultUrl == null && GetSetOfCrawlableHosts().Contains(result.RequestUrl.Host.ToString()) 
-                                    || result.ResultUrl != null && GetSetOfCrawlableHosts().Contains(result.ResultUrl.Host.ToString())))
+                                && (result.ResultUrl == null && !IsRemote(result.RequestUrl))
+                                    || result.ResultUrl != null && !IsRemote(result.ResultUrl))
                             {
                                 link.WasRetrieved = true;
                                 link.IsBroken = result2.Error != null;
@@ -95,8 +95,6 @@ namespace IInteractive.WebConsole
                 }
             }
         }
-
-
 
         public SortedSet<string> GetSetOfCrawlableHosts()
         {
