@@ -17,6 +17,13 @@ namespace IInteractive.WebTest
             "\r\n "
         };
 
+        public static string[] WHITE_SPACES_2 = new string[] {
+            "",
+            " ",
+            "\n\t",
+            "\r\n "
+        };
+
         public static string[] TEXT = new string[] {
             "",
             "text",
@@ -90,6 +97,17 @@ namespace IInteractive.WebTest
             "<link{0}/>",
             "<linkb{0}>",
             "<!--<linkb{0}>-->"
+        };
+
+        public static string[] URL_TEMPLATES = new string[]
+        {
+            "urL{0}({1}'{2}'{3})",
+            "uRl{0}({1}\"{2}\"{3})"
+        };
+
+        public static string[] CSS_COMMENT_TEMPLATES = new string[]
+        {
+            "/*{0}*/"
         };
     }
 }

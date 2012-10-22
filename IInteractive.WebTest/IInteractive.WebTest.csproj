@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\TestBrowser.cs" />
     <Compile Include="UnitTests\TestConfigurationParenting.cs" />
+    <Compile Include="UnitTests\TestCssParser.cs" />
     <Compile Include="UnitTests\TestExperimentalConfigs.cs" />
     <Compile Include="UnitTests\TestImage.cs" />
     <Compile Include="UnitTests\TestJavaScript.cs" />
