@@ -297,7 +297,7 @@ namespace IInteractive.WebTest
 
             List<string> uriList = new List<String>();
             uriList.Add(path);
-            Crawler crawler = new Crawler(uriList, new Browser(), 500);
+            Crawler crawler = new Crawler(uriList, new Browser(), 500, new List<string>());
             Thread thread = new Thread(crawler.Crawl);
 
             TimeSpan acceptableTimeSpan = new TimeSpan(0, 0, 0, 0, acceptablePerformance);
@@ -342,7 +342,7 @@ namespace IInteractive.WebTest
             List<string> uriList = new List<String>();
             uriList.Add(path);
 
-            Crawler crawler = new Crawler(uriList, new Browser(), recursionLimit);
+            Crawler crawler = new Crawler(uriList, new Browser(), recursionLimit, new List<string>());
 
             crawler.Crawl();
 
