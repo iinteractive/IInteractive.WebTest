@@ -91,6 +91,7 @@
     <Compile Include="UnitTests\TestAssumptions.cs" />
     <Compile Include="UnitTests\TestProgram.cs" />
     <Compile Include="UnitTests\TestStyleSheet.cs" />
+    <Compile Include="UnitTests\TestWebSiteTestSuiteGenerator.cs" />
     <Compile Include="UnitTests\TestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -296,9 +296,19 @@ namespace IInteractive.WebConsole.Results
                 {
                     foreach (var link in result.Links)
                     {
-                        if (link.IsBroken)
+                        if (link.IsBroken && link.IsForbidden)
+                        {
+                            string brokenLinkMessage = string.Format("Broken and Forbidden Link Found.  The content is as follows.\n\t{0}\n", link.Content);
+                            brokenLinksMessage += brokenLinkMessage;
+                        }
+                        else if (link.IsBroken && !link.IsForbidden)
                         {
                             string brokenLinkMessage = string.Format("Broken Link Found.  The content is as follows.\n\t{0}\n", link.Content);
+                            brokenLinksMessage += brokenLinkMessage;
+                        }
+                        else if (!link.IsBroken && link.IsForbidden)
+                        {
+                            string brokenLinkMessage = string.Format("Forbidden Link Found.  The content is as follows.\n\t{0}\n", link.Content);
                             brokenLinksMessage += brokenLinkMessage;
                         }
                     }
@@ -331,7 +341,7 @@ namespace IInteractive.WebConsole.Results
             {
                 foreach (var link in result.Links)
                 {
-                    if (link.IsBroken)
+                    if (link.IsBroken || link.IsForbidden)
                     {
                         return false;
                     }

@@ -3,7 +3,7 @@
     <configSections>
         <section name="linkCheckerConfig" type="IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole" allowDefinition="Everywhere" allowLocation="true" />
     </configSections>
-    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." recursionLimit="10">
+    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." timeout="60" recursionLimit="10">
 		<forbidden>
 			<clear />
 			<add host="{0}" />

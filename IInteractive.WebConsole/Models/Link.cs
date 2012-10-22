@@ -76,6 +76,7 @@ namespace IInteractive.WebConsole
                 this._isBroken = value;
             }
         }
+        public bool IsForbidden = false;
         public bool WasRetrieved = false;
 
         public bool Equals(Link obj)

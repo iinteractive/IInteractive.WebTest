@@ -14,44 +14,45 @@ namespace IInteractive.WebTest.UnitTests
         [TestMethod]
         public void TestForbiddenCaseA()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseA/Seed.aspx"), 1, 0, 0, 2);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseA/Seed.aspx"), 1, 0, 0, 2, 4);
         }
 
         [TestMethod]
         public void TestForbiddenCaseB()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseB/Seed.aspx"), 2, 0, 0, 2);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseB/Seed.aspx"), 2, 0, 0, 2, 5);
         }
 
         [TestMethod]
         public void TestForbiddenCaseC()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseC/Seed.aspx"), 1, 0, 0, 3);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseC/Seed.aspx"), 1, 0, 0, 3, 5);
         }
 
         [TestMethod]
         public void TestForbiddenCaseD()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseD/Seed.aspx"), 1, 0, 0, 1);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseD/Seed.aspx"), 1, 0, 0, 0, 2);
         }
 
         [TestMethod]
         public void TestForbiddenCaseE()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseE/Seed.aspx"), 0, 1, 0, 0);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseE/Seed.aspx"), 0, 1, 0, 0, 2);
         }
         [TestMethod]
         public void TestForbiddenCaseF()
         {
-            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseE/Seed.aspx"), 0, 0, 1, 0);
+            ForbiddenTestTemplate(TestCrawler.GetTestUrl("/ForbiddenTests/CaseF/Seed.aspx"), 0, 0, 1, 0, 2);
         }
 
 
-        public void ForbiddenTestTemplate(string url, int expectedForbidden, int expectedBroken, int expectedForbiddenAndBroken, int expectedGood)
+        public void ForbiddenTestTemplate(string url, int expectedForbidden, int expectedBroken, int expectedForbiddenAndBroken, int expectedGood, int expectedCount)
         {
             string contents = string.Format(Resources.ForbiddenConfig, TestCrawler.RemoteHost, url);
             var config = TestConfigurationSections.RetrieveConfig(contents);
-            var section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+            var section = (LinkCheckerConfigSection)config.Sections.Get("linkCheckerConfig");
+            Console.WriteLine(section.Timeout);
             var generator = new WebSiteTestSuiteGenerator(section);
             generator.GenerateTests();
 
@@ -78,6 +79,7 @@ namespace IInteractive.WebTest.UnitTests
                 }
             }
 
+            Assert.AreEqual(expectedCount, generator.Crawlers[0].HttpRequestResults.Count);
             Assert.AreEqual(expectedForbidden, isForbidden);
             Assert.AreEqual(expectedBroken, isBroken);
             Assert.AreEqual(expectedForbiddenAndBroken, isForbiddenAndBroken);

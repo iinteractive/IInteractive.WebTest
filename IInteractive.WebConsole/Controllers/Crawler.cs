@@ -14,8 +14,9 @@ namespace IInteractive.WebConsole
         public SortedSet<Uri> Seeds { get; set; }
         public Browser BrowserToTest { get; private set; }
         public int RecursionLimit { get; set; }
+        public List<string> ForbiddenHosts;
 
-        public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit)
+        public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit, List<string> ForbiddenHosts)
         {
             this.Seeds = new SortedSet<Uri>();
             foreach (String seed in Seeds.Distinct().ToList())
@@ -31,16 +32,17 @@ namespace IInteractive.WebConsole
 
             this.BrowserToTest = BrowserToTest;
             this.RecursionLimit = RecursionLimit;
+            this.ForbiddenHosts = ForbiddenHosts;
         }
 
-        public Crawler(SeedCollection Seeds, Browser BrowsertToTest, int RecursionLimit)
-            : this((List<String>) Seeds, BrowsertToTest, RecursionLimit)
+        public Crawler(SeedCollection Seeds, Browser BrowsertToTest, int RecursionLimit, List<string> ForbiddenHosts)
+            : this((List<String>)Seeds, BrowsertToTest, RecursionLimit, ForbiddenHosts)
         {
         }
 
         private bool IsRemote(Uri absoluteUri)
         {
-            return !GetSetOfCrawlableHosts().Contains(absoluteUri.Host.ToString());
+            return !GetSetOfCrawlableHosts().Contains(absoluteUri.Host.ToString(), StringComparer.CurrentCultureIgnoreCase);
         }
 
         public void Crawl()
@@ -83,17 +85,23 @@ namespace IInteractive.WebConsole
                         foreach (var result2 in HttpRequestResults)
                         {
                             if (result2.Equals(link) 
-                                && (result.ResultUrl == null && !IsRemote(result.RequestUrl))
-                                    || result.ResultUrl != null && !IsRemote(result.ResultUrl))
+                                && (result.ResultUrl == null && !IsRemote(result.RequestUrl)
+                                    || result.ResultUrl != null && !IsRemote(result.ResultUrl)))
                             {
                                 link.WasRetrieved = true;
                                 link.IsBroken = result2.Error != null;
+                                link.IsForbidden = IsForbidden(link.AbsoluteUri);
                                 break;
                             }
                         }
                     }
                 }
             }
+        }
+
+        public bool IsForbidden(Uri uri)
+        {
+            return ForbiddenHosts.Contains(uri.Host.ToString(), StringComparer.CurrentCultureIgnoreCase);
         }
 
         public SortedSet<string> GetSetOfCrawlableHosts()

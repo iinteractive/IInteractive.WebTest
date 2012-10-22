@@ -129,6 +129,9 @@
     <Content Include="ForbiddenTests\CaseB\Seed.aspx" />
     <Content Include="ForbiddenTests\CaseC\Seed.aspx" />
     <Content Include="ForbiddenTests\CaseD\Seed.aspx" />
+    <Content Include="ForbiddenTests\CaseE\Seed.aspx" />
+    <Content Include="ForbiddenTests\CaseF\Seed.aspx" />
+    <Content Include="ForbiddenTests\NonSeed\BrokenLink1.aspx" />
     <Content Include="ForbiddenTests\NonSeed\G1B2.aspx" />
     <Content Include="ForbiddenTests\NonSeed\G1B1.aspx" />
     <Content Include="ForbiddenTests\NonSeed\G2B1.aspx" />
@@ -136,6 +139,7 @@
     <Content Include="ForbiddenTests\NonSeed\GoodLink2.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BadLink1.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BadLink2.htm" />
+    <Content Include="ForbiddenTests\RemoteSite\BrokenLink1.aspx" />
     <Content Include="MultipleSeedTests\CaseA\Seed1.htm" />
     <Content Include="MultipleSeedTests\CaseA\Seed2.htm" />
     <Content Include="MultipleSeedTests\CaseB\Link1.htm" />

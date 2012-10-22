@@ -22,23 +22,25 @@ namespace IInteractive.WebConsole
         }
 
         public LinkCheckerConfigSection Config { get; set; }
+        public List<Crawler> Crawlers;
 
         public void GenerateTests()
         {
             var creationTimestamp = DateTime.Now;
             // Sets up crawlers.
-            List<Crawler> crawlers = new List<Crawler>();
-            foreach (BrowserConfigElement browserConfig in Config.Browsers)
+            Crawlers = new List<Crawler>();
+            for(int i = 0; i < Config.Browsers.Count; i++)
             {
+                var browserConfig = Config.Browsers[i];
                 Browser browser = new Browser(browserConfig, Config.NetworkCredentials);
 
-                Crawler crawler = new Crawler(Config.Seeds, browser, Config.RecursionLimit);
-                crawlers.Add(crawler);
+                Crawler crawler = new Crawler(Config.Seeds, browser, Config.RecursionLimit, (List<string>) Config.Forbidden);
+                Crawlers.Add(crawler);
             }
 
             // Start crawling.
             var results = new List<HttpRequestResult>();
-            foreach (var crawler in crawlers)
+            foreach (var crawler in Crawlers)
             {
                 crawler.Crawl();
                 results.AddRange(crawler.HttpRequestResults);
