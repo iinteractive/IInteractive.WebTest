@@ -56,6 +56,29 @@ namespace IInteractive.WebTest.UnitTests
                                 , ConfigurationUserLevel.None
                             );
         }
+
+        [TestMethod]
+        public void TestCallbackValidator()
+        {
+            string testB = string.Format(Resources.TestB, 1, "test", 3);
+            Configuration config = RetrieveConfig(testB);
+
+            ConfSec sec = null;
+            try
+            {
+                sec = (ConfSec)config.GetSection("confSec");
+                
+            }
+            catch (ConfigurationErrorsException ex)
+            {
+            }
+            if (sec != null)
+            {
+                ConfColl coll = sec.ConfColl;
+                ConfElem elem = coll[0];
+            }
+            
+        }
     }
 
     

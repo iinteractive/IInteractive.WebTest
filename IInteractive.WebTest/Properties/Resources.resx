@@ -133,7 +133,16 @@
   <data name="CaseE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CaseE.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ForbiddenConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ForbiddenConfig.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="NotForbiddenConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NoForbiddenConfig.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="TestA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TestA.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="TestB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TestB.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

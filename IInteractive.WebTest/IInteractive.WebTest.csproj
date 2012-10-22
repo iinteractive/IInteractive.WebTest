@@ -81,6 +81,7 @@
     <Compile Include="UnitTests\TestConfigurationParenting.cs" />
     <Compile Include="UnitTests\TestCssParser.cs" />
     <Compile Include="UnitTests\TestExperimentalConfigs.cs" />
+    <Compile Include="UnitTests\TestForbiddenConfiguration.cs" />
     <Compile Include="UnitTests\TestImage.cs" />
     <Compile Include="UnitTests\TestJavaScript.cs" />
     <Compile Include="UnitTests\TestConfigurationSections.cs" />
@@ -114,6 +115,9 @@
     <Content Include="Resources\CaseB.txt" />
     <Content Include="Resources\CaseC.txt" />
     <None Include="Resources\CaseE.txt" />
+    <None Include="Resources\ForbiddenConfig.txt" />
+    <None Include="Resources\NoForbiddenConfig.txt" />
+    <None Include="Resources\TestB.txt" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage1.htm" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage2.htm" />
   </ItemGroup>

@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using IInteractive.WebConsole;
+using IInteractive.WebTest.Properties;
 
 namespace IInteractive.WebTest.UnitTests
 {
@@ -31,6 +32,7 @@ namespace IInteractive.WebTest.UnitTests
             badConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoSeedsConfig()));
             badConfigFiles.Add("DOESNOTEXIST");
             badConfigFiles.Add("/////////////");
+            badConfigFiles.Add(SaveToTempFile(string.Format(Resources.ForbiddenConfig, TestCrawler.LocalHost, TestCrawler.GetTestUrl("/"))));
 
             TestFilesVsReturnCode(badConfigFiles, 1);
         }

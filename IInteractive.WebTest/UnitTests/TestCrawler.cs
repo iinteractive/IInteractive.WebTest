@@ -11,6 +11,8 @@ namespace IInteractive.WebTest
     [TestClass]
     public class TestCrawler
     {
+        public static string LocalHost = "webcrawlertest";
+        public static string RemoteHost = "webcrawlertest2";
         public static int Port = 80;
 
         [TestMethod]
@@ -271,12 +273,12 @@ namespace IInteractive.WebTest
         }
 
         public static string GetTestServer() {
-            return "http://webcrawlertest:" + Port;
+            return "http://" + LocalHost + ":" + Port;
         }
 
         public static string GetRemoteTestServer()
         {
-            return "http://webcrawlertest2:" + Port;
+            return "http://" + RemoteHost + ":" + Port;
         }
 
         private string GetPerformanceTestUrl(int fanOut, int depth, int data, int seed)

@@ -53,5 +53,27 @@ namespace IInteractive.WebTest
                 this["prop"] = value;
             }
         }
+
+        [ConfigurationProperty("callback", IsRequired = false, DefaultValue = 1)]
+        [CallbackValidator(Type = typeof(int), CallbackMethodName="ValidateElement")]
+        public int Callback
+        {
+            get
+            {
+                return (int)this["callback"];
+            }
+            set
+            {
+                this["callback"] = value;
+            }
+        }
+
+        public void ValidateElement(object value)
+        {
+            if (value is int && ((int)value) != 2)
+                return;
+            else
+                throw new ArgumentException("Just some validation error.", "value");
+        }
     }
 }

@@ -155,6 +155,47 @@ namespace IInteractive.WebTest.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;configuration&gt;
         ///    &lt;configSections&gt;
+        ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
+        ///    &lt;/configSections&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;10&quot;&gt;
+        ///		&lt;forbidden&gt;
+        ///			&lt;clear /&gt;
+        ///			&lt;add host=&quot;{0}&quot; /&gt;
+        ///		&lt;/forbidden&gt;
+        ///        &lt;seeds&gt;
+        ///            &lt;clear /&gt;
+        ///           [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ForbiddenConfig {
+            get {
+                return ResourceManager.GetString("ForbiddenConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///    &lt;configSections&gt;
+        ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
+        ///    &lt;/configSections&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;10&quot;&gt;
+        ///        &lt;seeds&gt;
+        ///            &lt;clear /&gt;
+        ///            &lt;add uri=&quot;{0}&quot;/&gt;
+        ///        &lt;/seeds&gt;
+        ///        &lt;browsers&gt;
+        ///           [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string NotForbiddenConfig {
+            get {
+                return ResourceManager.GetString("NotForbiddenConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///    &lt;configSections&gt;
         ///        &lt;section name=&quot;confSec&quot; type=&quot;IInteractive.WebTest.ConfSec, IInteractive.WebTest&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
         ///    &lt;/configSections&gt;
         ///    &lt;confSec prop=&quot;{0}&quot;&gt;
@@ -168,6 +209,26 @@ namespace IInteractive.WebTest.Properties {
         public static string TestA {
             get {
                 return ResourceManager.GetString("TestA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///    &lt;configSections&gt;
+        ///        &lt;section name=&quot;confSec&quot; type=&quot;IInteractive.WebTest.ConfSec, IInteractive.WebTest&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
+        ///    &lt;/configSections&gt;
+        ///    &lt;confSec prop=&quot;{0}&quot;&gt;
+        ///        &lt;confColl&gt;
+        ///            &lt;clear /&gt;
+        ///            &lt;add name=&quot;{1}&quot; prop=&quot;{2}&quot; callback=&quot;2&quot;/&gt;
+        ///        &lt;/confColl&gt;
+        ///    &lt;/confSec&gt;
+        ///&lt;/configuration&gt;.
+        /// </summary>
+        public static string TestB {
+            get {
+                return ResourceManager.GetString("TestB", resourceCulture);
             }
         }
     }
