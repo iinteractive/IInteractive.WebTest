@@ -55,7 +55,6 @@ namespace IInteractive.WebTest
         }
 
         [ConfigurationProperty("callback", IsRequired = false, DefaultValue = 1)]
-        [CallbackValidator(Type = typeof(int), CallbackMethodName="ValidateElement")]
         public int Callback
         {
             get
@@ -68,12 +67,11 @@ namespace IInteractive.WebTest
             }
         }
 
-        public void ValidateElement(object value)
+        protected override void PostDeserialize()
         {
-            if (value is int && ((int)value) != 2)
-                return;
-            else
-                throw new ArgumentException("Just some validation error.", "value");
+            base.PostDeserialize();
+            if (Callback != 1)
+                throw new ArgumentException("What?!?!");
         }
     }
 }

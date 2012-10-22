@@ -113,6 +113,17 @@ namespace IInteractive.WebConsole
             }
         }
 
+        [ConfigurationProperty("forbidden", IsRequired = false)]
+        public ForbiddenCollection Forbidden
+        {
+            get
+            {
+                ForbiddenCollection forbiddenCollection =
+                (ForbiddenCollection)base["forbidden"];
+                return forbiddenCollection;
+            }
+        }
+
         [ConfigurationProperty("seeds", IsRequired = true)]
         public SeedCollection Seeds
         {
@@ -151,6 +162,29 @@ namespace IInteractive.WebConsole
                 NetworkCredentialsElement urlsCollection =
                 (NetworkCredentialsElement)base["networkCredentials"];
                 return urlsCollection;
+            }
+        }
+
+        protected override void PostDeserialize()
+        {
+            base.PostDeserialize();
+            for (int i = 0; i < this.Seeds.Count; i++)
+            {
+                try
+                {
+                    Uri uri = new Uri(Seeds[i].Uri);
+                    var seedHost = uri.Host;
+                    for (int j = 0; j < Forbidden.Count; j++)
+                    {
+                        if (seedHost.Equals(Forbidden[j].Host, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            throw new ArgumentException(string.Format("A seed's host, {0}, matched to a forbidden host, {1}.", seedHost, Forbidden[j].Host));
+                        }
+                    }
+                }
+                catch(UriFormatException)
+                {
+                }
             }
         }
     }

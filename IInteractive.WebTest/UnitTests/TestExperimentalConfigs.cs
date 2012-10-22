@@ -32,7 +32,7 @@ namespace IInteractive.WebTest.UnitTests
             Assert.AreNotEqual(default(int), elem.Prop);
         }
 
-        private Configuration RetrieveConfig(string contents)
+        private static Configuration RetrieveConfig(string contents)
         {
             string fileName = Path.GetTempFileName();
             Console.WriteLine("fileName = {0}", fileName);
