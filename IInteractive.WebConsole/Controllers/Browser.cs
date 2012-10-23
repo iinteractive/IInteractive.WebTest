@@ -78,25 +78,31 @@ namespace IInteractive.WebConsole
             get
             {
                 CredentialCache cache = new CredentialCache();
-                if (_CredentialsConfig != null 
-                    && !string.IsNullOrEmpty(_CredentialsConfig.UriPrefix) 
-                    && !string.IsNullOrEmpty(_CredentialsConfig.User) 
-                    && !string.IsNullOrEmpty(_CredentialsConfig.Password))
+                if (_CredentialsConfig != null)
                 {
-                    NetworkCredential credential = new NetworkCredential(_CredentialsConfig.User, _CredentialsConfig.Password);
-                    cache.Add(new Uri(_CredentialsConfig.UriPrefix), "Basic", credential);
-                    cache.Add(new Uri(_CredentialsConfig.UriPrefix), "Digest", credential);
+                    for (int i = 0; i < _CredentialsConfig.Count; i++)
+                    {
+                        var credentialElement = _CredentialsConfig[i];
+                        if (!string.IsNullOrEmpty(credentialElement.UriPrefix)
+                            && !string.IsNullOrEmpty(credentialElement.User)
+                            && !string.IsNullOrEmpty(credentialElement.Password))
+                        {
+                            NetworkCredential credential = new NetworkCredential(credentialElement.User, credentialElement.Password);
+                            cache.Add(new Uri(credentialElement.UriPrefix), "Basic", credential);
+                            cache.Add(new Uri(credentialElement.UriPrefix), "Digest", credential);
+                        }
+                    }
                 }
                 return cache;
             }
         }
 
         private BrowserConfigElement _BrowserConfig { get; set; }
-        private NetworkCredentialsElement _CredentialsConfig { get; set; }
+        private NetworkCredentialsCollection _CredentialsConfig { get; set; }
 
         private SortedSet<HttpRequestResult> HttpRequestResults { get; set; }
 
-        public Browser(BrowserConfigElement BrowserConfig, NetworkCredentialsElement CredentialsConfig)
+        public Browser(BrowserConfigElement BrowserConfig, NetworkCredentialsCollection CredentialsConfig)
         {
             this._BrowserConfig = BrowserConfig;
             this._CredentialsConfig = CredentialsConfig;

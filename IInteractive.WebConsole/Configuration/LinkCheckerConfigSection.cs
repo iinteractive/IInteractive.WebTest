@@ -155,12 +155,12 @@ namespace IInteractive.WebConsole
 
         [ConfigurationProperty("networkCredentials",
             IsDefaultCollection = false, IsRequired = false)]
-        public NetworkCredentialsElement NetworkCredentials
+        public NetworkCredentialsCollection NetworkCredentials
         {
             get
             {
-                NetworkCredentialsElement urlsCollection =
-                (NetworkCredentialsElement)base["networkCredentials"];
+                NetworkCredentialsCollection urlsCollection =
+                (NetworkCredentialsCollection)base["networkCredentials"];
                 return urlsCollection;
             }
         }
