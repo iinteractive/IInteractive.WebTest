@@ -98,18 +98,18 @@ namespace IInteractive.WebConsole
             }
         }
 
-        [ConfigurationProperty("maxCrawlTime",
-            IsDefaultCollection = false, DefaultValue = Int32.MaxValue)]
-        [IntegerValidator(MinValue = 1, MaxValue = Int32.MaxValue)]
-        public Int32 MaxCrawlTime
+        [ConfigurationProperty("timeLimit",
+            IsDefaultCollection = false, DefaultValue = -1)]
+        [IntegerValidator(MinValue = -1, MaxValue = Int32.MaxValue)]
+        public Int32 TimeLimit
         {
             get
             {
-                return (Int32)this["maxCrawlTime"];
+                return (Int32)this["timeLimit"];
             }
             set
             {
-                this["maxCrawlTime"] = value;
+                this["timeLimit"] = value;
             }
         }
 

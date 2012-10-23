@@ -54,6 +54,8 @@ namespace IInteractive.WebTest.UnitTests
             {
                 config = TestConfigurationSections.RetrieveConfig(contents);
                 section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+                var timeLimit = section.TimeLimit;
+                Assert.AreEqual(expectedTimeLimit, timeLimit);
                 Assert.IsFalse(exceptionExpected);
             }
             catch (ConfigurationErrorsException ex)
@@ -61,13 +63,6 @@ namespace IInteractive.WebTest.UnitTests
                 if (!exceptionExpected)
                     Console.WriteLine(ex);
                 Assert.IsTrue(exceptionExpected);
-            }
-
-            if (section != null)
-            {
-                var timeLimit = section.TimeLimit;
-
-                Assert.AreEqual(expectedTimeLimit, timeLimit);
             }
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.IO;
+using System.Threading;
 
 namespace IInteractive.WebConsole
 {
@@ -15,6 +16,7 @@ namespace IInteractive.WebConsole
         public static string MISSING_CONFIG_FILE_MESSAGE = "The specified config file, \"{0}\" does not exist.";
         public static string CONFIG_FILE_ERROR_MESSAGE = "There was an error parsing the config file.";
         public static string MISSING_CONFIG_SECTIONS_MESSAGE = "The config file specified is missing the configSections element.";
+        public static string TIME_LIMIT_EXCEEDED_MESSAGE = "The set time limit was exceeded.";
         public static string[] CONFIG_ARG_PREFIXES = new string[] { 
             "-config:",
             "-c:",
@@ -123,9 +125,26 @@ namespace IInteractive.WebConsole
                     WebSiteTestSuiteGenerator generator = new WebSiteTestSuiteGenerator(section);
                     try
                     {
-                        generator.GenerateTests();
+                        if (section.TimeLimit != -1)
+                        {
+                            Thread thread = new Thread(generator.GenerateTests);
+                            thread.Start();
+                            thread.Join(section.TimeLimit * 1000);
+                            if (thread.IsAlive)
+                            {
+                                Console.WriteLine(TIME_LIMIT_EXCEEDED_MESSAGE);
+                                return 1;
+                            }
+                        }
+                        else
+                            generator.GenerateTests();
                     }
                     catch (UriFormatException)
+                    {
+                        Console.WriteLine(CONFIG_FILE_ERROR_MESSAGE);
+                        return 1;
+                    }
+                    catch (ConfigurationErrorsException)
                     {
                         Console.WriteLine(CONFIG_FILE_ERROR_MESSAGE);
                         return 1;
