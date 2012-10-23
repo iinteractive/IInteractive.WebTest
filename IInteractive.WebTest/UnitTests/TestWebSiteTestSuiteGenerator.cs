@@ -105,9 +105,9 @@ namespace IInteractive.WebTest.UnitTests
             generator.GenerateTests();
 
             Assert.AreEqual(1, generator.Crawlers.Count);
-            int isForbidden = 0;
+            int isIgnored = 0;
             int isBroken = 0;
-            int isForbiddenAndBroken = 0;
+            int isIgnoredAndBroken = 0;
             int isGood = 0;
             foreach (var result in generator.Crawlers[0].HttpRequestResults)
             {
