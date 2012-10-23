@@ -33,6 +33,8 @@ namespace IInteractive.WebTest.UnitTests
             badConfigFiles.Add("DOESNOTEXIST");
             badConfigFiles.Add("/////////////");
             badConfigFiles.Add(SaveToTempFile(string.Format(Resources.ForbiddenConfig, TestCrawler.LocalHost, TestCrawler.GetTestUrl("/"))));
+            badConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("uri", "error")));
+            badConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("path", "true")));
 
             TestFilesVsReturnCode(badConfigFiles, 1);
         }
@@ -44,6 +46,7 @@ namespace IInteractive.WebTest.UnitTests
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoBrowsersConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNormalConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoLinkCheckerAttrConfig()));
+            goodConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("uri", "true")));
 
             TestFilesVsReturnCode(goodConfigFiles, 0);
         }

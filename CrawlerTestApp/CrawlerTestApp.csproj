@@ -63,6 +63,9 @@
     <Content Include="BaseUrlTests\CaseB\Seed.htm" />
     <Content Include="BaseUrlTests\CaseC\Folder\Seed.htm" />
     <Content Include="BaseUrlTests\CaseC\Linked.htm" />
+    <Content Include="BrokenLinkConfigTests\CaseA\Seed.htm" />
+    <Content Include="BrokenLinkConfigTests\NonSeed\BrokenLink1.aspx" />
+    <Content Include="BrokenLinkConfigTests\NonSeed\GoodLink1.htm" />
     <Content Include="CrawlBackTests\CaseA\Seed.htm" />
     <Content Include="CrawlBackTests\CaseB\Seed.htm" />
     <Content Include="CrawlBackTests\CaseB\SeedLink1.htm" />

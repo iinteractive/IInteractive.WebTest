@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <section name="linkCheckerConfig" type="IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole" allowDefinition="Everywhere" allowLocation="true" />
+    </configSections>
+    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." recursionLimit="10">
+		<brokenLinks>
+			<add path="{0}" {1}/>
+		</brokenLinks>
+        <seeds>
+            <clear />
+            <add uri="{2}"/>
+        </seeds>
+    </linkCheckerConfig>
+</configuration>

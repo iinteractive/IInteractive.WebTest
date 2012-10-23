@@ -66,6 +66,26 @@ namespace IInteractive.WebTest.Properties {
         ///    &lt;configSections&gt;
         ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
         ///    &lt;/configSections&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;10&quot;&gt;
+        ///		&lt;brokenLinks&gt;
+        ///			&lt;add path=&quot;{0}&quot; {1}/&gt;
+        ///		&lt;/brokenLinks&gt;
+        ///        &lt;seeds&gt;
+        ///            &lt;clear /&gt;
+        ///            &lt;add  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BrokenLinksTemplate {
+            get {
+                return ResourceManager.GetString("BrokenLinksTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///    &lt;configSections&gt;
+        ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
+        ///    &lt;/configSections&gt;
         ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;3&quot; timeout=&quot;50&quot; maxRemoteAutomaticRedirects=&quot;10&quot;&gt;
         ///        &lt;seeds&gt;
         ///            &lt;clear /&gt;
@@ -157,14 +177,13 @@ namespace IInteractive.WebTest.Properties {
         ///    &lt;configSections&gt;
         ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
         ///    &lt;/configSections&gt;
-        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;10&quot;&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; timeout=&quot;60&quot; recursionLimit=&quot;10&quot;&gt;
         ///		&lt;forbidden&gt;
         ///			&lt;clear /&gt;
         ///			&lt;add host=&quot;{0}&quot; /&gt;
         ///		&lt;/forbidden&gt;
         ///        &lt;seeds&gt;
-        ///            &lt;clear /&gt;
-        ///           [rest of string was truncated]&quot;;.
+        ///            &lt;clear / [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ForbiddenConfig {
             get {
