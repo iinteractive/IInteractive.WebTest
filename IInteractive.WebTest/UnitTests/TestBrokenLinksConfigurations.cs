@@ -94,7 +94,7 @@ namespace IInteractive.WebTest.UnitTests
             if (config != null)
             {
                 var section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
-                var brokenLinks = section.BrokenLinks;
+                var brokenLinks = section.LinksToIgnore;
 
                 Assert.AreEqual(1, brokenLinks.Count);
                 var brokenLinkConfig = brokenLinks[0];
