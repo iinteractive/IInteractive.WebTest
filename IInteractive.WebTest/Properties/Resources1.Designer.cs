@@ -250,5 +250,25 @@ namespace IInteractive.WebTest.Properties {
                 return ResourceManager.GetString("TestB", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;configuration&gt;
+        ///    &lt;configSections&gt;
+        ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
+        ///    &lt;/configSections&gt;
+        ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; {0}&gt;
+        ///        &lt;seeds&gt;
+        ///            &lt;clear /&gt;
+        ///            &lt;add uri=&quot;{1}&quot;/&gt;
+        ///        &lt;/seeds&gt;
+        ///    &lt;/linkCheckerConfig&gt;
+        ///&lt;/configuration&gt;.
+        /// </summary>
+        public static string TimeLimitConfig {
+            get {
+                return ResourceManager.GetString("TimeLimitConfig", resourceCulture);
+            }
+        }
     }
 }

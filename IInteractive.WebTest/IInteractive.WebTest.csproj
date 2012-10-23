@@ -92,6 +92,7 @@
     <Compile Include="UnitTests\TestAssumptions.cs" />
     <Compile Include="UnitTests\TestProgram.cs" />
     <Compile Include="UnitTests\TestStyleSheet.cs" />
+    <Compile Include="UnitTests\TestTimeLimitConfigurations.cs" />
     <Compile Include="UnitTests\TestWebSiteTestSuiteGenerator.cs" />
     <Compile Include="UnitTests\TestXmlWriter.cs" />
   </ItemGroup>
@@ -121,6 +122,7 @@
     <None Include="Resources\ForbiddenConfig.txt" />
     <None Include="Resources\NoForbiddenConfig.txt" />
     <None Include="Resources\TestB.txt" />
+    <None Include="Resources\TimeLimitConfig.txt" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage1.htm" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage2.htm" />
   </ItemGroup>

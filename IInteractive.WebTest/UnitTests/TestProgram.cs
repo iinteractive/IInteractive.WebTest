@@ -35,6 +35,7 @@ namespace IInteractive.WebTest.UnitTests
             badConfigFiles.Add(SaveToTempFile(string.Format(Resources.ForbiddenConfig, TestCrawler.LocalHost, TestCrawler.GetTestUrl("/"))));
             badConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("uri", "error")));
             badConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("path", "true")));
+            badConfigFiles.Add(SaveToTempFile(TestTimeLimitConfigurations.GetConfigContentsFromKeys("error")));
 
             TestFilesVsReturnCode(badConfigFiles, 1);
         }
@@ -47,6 +48,7 @@ namespace IInteractive.WebTest.UnitTests
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNormalConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestConfigurationSections.GetNoLinkCheckerAttrConfig()));
             goodConfigFiles.Add(SaveToTempFile(TestBrokenLinksConfigurations.GetConfigContentsFromKeys("uri", "true")));
+            goodConfigFiles.Add(SaveToTempFile(TestTimeLimitConfigurations.GetConfigContentsFromKeys("pass")));
 
             TestFilesVsReturnCode(goodConfigFiles, 0);
         }

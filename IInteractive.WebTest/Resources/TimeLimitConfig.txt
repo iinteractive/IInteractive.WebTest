@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <section name="linkCheckerConfig" type="IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole" allowDefinition="Everywhere" allowLocation="true" />
+    </configSections>
+    <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." {0}>
+        <seeds>
+            <clear />
+            <add uri="{1}"/>
+        </seeds>
+    </linkCheckerConfig>
+</configuration>

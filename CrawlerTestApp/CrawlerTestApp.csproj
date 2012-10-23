@@ -176,6 +176,7 @@
     <Content Include="RemoteSiteRedirectTests\RemoteSite\CaseA\R3.aspx" />
     <Content Include="RemoteSiteRedirectTests\RemoteSite\CaseA\R4.aspx" />
     <Content Include="RemoteSiteRedirectTests\RemoteSite\CaseA\R5.aspx" />
+    <Content Include="TimeLimitTests\Sleep.aspx" />
     <Content Include="UriFormatExceptionTests\CaseA\Seed.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -211,6 +212,13 @@
       <DependentUpon>Handler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeLimitTests\Sleep.aspx.cs">
+      <DependentUpon>Sleep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeLimitTests\Sleep.aspx.designer.cs">
+      <DependentUpon>Sleep.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handler.ashx" />
