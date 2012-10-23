@@ -49,6 +49,8 @@
     <Compile Include="Configuration\ForbiddenCollection.cs" />
     <Compile Include="Configuration\ForbiddenElement.cs" />
     <Compile Include="Configuration\LinkCheckerConfigSection.cs" />
+    <Compile Include="Configuration\LinkToIgnoreCollection.cs" />
+    <Compile Include="Configuration\LinkToIgnoreElement.cs" />
     <Compile Include="Configuration\NetworkCredentialsCollection.cs" />
     <Compile Include="Configuration\NetworkCredentialsElement.cs" />
     <Compile Include="Configuration\SeedCollection.cs" />

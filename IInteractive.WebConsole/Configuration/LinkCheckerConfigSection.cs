@@ -165,6 +165,18 @@ namespace IInteractive.WebConsole
             }
         }
 
+        [ConfigurationProperty("linksToIgnore",
+            IsDefaultCollection = false, IsRequired = false)]
+        public LinkToIgnoreCollection LinksToIgnore
+        {
+            get
+            {
+                LinkToIgnoreCollection urlsCollection =
+                (LinkToIgnoreCollection)base["linksToIgnore"];
+                return urlsCollection;
+            }
+        }
+
         protected override void PostDeserialize()
         {
             base.PostDeserialize();

@@ -15,8 +15,9 @@ namespace IInteractive.WebConsole
         public Browser BrowserToTest { get; private set; }
         public int RecursionLimit { get; set; }
         public List<string> ForbiddenHosts;
+        public LinkToIgnoreCollection LinksToIgnore;
 
-        public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit, List<string> ForbiddenHosts)
+        public Crawler(List<String> Seeds, Browser BrowserToTest, int RecursionLimit, List<string> ForbiddenHosts, LinkToIgnoreCollection LinksToIgnore)
         {
             this.Seeds = new SortedSet<Uri>();
             foreach (String seed in Seeds.Distinct().ToList())
@@ -33,10 +34,11 @@ namespace IInteractive.WebConsole
             this.BrowserToTest = BrowserToTest;
             this.RecursionLimit = RecursionLimit;
             this.ForbiddenHosts = ForbiddenHosts;
+            this.LinksToIgnore = LinksToIgnore;
         }
 
-        public Crawler(SeedCollection Seeds, Browser BrowsertToTest, int RecursionLimit, List<string> ForbiddenHosts)
-            : this((List<String>)Seeds, BrowsertToTest, RecursionLimit, ForbiddenHosts)
+        public Crawler(SeedCollection Seeds, Browser BrowsertToTest, int RecursionLimit, List<string> ForbiddenHosts, LinkToIgnoreCollection LinksToIgnore)
+            : this((List<String>)Seeds, BrowsertToTest, RecursionLimit, ForbiddenHosts, LinksToIgnore)
         {
         }
 
@@ -91,6 +93,7 @@ namespace IInteractive.WebConsole
                                 link.WasRetrieved = true;
                                 link.IsBroken = result2.Error != null;
                                 link.IsForbidden = IsForbidden(link.AbsoluteUri);
+                                link.IsIgnored = IsIgnored(link);
                                 break;
                             }
                         }
@@ -102,6 +105,17 @@ namespace IInteractive.WebConsole
         public bool IsForbidden(Uri uri)
         {
             return ForbiddenHosts.Contains(uri.Host.ToString(), StringComparer.CurrentCultureIgnoreCase);
+        }
+
+        public bool IsIgnored(Link link)
+        {
+            for (int i = 0; i < LinksToIgnore.Count; i++)
+            {
+                var linkToIgnore = LinksToIgnore[i];
+                if (linkToIgnore.Equals(link))
+                    return true;
+            }
+            return false;
         }
 
         public SortedSet<string> GetSetOfCrawlableHosts()

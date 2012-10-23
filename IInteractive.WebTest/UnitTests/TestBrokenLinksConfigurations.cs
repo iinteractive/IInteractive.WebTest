@@ -15,7 +15,7 @@ namespace IInteractive.WebTest.UnitTests
         public static Dictionary<string, string> Paths = new Dictionary<string, string>()
         {
            {"uri", TestCrawler.GetTestUrl("/BrokenLinkConfigTests/NonSeed/BrokenLink1.aspx")},
-           {"path", "http://{}[]!@#$%^&*()_+~`"}
+           {"path", "http://{}[]!@#$%^*()_+~`"}
         };
 
         public static Dictionary<string, string> IsUris = new Dictionary<string, string>()
@@ -25,6 +25,19 @@ namespace IInteractive.WebTest.UnitTests
             {"false", "isUri=\"false\""},
             {"error", "isUri=\"cfdsafdsa\""}
         };
+
+        [TestMethod]
+        public void TestIsUriFormatException()
+        {
+            try
+            {
+                new Uri(Paths["path"]);
+                Assert.IsFalse(true);
+            }
+            catch(UriFormatException)
+            {
+            }
+        }
 
         [TestMethod]
         public void TestBrokenLinkConfigCaseA()
@@ -47,19 +60,19 @@ namespace IInteractive.WebTest.UnitTests
         [TestMethod]
         public void TestBrokenLinkConfigCaseD()
         {
-            TemplateMethod("uri", "error", false, "uri", false);
+            TemplateMethod("uri", "error", true, "uri", false);
         }
 
         [TestMethod]
         public void TestBrokenLinkConfigCaseE()
         {
-            TemplateMethod("path", "default", false, "path", true);
+            TemplateMethod("path", "default", true, "path", true);
         }
 
         [TestMethod]
         public void TestBrokenLinkConfigCaseF()
         {
-            TemplateMethod("path", "true", false, "path", true);
+            TemplateMethod("path", "true", true, "path", true);
         }
 
         [TestMethod]
@@ -71,7 +84,7 @@ namespace IInteractive.WebTest.UnitTests
         [TestMethod]
         public void TestBrokenLinkConfigCaseH()
         {
-            TemplateMethod("path", "error", false, "path", false);
+            TemplateMethod("path", "error", true, "path", false);
         }
 
 
@@ -81,19 +94,22 @@ namespace IInteractive.WebTest.UnitTests
             string contents = GetConfigContents(Paths[pathsKey], IsUris[isUrisKey]);
 
             Configuration config = null;
+            LinkCheckerConfigSection section = null;
             try
             {
                 config = TestConfigurationSections.RetrieveConfig(contents);
+                section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
                 Assert.IsFalse(exceptionExpected);
             }
-            catch (ConfigurationErrorsException)
+            catch (ConfigurationErrorsException ex)
             {
+                if (!exceptionExpected)
+                    Console.WriteLine(ex);
                 Assert.IsTrue(exceptionExpected);
             }
 
-            if (config != null)
+            if (section != null)
             {
-                var section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
                 var brokenLinks = section.LinksToIgnore;
 
                 Assert.AreEqual(1, brokenLinks.Count);

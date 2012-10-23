@@ -78,6 +78,7 @@ namespace IInteractive.WebConsole
         }
         public bool IsForbidden = false;
         public bool WasRetrieved = false;
+        public bool IsIgnored = false;
 
         public bool Equals(Link obj)
         {

@@ -67,12 +67,12 @@ namespace IInteractive.WebTest.Properties {
         ///        &lt;section name=&quot;linkCheckerConfig&quot; type=&quot;IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole&quot; allowDefinition=&quot;Everywhere&quot; allowLocation=&quot;true&quot; /&gt;
         ///    &lt;/configSections&gt;
         ///    &lt;linkCheckerConfig name=&quot;Link Checker Tests&quot; description=&quot;Tests the links on the site.&quot; recursionLimit=&quot;10&quot;&gt;
-        ///		&lt;brokenLinks&gt;
+        ///		&lt;linksToIgnore&gt;
         ///			&lt;add path=&quot;{0}&quot; {1}/&gt;
-        ///		&lt;/brokenLinks&gt;
+        ///		&lt;/linksToIgnore&gt;
         ///        &lt;seeds&gt;
         ///            &lt;clear /&gt;
-        ///            &lt;add  [rest of string was truncated]&quot;;.
+        ///            &lt; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string BrokenLinksTemplate {
             get {

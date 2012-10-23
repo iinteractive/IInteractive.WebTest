@@ -4,9 +4,9 @@
         <section name="linkCheckerConfig" type="IInteractive.WebConsole.LinkCheckerConfigSection, IInteractive.WebConsole" allowDefinition="Everywhere" allowLocation="true" />
     </configSections>
     <linkCheckerConfig name="Link Checker Tests" description="Tests the links on the site." recursionLimit="10">
-		<brokenLinks>
+		<linksToIgnore>
 			<add path="{0}" {1}/>
-		</brokenLinks>
+		</linksToIgnore>
         <seeds>
             <clear />
             <add uri="{2}"/>

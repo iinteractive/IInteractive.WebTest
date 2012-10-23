@@ -34,7 +34,7 @@ namespace IInteractive.WebConsole
                 var browserConfig = Config.Browsers[i];
                 Browser browser = new Browser(browserConfig, Config.NetworkCredentials);
 
-                Crawler crawler = new Crawler(Config.Seeds, browser, Config.RecursionLimit, (List<string>) Config.Forbidden);
+                Crawler crawler = new Crawler(Config.Seeds, browser, Config.RecursionLimit, (List<string>) Config.Forbidden, Config.LinksToIgnore);
                 Crawlers.Add(crawler);
             }
 
