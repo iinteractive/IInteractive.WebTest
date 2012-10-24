@@ -1,2 +1,2 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" %>
+﻿<%@ Page Language="C#" %>
 <% Context.Response.StatusCode = 404; %>
