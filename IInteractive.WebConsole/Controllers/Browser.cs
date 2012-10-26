@@ -149,6 +149,7 @@ namespace IInteractive.WebConsole
                     request.Headers.Add("Accept-Charset", AcceptCharset);
                     request.Headers.Add("Accept-Language", AcceptLanguage);
                     request.Credentials = this.Credentials;
+                    request.CookieContainer = new CookieContainer();
 
                     response = request.GetResponse();
                     streamReader = new StreamReader(response.GetResponseStream());
