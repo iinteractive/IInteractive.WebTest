@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace DoctypeEncodingValidation
+namespace IInteractive.MarkupValidator
 {
     /// <summary>
     /// Class to validate an url against a doctype, an encoding, none of them (only validate the url) or both.

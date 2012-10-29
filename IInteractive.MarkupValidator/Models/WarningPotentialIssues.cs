@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DoctypeEncodingValidation
+namespace IInteractive.MarkupValidator
 {
     /// <summary>
     /// List of the WarningPotentialIssues that can appear on a document

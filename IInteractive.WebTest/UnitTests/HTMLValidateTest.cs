@@ -1,4 +1,4 @@
-﻿using DoctypeEncodingValidation;
+﻿using IInteractive.MarkupValidator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System;
@@ -17,20 +17,20 @@ namespace DoctypeEncodingValidateUnitTests
     /// Version: 0.1
     /// License:
     /// 
-    ///     This file is part of DoctypeEncodingValidation.
+    ///     This file is part of IInteractive.MarkupValidator.
     ///     
-    ///     DoctypeEncodingValidation is free software: you can redistribute
+    ///     IInteractive.MarkupValidator is free software: you can redistribute
     ///     it and/or modify it under the terms of the GNU General Public 
     ///     License as published by the Free Software Foundation, either 
     ///     version 3 of the License, or (at your option) any later version.
     ///     
-    ///     DoctypeEncodingValidation is distributed in the hope that it 
+    ///     IInteractive.MarkupValidator is distributed in the hope that it 
     ///     will be useful, but WITHOUT ANY WARRANTY; without even the 
     ///     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
     ///     PURPOSE. See the GNU General Public License for more details.
     ///  
     ///     You should have received a copy of the GNU General Public License
-    ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
+    ///     along with IInteractive.MarkupValidator. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
     [TestClass()]
@@ -134,11 +134,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for the method ValidationOfURL with "not found" urls.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfURLTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
             //Iterate over the notFoundURLs list.
             foreach (string url in notFoundURLs)
             {
@@ -162,11 +162,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for the method Validate with valid urls
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidateValidURLsTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
             //Iterate over the validURLs list
             foreach (string url in validURLs)
             {
@@ -185,11 +185,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for the method Validate with invalid urls
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidateInvalidURLsTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
             //Iterate over the invalidURLs list
             foreach (string url in invalidURLs)
             {
@@ -208,11 +208,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for the method ValidationOfEncoding with valid UTF-8 urls
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfEncodingValidTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the validUTF8URLs list
             foreach (string url in validUTF8URLs)
@@ -232,11 +232,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfUtf8 with urls that should not validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfEncodingInvalidTest()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the invalidUTF8URLs list
             foreach (string url in invalidUTF8URLs)
@@ -256,11 +256,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Basic 1.1 with urls that should validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLBasic1_1ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml11ValidURLs list
             foreach (string url in xhtml11ValidURLs)
@@ -280,11 +280,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Basic 1.1 with urls that should not validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLBasic1_1InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml11InvalidURLs list
             foreach (string url in xhtml11InvalidURLs)
@@ -304,11 +304,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Basic 1.0 with urls that should validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLBasic1_0ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml10ValidURLs list
             foreach (string url in xhtml10ValidURLs)
@@ -328,11 +328,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Basic 1.0 with urls that should not validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLBasic1_0InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml10InvalidURLs list
             foreach (string url in xhtml10InvalidURLs)
@@ -352,11 +352,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Mobile Profile 1.2 with urls that should validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLMP1_2ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtmlMP12ValidURLs list
             foreach (string url in xhtmlMP12ValidURLs)
@@ -376,11 +376,11 @@ namespace DoctypeEncodingValidateUnitTests
         ///A test for ValidationOfHTML over XHTML Mobile Profile 1.2 with urls that should not validate.
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("DoctypeEncodingValidation.exe")]
+        [DeploymentItem("IInteractive.MarkupValidator.exe")]
         public void ValidationOfHTMLTestOverXHTMLMP1_2InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            IInteractive.MarkupValidator.HTMLValidate htmlValidate;
 
             //Iterate over the xhtmlMP12InvalidURLs list
             foreach (string url in xhtmlMP12InvalidURLs)

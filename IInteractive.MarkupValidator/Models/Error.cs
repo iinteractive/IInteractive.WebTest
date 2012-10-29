@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DoctypeEncodingValidation
+namespace IInteractive.MarkupValidator
 {
     /// <summary>
     /// Class with all the properties needed to represent an Error according to the xml returned by the W3C

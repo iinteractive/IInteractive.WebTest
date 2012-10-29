@@ -70,6 +70,12 @@
     <None Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\I_heart_validator" />
     <None Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\w3c_home_nb" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IInteractive.WebConsole\IInteractive.WebConsole.csproj">
+      <Project>{9D7FAE78-33AA-4404-8A80-6EE203BD2884}</Project>
+      <Name>IInteractive.WebConsole</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

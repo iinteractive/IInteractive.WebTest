@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DoctypeEncodingValidation
+namespace IInteractive.MarkupValidator
 {
     /// <summary>
     /// Exception control for the HTMLValidation class.
