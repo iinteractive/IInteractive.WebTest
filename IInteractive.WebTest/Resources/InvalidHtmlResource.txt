@@ -5,12 +5,6 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 </head>
 <body>
-<!-- 
-When executed against the w3c validation service this page should produce the following summary of results:
-    Errors: 0
-    Warnings: 0 
-    WarningPotentialIssues: 0
-    Faults: 1
--->
+<br>
 </body>
 </html>

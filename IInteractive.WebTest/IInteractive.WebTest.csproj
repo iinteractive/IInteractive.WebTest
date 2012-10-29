@@ -130,6 +130,7 @@
     <None Include="Resources\TestB.txt" />
     <None Include="Resources\TimeLimitConfig.txt" />
     <None Include="Resources\TestHtmlValidatorTemplate.txt" />
+    <None Include="Resources\InvalidHtmlResource.txt" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage1.htm" />
     <Content Include="ValidHtmlFiles\JavaScript\HTMLPage2.htm" />
   </ItemGroup>
