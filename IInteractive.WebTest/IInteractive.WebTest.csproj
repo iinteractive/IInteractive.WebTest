@@ -75,6 +75,7 @@
     <Compile Include="TestConfigurationClasses\ConfColl.cs" />
     <Compile Include="TestConfigurationClasses\ConfElem.cs" />
     <Compile Include="TestConfigurationClasses\ConfSec.cs" />
+    <Compile Include="UnitTests\HTMLValidateTest.cs" />
     <Compile Include="UnitTests\ParserTestParts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\TestBrokenLinksConfigurations.cs" />
@@ -100,6 +101,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IInteractive.MarkupValidator\IInteractive.MarkupValidator.csproj">
+      <Project>{A83C763A-C91C-471A-9B01-794F4BD7DCC2}</Project>
+      <Name>IInteractive.MarkupValidator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IInteractive.WebConsole\IInteractive.WebConsole.csproj">
       <Project>{9D7FAE78-33AA-4404-8A80-6EE203BD2884}</Project>
       <Name>IInteractive.WebConsole</Name>
