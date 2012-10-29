@@ -47,12 +47,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HtmlValidator.cs" />
     <Compile Include="Models\ControlExceptions.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Errors.cs" />
     <Compile Include="Models\Fault.cs" />
     <Compile Include="Models\Faults.cs" />
-    <Compile Include="Models\HTMLValidate.cs" />
+    <Compile Include="Controllers\HTMLValidate.cs" />
+    <Compile Include="Models\HtmlValidationResult.cs" />
     <Compile Include="Models\Warning.cs" />
     <Compile Include="Models\WarningPotentialIssue.cs" />
     <Compile Include="Models\WarningPotentialIssues.cs" />
