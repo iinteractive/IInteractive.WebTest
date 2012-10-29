@@ -143,6 +143,11 @@
     <Content Include="ForbiddenTests\RemoteSite\BadLink1.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BadLink2.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BrokenLink1.aspx" />
+    <Content Include="HtmlValidatorTests\CaseA\Seed.htm" />
+    <Content Include="HtmlValidatorTests\CaseB\Seed.htm" />
+    <Content Include="HtmlValidatorTests\CaseC\Seed.htm" />
+    <Content Include="HtmlValidatorTests\CaseD\Seed.htm" />
+    <Content Include="HtmlValidatorTests\CaseE\Seed.htm" />
     <Content Include="MultipleSeedTests\CaseA\Seed1.htm" />
     <Content Include="MultipleSeedTests\CaseA\Seed2.htm" />
     <Content Include="MultipleSeedTests\CaseB\Link1.htm" />

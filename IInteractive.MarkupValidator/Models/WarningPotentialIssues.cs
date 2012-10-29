@@ -32,7 +32,7 @@ namespace IInteractive.MarkupValidator
     ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
-    class WarningPotentialIssues:IEnumerable<WarningPotentialIssue>
+    public class WarningPotentialIssues : IEnumerable<WarningPotentialIssue>
     {
         #region Variables
         /// <summary>

@@ -32,13 +32,13 @@ namespace IInteractive.MarkupValidator
     ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
-    class Faults:IEnumerable<Fault>
+    public class Faults : IEnumerable<Fault>
     {
         #region Variables
         /// <summary>
         /// Variable that represents the list of faults
         /// </summary>
-        private List<Fault> faultList;
+        public List<Fault> faultList;
         #endregion
 
         #region Constructors

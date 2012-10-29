@@ -32,7 +32,7 @@ namespace IInteractive.MarkupValidator
     ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
-    class Error
+    public class Error
     {
 
         #region Properties
