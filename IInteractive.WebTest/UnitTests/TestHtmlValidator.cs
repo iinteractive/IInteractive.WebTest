@@ -41,7 +41,7 @@ namespace IInteractive.WebTest.UnitTests
             var template = Resources.TestHtmlValidatorTemplate;
             var contents = string.Format(template, validateUri);
             var config = TestConfigurationSections.RetrieveConfig(contents);
-            var generator = new WebSiteTestSuiteGenerator((LinkCheckerConfigSection)config.Sections["linkCheckerConfig"]);
+            var generator = new WebSiteTestSuiteGenerator((LinkCheckerConfigSection)config.Sections["linkCheckerConfig"], true, false);
             generator.GenerateTests();
 
             var results = new List<HttpRequestResult>();
@@ -54,7 +54,8 @@ namespace IInteractive.WebTest.UnitTests
             var validations = new List<HtmlValidationResult>();
             foreach (var result in results)
             {
-                validations.Add(validator.Validate(result));
+                validator.Validate(result);
+                validations.Add(result.HtmlValidationResult);
             }
 
             Assert.AreEqual(1, validations.Count);

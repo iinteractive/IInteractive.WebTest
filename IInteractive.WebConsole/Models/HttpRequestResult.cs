@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using IInteractive.WebConsole;
+using IInteractive.MarkupValidator;
 
 namespace IInteractive.WebConsole
 {
@@ -17,6 +18,7 @@ namespace IInteractive.WebConsole
 
         public Browser BrowserUsed { get; set; }
         public HttpValidationError Error { get; set; }
+        public HtmlValidationResult HtmlValidationResult { get; set; }
         public string ContentType { get; set; }
         public Uri RequestUrl { get; set; }
         public Uri ResultUrl { get; set; }

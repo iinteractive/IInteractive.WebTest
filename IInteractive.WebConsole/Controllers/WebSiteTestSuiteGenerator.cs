@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using IInteractive.WebConsole.Results;
 using System.IO;
+using IInteractive.MarkupValidator;
 
 namespace IInteractive.WebConsole
 {
@@ -16,13 +17,17 @@ namespace IInteractive.WebConsole
     /// </summary>
     public class WebSiteTestSuiteGenerator
     {
-        public WebSiteTestSuiteGenerator(LinkCheckerConfigSection Config)
+        public WebSiteTestSuiteGenerator(LinkCheckerConfigSection Config, bool ValidateHtml, bool ValidateCss)
         {
             this.Config = Config;
+            this.ValidateHtml = ValidateHtml;
+            this.ValidateCss = ValidateCss;
         }
 
         public LinkCheckerConfigSection Config { get; set; }
         public List<Crawler> Crawlers;
+        public bool ValidateHtml;
+        public bool ValidateCss;
 
         public void GenerateTests()
         {
@@ -44,6 +49,16 @@ namespace IInteractive.WebConsole
             {
                 crawler.Crawl();
                 results.AddRange(crawler.HttpRequestResults);
+            }
+
+            if (ValidateHtml)
+            {
+                var validator = new HtmlValidator(new Uri("http://validator.iinteractive.com/check"));
+                foreach (var result in results)
+                {
+                    if (result.IsHtml)
+                        validator.Validate(result);
+                }
             }
 
             var startTime = DateTime.Now;

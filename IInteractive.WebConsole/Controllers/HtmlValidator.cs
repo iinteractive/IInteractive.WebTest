@@ -22,7 +22,7 @@ namespace IInteractive.MarkupValidator
 
         public Uri ValidationUri;
 
-        public HtmlValidationResult Validate(HttpRequestResult HttpRequestResult)
+        public void Validate(HttpRequestResult HttpRequestResult)
         {
             var nvc = new NameValueCollection();
             nvc.Add("charset", "(detect automatically)");
@@ -30,7 +30,7 @@ namespace IInteractive.MarkupValidator
             nvc.Add("group", "0");
             nvc.Add("user-agent", "W3C_Validator/1.3");
             nvc.Add("output", "soap12");
-            return new HtmlValidationResult(HttpRequestResult, UploadFileToValidator(HttpRequestResult.Content, nvc));
+            HttpRequestResult.HtmlValidationResult = new HtmlValidationResult(HttpRequestResult, UploadFileToValidator(HttpRequestResult.Content, nvc));
         }
 
         private string UploadFileToValidator(string file, NameValueCollection nvc)
@@ -46,6 +46,7 @@ namespace IInteractive.MarkupValidator
             httpWebRequest2.KeepAlive = true;
             httpWebRequest2.Credentials =
             System.Net.CredentialCache.DefaultCredentials;
+            httpWebRequest2.CookieContainer = new CookieContainer();
 
 
 

@@ -57,8 +57,15 @@
     <Compile Include="Configuration\SeedConfigElement.cs" />
     <Compile Include="Controllers\Browser.cs" />
     <Compile Include="Controllers\Crawler.cs" />
+    <Compile Include="Controllers\HtmlValidator.cs" />
     <Compile Include="Controllers\WebSiteTestSuiteGenerator.cs" />
+    <Compile Include="Models\ControlExceptions.cs" />
     <Compile Include="Models\CssUrl.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Errors.cs" />
+    <Compile Include="Models\Fault.cs" />
+    <Compile Include="Models\Faults.cs" />
+    <Compile Include="Models\HtmlValidationResult.cs" />
     <Compile Include="Models\HttpRequestResult.cs" />
     <Compile Include="Models\HttpValidationError.cs" />
     <Compile Include="Models\HyperLink.cs" />
@@ -67,6 +74,10 @@
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\StyleSheet.cs" />
     <Compile Include="Models\UriComparable.cs" />
+    <Compile Include="Models\Warning.cs" />
+    <Compile Include="Models\WarningPotentialIssue.cs" />
+    <Compile Include="Models\WarningPotentialIssues.cs" />
+    <Compile Include="Models\Warnings.cs" />
     <Compile Include="Parsers\CssParser.cs" />
     <Compile Include="Parsers\HtmlParser.cs" />
     <Compile Include="Main\Program.cs" />
@@ -76,9 +87,16 @@
     <Compile Include="Results\WebTestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\I_heart_validator" />
+    <None Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\w3c_home_nb" />
     <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service.htm" />
+    <Content Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\opensource-55x48.png" />
+    <Content Include="docs\Documentation of the Programmatic Interface %28API%29 to The W3C Markup Validation Service_files\w3c.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -52,7 +52,7 @@ namespace IInteractive.WebTest.UnitTests
             var config = TestConfigurationSections.RetrieveConfig(contents);
             var section = (LinkCheckerConfigSection)config.Sections.Get("linkCheckerConfig");
             Console.WriteLine(section.Timeout);
-            var generator = new WebSiteTestSuiteGenerator(section);
+            var generator = new WebSiteTestSuiteGenerator(section, false, false);
             generator.GenerateTests();
 
             Assert.AreEqual(1, generator.Crawlers.Count);
@@ -101,7 +101,7 @@ namespace IInteractive.WebTest.UnitTests
             var config = TestConfigurationSections.RetrieveConfig(contents);
             var section = (LinkCheckerConfigSection)config.Sections.Get("linkCheckerConfig");
             Console.WriteLine(section.Timeout);
-            var generator = new WebSiteTestSuiteGenerator(section);
+            var generator = new WebSiteTestSuiteGenerator(section, false, false);
             generator.GenerateTests();
 
             Assert.AreEqual(1, generator.Crawlers.Count);

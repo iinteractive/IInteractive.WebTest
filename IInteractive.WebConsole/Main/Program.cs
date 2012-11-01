@@ -121,7 +121,7 @@ namespace IInteractive.WebConsole
                         return 1;
                     }
 
-                    WebSiteTestSuiteGenerator generator = new WebSiteTestSuiteGenerator(section);
+                    WebSiteTestSuiteGenerator generator = new WebSiteTestSuiteGenerator(section, false, false);
                     try
                     {
                         if (section.TimeLimit != -1)
