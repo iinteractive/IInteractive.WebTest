@@ -81,6 +81,7 @@
     <Compile Include="UnitTests\TestBrowser.cs" />
     <Compile Include="UnitTests\TestConfigurationParenting.cs" />
     <Compile Include="UnitTests\TestCssParser.cs" />
+    <Compile Include="UnitTests\TestEncodingAssumptions.cs" />
     <Compile Include="UnitTests\TestExperimentalConfigs.cs" />
     <Compile Include="UnitTests\TestForbiddenConfiguration.cs" />
     <Compile Include="UnitTests\TestHtmlValidator.cs" />
