@@ -154,6 +154,9 @@ namespace IInteractive.WebConsole
                     response = request.GetResponse();
                     streamReader = new StreamReader(response.GetResponseStream());
 
+                    if (response is HttpWebResponse)
+                        results.Charset = ((HttpWebResponse)response).CharacterSet;
+
                     string content = streamReader.ReadToEnd();
 
                     results.ContentType = response.ContentType;

@@ -18,13 +18,13 @@ namespace IInteractive.MarkupValidator
         /// <summary>
         /// Creates an HtmlValidationResult object.
         /// </summary>
-        /// <param name="HttpRequestResult">The HttpRequestResult that was validated.</param>
         /// <param name="HtmlValidationResponse">The response of the validation service.</param>
-        public HtmlValidationResult(HttpRequestResult HttpRequestResult, string HtmlValidationResponse)
+        /// /// <param name="IsDotNetEncoding">Whether the response had an encoding recognized by the .NET framework Encoding class.</param>
+        public HtmlValidationResult(string HtmlValidationResponse, bool IsDotNetEncoding)
         {
-            this.HttpRequestResult = HttpRequestResult;
             var reader = new StringReader(HtmlValidationResponse);
             this.HtmlValidationResponse = XDocument.Load(reader);
+            this.IsDotNetEncoding = IsDotNetEncoding;
             HTMLErrors(true);
             HTMLWarnings();
             HTMLFaults();
@@ -32,13 +32,21 @@ namespace IInteractive.MarkupValidator
         }
 
         /// <summary>
+        /// Creates an HtmlValidationResult object.
+        /// </summary>
+        /// <param name="HtmlValidationResponse">The response of the validation service.</param>
+        public HtmlValidationResult(string HtmlValidationResponse) : this(HtmlValidationResponse, true)
+        {
+        }
+
+        /// <summary>
         /// The HtmlValidationResponse retrieved by the HtmlValidator.
         /// </summary>
         public XDocument HtmlValidationResponse { get; private set; }
         /// <summary>
-        /// HttpRequestResult to validate.
+        /// Whether or not the encoding was recognized by the .NET framework Encoding class.
         /// </summary>
-        public HttpRequestResult HttpRequestResult { get; private set; }
+        public bool IsDotNetEncoding = true;
         /// <summary>
         /// Errors class instance
         /// </summary>

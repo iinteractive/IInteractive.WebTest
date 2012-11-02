@@ -9,6 +9,51 @@ namespace IInteractive.WebTest.UnitTests
     [TestClass]
     public class TestEncodingAssumptions
     {
+        public static string[][] W3CEncodings = new string[][] {
+	        new string[] { "emptyEncoding",	"(detect automatically)" },
+	        new string[] { "UTF8",	"utf-8" },
+	        new string[] { "UTF16",	"utf-16" },
+	        new string[] { "iso_8859_1",	"iso-8859-1" },
+	        new string[] { "iso_8859_2",	"iso-8859-2" },
+	        new string[] { "iso_8859_3",	"iso-8859-3" },
+	        new string[] { "iso_8859_4",	"iso-8859-4" },
+	        new string[] { "iso_8859_5",	"iso-8859-5" },
+	        new string[] { "iso_8859_6_i",	"iso-8859-6-i" },
+	        new string[] { "iso_8859_7",	"iso-8859-7" },
+	        new string[] { "iso_8859_8",	"iso-8859-8" },
+	        new string[] { "iso_8859_8_i",	"iso-8859-8-i" },
+	        new string[] { "iso_8859_9",	"iso-8859-9" },
+	        new string[] { "iso_8859_10",	"iso-8859-10" },
+	        new string[] { "iso_8859_11",	"iso-8859-11" },
+	        new string[] { "iso_8859_13",	"iso-8859-13" },
+	        new string[] { "iso_8859_14",	"iso-8859-14" },
+	        new string[] { "iso_8859_15",	"iso-8859-15" },
+	        new string[] { "iso_8859_16",	"iso-8859-16" },
+	        new string[] { "us_ascii",	"us-ascii" },
+	        new string[] { "euc_jp",	"euc-jp" },
+	        new string[] { "shift_jis",	"shift_jis" },
+	        new string[] { "iso_2022_jp",	"iso-2022-jp" },
+	        new string[] { "euc_kr",	"euc-kr" },
+	        new string[] { "gb2312",	"gb2312" },
+	        new string[] { "gb18030",	"gb18030" },
+	        new string[] { "big5",	"big5" },
+	        new string[] { "big5_hkscs",	"big5-HKSCS" },
+	        new string[] { "tis_620",	"tis-620" },
+	        new string[] { "koi8_r",	"koi8-r" },
+	        new string[] { "koi8_u",	"koi8-u" },
+	        new string[] { "iso_ir_111",	"iso-ir-111" },
+	        new string[] { "macintosh",	"macintosh" },
+	        new string[] { "windows_1250",	"windows-1250" },
+	        new string[] { "windows_1251",	"windows-1251" },
+	        new string[] { "windows_1252",	"windows-1252" },
+	        new string[] { "windows_1253",	"windows-1253" },
+	        new string[] { "windows_1254",	"windows-1254" },
+	        new string[] { "windows_1255",	"windows-1255" },
+	        new string[] { "windows_1256",	"windows-1256" },
+	        new string[] { "windows_1257",	"windows-1257" }
+        };
+
+
         // Code Page, Name, Display Name
         public static string[][] EncodingTests = new string[][] { 
             new string[] {"37", "IBM037", "IBM EBCDIC (US-Canada)"},
@@ -231,6 +276,28 @@ namespace IInteractive.WebTest.UnitTests
 
             Assert.AreNotEqual(0, encVsN);
             Assert.AreNotEqual(0, wnVsDn);
+        }
+
+        [TestMethod]
+        public void TestW3CNameHasEncodingName()
+        {
+            int failed = 0;
+            foreach (var w3cEncodings in W3CEncodings)
+            {
+                try
+                {
+                    var encoding = Encoding.GetEncoding(w3cEncodings[1]);
+                }
+                catch (ArgumentException)
+                {
+                    if (!String.IsNullOrEmpty(w3cEncodings[1]))
+                    {
+                        failed++;
+                        Console.WriteLine("w3cEncoding[1] = {0}", w3cEncodings[1]);
+                    }
+                }
+            }
+            Assert.AreEqual(6, failed);
         }
 
         [TestMethod]

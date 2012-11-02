@@ -20,6 +20,7 @@ namespace IInteractive.WebConsole
         public HttpValidationError Error { get; set; }
         public HtmlValidationResult HtmlValidationResult { get; set; }
         public string ContentType { get; set; }
+        public string Charset { get; set; }
         public Uri RequestUrl { get; set; }
         public Uri ResultUrl { get; set; }
         public string Content { get; set; } // Will be null if !IsHtml && !IsCss
