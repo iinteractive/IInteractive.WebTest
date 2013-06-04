@@ -4,6 +4,7 @@ using System.Net;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Serialization;
+using System.Web;
 
 namespace IInteractive.WebTest
 {
@@ -141,6 +142,39 @@ namespace IInteractive.WebTest
             set.Add("val");
             int count2 = set.Count;
             Assert.AreEqual(count, count2);
+        }
+
+        public static Dictionary<string, string> HttpUtilityTests
+            = new Dictionary<string, string>()
+                        {
+                            {"<", "&lt;" },
+                            {">", "&gt;" },
+                            {"'", "&apos;" },
+                            {"\"", "&quot;" },
+                            {"&", "&amp;" }
+                        };
+
+        public static Dictionary<string, string> HttpUtilityTests2
+            = new Dictionary<string, string>()
+                {
+                    {"<", "&#60;" },
+                    {">", "&#62;" },
+                    {"'", "&#39;" },
+                    {"\"", "&#34;" },
+                    {"&", "&#38;" },
+                };
+
+        [TestMethod]
+        public void HttpUtilityDecode()
+        {
+            foreach (var test in HttpUtilityTests)
+            {
+                Assert.AreEqual(test.Key, HttpUtility.HtmlDecode(test.Value));
+            }
+            foreach (var test in HttpUtilityTests2)
+            {
+                Assert.AreEqual(test.Key, HttpUtility.HtmlDecode(test.Value));
+            }
         }
 
     }

@@ -69,7 +69,7 @@ namespace IInteractive.WebTest.UnitTests
                 sec = (ConfSec)config.GetSection("confSec");
                 
             }
-            catch (ConfigurationErrorsException ex)
+            catch (ConfigurationErrorsException)
             {
             }
             if (sec != null)

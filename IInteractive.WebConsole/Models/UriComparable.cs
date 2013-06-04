@@ -11,10 +11,10 @@ namespace IInteractive.WebConsole.Models
         public UriComparable(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }
 
         public UriComparable(string uri) : base(uri) { }
-        public UriComparable(string uri, bool dontEscape) : base(uri, dontEscape) { }
+        //public UriComparable(string uri, bool dontEscape) : base(uri, dontEscape) { }
         public UriComparable(string uriString, UriKind uriKind) : base(uriString, uriKind) { }
         public UriComparable(Uri baseUri, string relativeUri) : base(baseUri, relativeUri) { }
-        public UriComparable(Uri baseUri, string relativeUri, bool dontEscape) : base(baseUri, relativeUri, dontEscape) { }
+        //public UriComparable(Uri baseUri, string relativeUri, bool dontEscape) : base(baseUri, relativeUri, dontEscape) { }
         public UriComparable(Uri baseUri, Uri relativeUri) : base(baseUri, relativeUri) { }
 
         public int CompareTo(UriComparable other)

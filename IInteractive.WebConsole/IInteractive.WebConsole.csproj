@@ -11,7 +11,8 @@
     <RootNamespace>IInteractive.WebConsole</RootNamespace>
     <AssemblyName>IInteractive.WebConsole</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -37,6 +38,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +52,7 @@
     <Compile Include="Configuration\BrowserConfigElement.cs" />
     <Compile Include="Configuration\ForbiddenCollection.cs" />
     <Compile Include="Configuration\ForbiddenElement.cs" />
+    <Compile Include="Configuration\HtmlEntityEncodingOption.cs" />
     <Compile Include="Configuration\LinkCheckerConfigSection.cs" />
     <Compile Include="Configuration\LinkToIgnoreCollection.cs" />
     <Compile Include="Configuration\LinkToIgnoreElement.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Results\WebTestXmlWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Schema\Microsoft.VisualStudio.TestTools.Common.Xml.VSTST.xsd">
       <SubType>Designer</SubType>
     </None>
