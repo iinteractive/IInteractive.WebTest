@@ -273,7 +273,7 @@ namespace IInteractive.WebTest.UnitTests
             + "\n\taccept=\"*/*\""
             + "\n\tacceptCharset=\"ISO-8859-1,utf-8;q=0.7,*;q=0.3\""
             + "\n\tacceptLanguage=\"en-US,en;q=0.8\" />";
-        private static string SeedDefault = "<add uri=\"http://webcrawlertest:80/\"/>";
+        private static string SeedDefault = "<add uri=\"http://webcrawlertest:80/Index.aspx\"/>";
 
         private static string Write(string val, params Object[] args)
         {

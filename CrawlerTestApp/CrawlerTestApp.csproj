@@ -168,6 +168,7 @@
     <Content Include="HtmlEncodingTests\TestStyleSheet\CaseD\Seed.aspx" />
     <Content Include="HtmlEncodingTests\TestStyleSheet\CaseE\Seed.aspx" />
     <Content Include="HtmlEncodingTests\TestStyleSheet\CaseF\Seed.aspx" />
+    <Content Include="Index.aspx" />
     <Content Include="MultipleSeedTests\CaseA\Seed1.htm" />
     <Content Include="MultipleSeedTests\CaseA\Seed2.htm" />
     <Content Include="MultipleSeedTests\CaseB\Link1.htm" />
@@ -396,6 +397,13 @@
     </Compile>
     <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseF\Seed.aspx.designer.cs">
       <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeLimitTests\Sleep.aspx.cs">
