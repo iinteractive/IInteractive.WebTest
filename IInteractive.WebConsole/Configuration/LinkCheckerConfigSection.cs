@@ -113,23 +113,6 @@ namespace IInteractive.WebConsole
             }
         }
 
-
-        [ConfigurationProperty("htmlEntityEncoding",
-            IsDefaultCollection = false, DefaultValue = HtmlEntityEncodingOption.Required,
-            IsRequired = false)]
-        public HtmlEntityEncodingOption HtmlEntityEncoding
-        {
-
-            get
-            {
-                return (HtmlEntityEncodingOption)this["htmlEntityEncoding"];
-            }
-            set
-            {
-                this["htmlEntityEncoding"] = value;
-            }
-        }
-
         [ConfigurationProperty("forbidden", IsRequired = false)]
         public ForbiddenCollection Forbidden
         {
