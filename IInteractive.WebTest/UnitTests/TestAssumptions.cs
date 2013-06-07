@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Serialization;
 using System.Web;
+using IInteractive.WebConsole;
+using System.Configuration;
+using IInteractive.WebTest.Properties;
+using IInteractive.WebTest.UnitTests;
 
 namespace IInteractive.WebTest
 {
@@ -144,6 +148,17 @@ namespace IInteractive.WebTest
             Assert.AreEqual(count, count2);
         }
 
+        [TestMethod]
+        public void UriEscaping()
+        {
+            var one = new Uri(TestCrawler.GetTestUrl("/?a=123&b=43"));
+
+            var two = new Uri(TestCrawler.GetTestUrl("/?a=123&amp;b=43"));
+
+            Assert.AreNotEqual(one.Query, two.Query);
+            Assert.AreNotEqual(one, two);
+        }
+
         public static Dictionary<string, string> HttpUtilityTests
             = new Dictionary<string, string>()
                         {
@@ -177,5 +192,80 @@ namespace IInteractive.WebTest
             }
         }
 
+
+        private static Dictionary<string, string> _configurationLinks { get; set; }
+        public static Dictionary<string, string> ConfigurationLinks
+        {
+            get
+            {
+                return (_configurationLinks == null) ? _configurationLinks = PopulateConfigurationLinks() : _configurationLinks;
+            }
+        }
+
+        public static Dictionary<string, string> PopulateConfigurationLinks()
+        {
+            // We make the assumption that the configuration sections don't recognize URIs.
+            // With this assumption every entity character is translated to it's entity code mapping.
+            var configLinks = new Dictionary<string, string>()
+            {
+                { TestCrawler.GetTestUrl(""), TestCrawler.GetTestUrl("") },
+                { TestCrawler.GetTestUrl("/?blah=blah"), TestCrawler.GetTestUrl("/?blah=blah") },
+                { TestCrawler.GetTestUrl("/?blah=blah&amp;amp;blah2=blah"), TestCrawler.GetTestUrl("/?blah=blah&amp;blah2=blah") },
+                { TestCrawler.GetTestUrl("/?blah=&#34;lah"), TestCrawler.GetTestUrl("/?blah=\"lah") }
+            };
+
+            return configLinks;
+        }
+
+        [TestMethod]
+        public void TestDecodingOfConfigurationLinkAssumptions()
+        {
+            string contents = null;
+            Configuration config = null;
+            LinkCheckerConfigSection section = null;
+
+            try
+            {
+                contents = string.Format(Resources.CaseA, TestCrawler.GetTestUrl("/?blah=blah&blah2=blah"));
+                config = TestConfigurationSections.RetrieveConfig(contents);
+                section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+
+                Assert.Fail();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            var keys = "";
+            var values = "";
+            foreach (var kv in HttpUtilityTests)
+            {
+                keys += kv.Key;
+                values += kv.Value;
+            }
+
+            try
+            {
+                contents = string.Format(Resources.CaseA, TestCrawler.GetTestUrl("/?blah=" + keys));
+                config = TestConfigurationSections.RetrieveConfig(contents);
+                section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+
+                Assert.Fail();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            foreach(var kv in ConfigurationLinks)
+            {
+                contents = string.Format(Resources.CaseA, kv.Key);
+                config = TestConfigurationSections.RetrieveConfig(contents);
+                section = (LinkCheckerConfigSection)config.GetSection("linkCheckerConfig");
+
+                Assert.AreEqual(kv.Value, section.Seeds[0].Uri);
+            }
+        }
     }
 }

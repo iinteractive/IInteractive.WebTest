@@ -16,6 +16,219 @@ namespace IInteractive.WebTest
         public static int Port = 80;
 
         [TestMethod]
+        public void HtmlEncodingTests_HyperLink_A()
+        {
+            var testFolder = "HyperLink";
+            var caseFolder = "A";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_HyperLink_B()
+        {
+            var testFolder = "HyperLink";
+            var caseFolder = "B";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_HyperLink_C()
+        {
+            var testFolder = "HyperLink";
+            var caseFolder = "C";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_HyperLink_D()
+        {
+            var testFolder = "HyperLink";
+            var caseFolder = "D";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_HyperLink_E()
+        {
+            var testFolder = "HyperLink";
+            var caseFolder = "E";
+            var expected = 3;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+
+        [TestMethod]
+        public void HtmlEncodingTests_Img_A()
+        {
+            var testFolder = "Img";
+            var caseFolder = "A";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_Img_B()
+        {
+            var testFolder = "Img";
+            var caseFolder = "B";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_Img_C()
+        {
+            var testFolder = "Img";
+            var caseFolder = "C";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_Img_D()
+        {
+            var testFolder = "Img";
+            var caseFolder = "D";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_Img_E()
+        {
+            var testFolder = "Img";
+            var caseFolder = "E";
+            var expected = 3;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+
+        [TestMethod]
+        public void HtmlEncodingTests_JavaScript_A()
+        {
+            var testFolder = "JavaScript";
+            var caseFolder = "A";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_JavaScript_B()
+        {
+            var testFolder = "JavaScript";
+            var caseFolder = "B";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_JavaScript_C()
+        {
+            var testFolder = "JavaScript";
+            var caseFolder = "C";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_JavaScript_D()
+        {
+            var testFolder = "JavaScript";
+            var caseFolder = "D";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_JavaScript_E()
+        {
+            var testFolder = "JavaScript";
+            var caseFolder = "E";
+            var expected = 3;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_A()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "A";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_B()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "B";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_C()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "C";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_D()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "D";
+            var expected = 2;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_E()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "E";
+            var expected = 3;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
+        public void HtmlEncodingTests_StyleSheet_F()
+        {
+            var testFolder = "StyleSheet";
+            var caseFolder = "F";
+            var expected = 3;
+            var path = string.Format("/HtmlEncodingTests/Test{0}/Case{1}/Seed.aspx", testFolder, caseFolder);
+            TestCrawlerMethod(GetTestUrl(path), expected);
+        }
+
+        [TestMethod]
         public void AbsoluteUrlTestsCaseA()
         {
             TestCrawlerMethod(GetTestUrl("/AbsoluteUrlTests/CaseA/Seed.aspx"), 2);

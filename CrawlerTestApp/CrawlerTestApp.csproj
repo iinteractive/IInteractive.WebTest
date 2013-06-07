@@ -143,6 +143,31 @@
     <Content Include="ForbiddenTests\RemoteSite\BadLink1.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BadLink2.htm" />
     <Content Include="ForbiddenTests\RemoteSite\BrokenLink1.aspx" />
+    <Content Include="HtmlEncodingTests\TestHyperLink\CaseA\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestHyperLink\CaseB\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestHyperLink\CaseC\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestHyperLink\CaseD\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestHyperLink\CaseE\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\NonSeed\DynamicAAndB.aspx" />
+    <Content Include="HtmlEncodingTests\NonSeed\JavaScript.js" />
+    <Content Include="HtmlEncodingTests\NonSeed\Other.aspx" />
+    <Content Include="HtmlEncodingTests\NonSeed\StyleSheet.css" />
+    <Content Include="HtmlEncodingTests\TestImg\CaseA\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestImg\CaseB\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestImg\CaseC\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestImg\CaseD\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestImg\CaseE\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestJavaScript\CaseA\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestJavaScript\CaseB\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestJavaScript\CaseC\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestJavaScript\CaseD\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestJavaScript\CaseE\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseA\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseB\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseC\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseD\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseE\Seed.aspx" />
+    <Content Include="HtmlEncodingTests\TestStyleSheet\CaseF\Seed.aspx" />
     <Content Include="MultipleSeedTests\CaseA\Seed1.htm" />
     <Content Include="MultipleSeedTests\CaseA\Seed2.htm" />
     <Content Include="MultipleSeedTests\CaseB\Link1.htm" />
@@ -210,6 +235,167 @@
     </Compile>
     <Compile Include="Handler.ashx.cs">
       <DependentUpon>Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseA\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseA\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseB\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseB\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseC\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseC\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseD\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseD\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseE\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestHyperLink\CaseE\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\NonSeed\DynamicAAndB.aspx.cs">
+      <DependentUpon>DynamicAAndB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\NonSeed\DynamicAAndB.aspx.designer.cs">
+      <DependentUpon>DynamicAAndB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\NonSeed\Other.aspx.cs">
+      <DependentUpon>Other.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\NonSeed\Other.aspx.designer.cs">
+      <DependentUpon>Other.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseA\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseA\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseB\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseB\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseC\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseC\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseD\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseD\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseE\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestImg\CaseE\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseA\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseA\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseB\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseB\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseC\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseC\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseD\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseD\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseE\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestJavaScript\CaseE\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseA\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseA\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseB\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseB\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseC\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseC\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseD\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseD\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseE\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseE\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseF\Seed.aspx.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HtmlEncodingTests\TestStyleSheet\CaseF\Seed.aspx.designer.cs">
+      <DependentUpon>Seed.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeLimitTests\Sleep.aspx.cs">

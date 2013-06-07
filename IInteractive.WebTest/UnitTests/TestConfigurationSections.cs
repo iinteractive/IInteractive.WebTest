@@ -14,8 +14,6 @@ namespace IInteractive.WebTest.UnitTests
     [TestClass]
     public class TestConfigurationSections
     {
-        
-
         [TestMethod]
         public void TestBrowserDefaultConfig()
         {

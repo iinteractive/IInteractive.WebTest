@@ -1,0 +1,4 @@
+﻿body
+{
+    background: url("/HtmlEncodingTests/NonSeed/DynamicAAndB.aspx?a=1&b=1");
+}
